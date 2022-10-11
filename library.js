@@ -38,10 +38,9 @@ const dsos = (args = {}) => {
   // Intersection Observer
   const observer = new IntersectionObserver(observerFunction, observerOptions)
 
-  //Change the CSS Variable value here
-
+  //Change CSS Variable value of element
   const setCSSVariable = (element, property, value) => {
-    element.setProperty('--' + property, value)
+    element.style.setProperty('--' + property, value)
   }
 
   // Run observer on start event
@@ -58,7 +57,7 @@ const dsos = (args = {}) => {
       attrValues.forEach((attr) => {
         let attrName = attr.name.replace('data-dsos-', 'dsos-')
         let attrValue = attr.value
-        setCSSVariable(el.style, attrName, attrValue)
+        setCSSVariable(el, attrName, attrValue)
       })
 
       observer.observe(el)

@@ -47,3 +47,14 @@ h2 {
   align-items: center;
   margin-bottom: 1rem;
 }
+
+.my-custom-element {
+  opacity: 0;
+  rotate: 45deg;
+  transition: 1s ease-in-out;
+}
+
+.my-custom-element.enter {
+  opacity: 1;
+  rotate: 0deg;
+}

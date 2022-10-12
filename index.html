@@ -2,14 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
     <link
       rel="icon"
       type="image/svg+xml"
       href="/vite.svg" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Do Stuff On Scroll</title>
     <link
       rel="stylesheet"
       href="style.css" />
@@ -17,6 +17,7 @@
       rel="stylesheet"
       href="base.css" />
   </head>
+
   <body>
     <section class="section">
       <div
@@ -46,7 +47,7 @@
         class="card"
         data-dsos="fade-right"
         data-dsos-delay="200ms">
-        <h2>Fade left animation</h2>
+        <h2>Fade right animation</h2>
       </div>
 
       <div
@@ -63,6 +64,10 @@
         data-dsos="fade-right">
         <h2>Fade right animation</h2>
       </div>
+
+      <div class="my-custom-element card">
+        <h2>My custom DSOS animation</h2>
+      </div>
     </section>
 
     <section class="section">
@@ -73,11 +78,7 @@
       </div>
     </section>
 
-    <script
-      type="module"
-      src="/library.js"></script>
-    <script
-      type="module"
-      src="/main.js"></script>
+    <script src="/dsos.js"></script>
+    <script src="/main.js"></script>
   </body>
 </html>

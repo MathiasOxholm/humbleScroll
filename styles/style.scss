@@ -74,11 +74,11 @@ html:not(.no-js) {
 
   // Sizes variation
   [data-#{$brand}~='small'] {
-    --#{$brand}-ratio: 0.5;
+    --#{$brand}-translate-ratio: 0.5;
   }
 
   [data-#{$brand}~='large'] {
-    --#{$brand}-ratio: 3;
+    --#{$brand}-translate-ratio: 3;
   }
 
   // Fade in animation

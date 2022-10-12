@@ -40,10 +40,10 @@ html:not(.no-js) [data-dsos].is-inview {
   --dsos-rotate: 0deg !important;
 }
 html:not(.no-js) [data-dsos~=small] {
-  --dsos-ratio: 0.5;
+  --dsos-translate-ratio: 0.5;
 }
 html:not(.no-js) [data-dsos~=large] {
-  --dsos-ratio: 3;
+  --dsos-translate-ratio: 3;
 }
 html:not(.no-js) [data-dsos~=fade] {
   --dsos-opacity: 0;

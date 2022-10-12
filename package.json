@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "scss": "sass style.scss style.css --watch"
+    "scss": "sass ./styles/style.scss ./styles/style.css --watch"
   },
   "devDependencies": {
     "sass": "^1.55.0",

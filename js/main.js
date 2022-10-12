@@ -1,5 +1,9 @@
 // Fire regular DSOS
-const scroll = new DSOS()
+const scroll = new DSOS({
+  rootMargin: '40px',
+  threshold: 0,
+  repeat: true,
+})
 scroll.init()
 
 // Fire custom DSOS with custom options

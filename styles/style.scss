@@ -1,114 +1,138 @@
+$brand: 'dsos';
+
 :root {
   // Transition properties
-  --dsos-delay: 0ms;
-  --dsos-bezier: cubic-bezier(0.4, 0, 0.2, 1);
-  --dsos-duration: 800ms;
+  --#{$brand}-delay: 0ms;
+  --#{$brand}-bezier: cubic-bezier(0.4, 0, 0.2, 1);
+  --#{$brand}-duration: 700ms;
 
   // Visibility properties
-  --dsos-opacity: 0;
-  --dsos-visibility: hidden;
+  --#{$brand}-opacity: 1;
+  --#{$brand}-visibility: hidden;
 
   // Base calculation properties
-  --dsos-distance-y: 5rem;
-  --dsos-distance-x: 3.5rem;
-  --dsos-slide: 1.5;
+  --#{$brand}-distance-y: 3rem;
+  --#{$brand}-distance-x: 2rem;
+  --#{$brand}-slide: 1.5;
+  --#{$brand}-scale-ratio: 0.2;
 
   // Transfrom properties
-  --dsos-translate-y: 0;
-  --dsos-translate-x: 0;
-  --dsos-scale: 1;
-  --dsos-rotate: 0deg;
+  --#{$brand}-translate-y: 0;
+  --#{$brand}-translate-x: 0;
+  --#{$brand}-scale: 1;
+  --#{$brand}-rotate: 0deg;
+
+  // Ratio properties
+  --#{$brand}-ratio: 1;
+  --#{$brand}-translate-ratio: 1;
+  --#{$brand}-slide-ratio: 1.5;
+  --#{$brand}-scale-ratio: 0.2;
+
+  // Amount properties
+  --#{$brand}-translate-x-amount: 2rem;
+  --#{$brand}-translate-y-amount: 3rem;
 }
 
 html:not(.no-js) {
-  [data-dsos] {
+  [data-#{$brand}] {
     will-change: transform;
 
     // Transition settings
-    transition-duration: var(--dsos-duration);
-    transition-timing-function: var(--dsos-bezier);
-    transition-delay: var(--dsos-delay);
+    transition-duration: var(--#{$brand}-duration);
+    transition-timing-function: var(--#{$brand}-bezier);
+    transition-delay: var(--#{$brand}-delay);
 
     // Visibility properties
-    opacity: var(--dsos-opacity);
-    visibility: var(--dsos-visibility);
+    opacity: var(--#{$brand}-opacity);
+    visibility: var(--#{$brand}-visibility);
 
     // Transfrom properties
-    translate: var(--dsos-translate-x) var(--dsos-translate-y);
-    scale: var(--dsos-scale);
-    rotate: var(--dsos-rotate);
+    translate: var(--#{$brand}-translate-x) var(--#{$brand}-translate-y);
+    scale: var(--#{$brand}-scale);
+    rotate: var(--#{$brand}-rotate);
 
     &.is-inview {
       // Visibility properties
-      --dsos-opacity: 1 !important;
-      --dsos-visibility: visible !important;
+      --#{$brand}-opacity: 1 !important;
+      --#{$brand}-visibility: visible !important;
 
       // Transfrom properties
-      --dsos-translate-y: 0 !important;
-      --dsos-translate-x: 0 !important;
-      --dsos-scale: 1 !important;
-      --dsos-rotate: 0deg !important;
+      --#{$brand}-translate-y: 0 !important;
+      --#{$brand}-translate-x: 0 !important;
+      --#{$brand}-scale: 1 !important;
+      --#{$brand}-rotate: 0deg !important;
     }
   }
 
+  @mixin calcPropOld($property, $value, $operator: '+') {
+    --#{$brand}-#{$property}: calc(0px #{$operator} var(--#{$brand}-#{$value}) * var(--#{$brand}-ratio));
+  }
+
+  @mixin calcProp($property, $axis, $operator: '+') {
+    --#{$brand}-#{$property}-#{$axis}: calc(0px #{$operator} var(--#{$brand}-#{$property}-#{$axis}-amount) * var(--#{$brand}-#{$property}-ratio));
+  }
+
+  // Sizes variation
+  [data-#{$brand}~='small'] {
+    --#{$brand}-ratio: 0.5;
+  }
+
+  [data-#{$brand}~='large'] {
+    --#{$brand}-ratio: 3;
+  }
+
+  // Fade in animation
+  [data-#{$brand}~='fade'] {
+    --#{$brand}-opacity: 0;
+  }
+
   // Fade up animation
-  [data-dsos='fade-up'] {
-    --dsos-translate-y: var(--dsos-distance-y);
+  [data-#{$brand}~='up'] {
+    @include calcProp('translate', 'y');
   }
 
   // Fade down animation
-  [data-dsos='fade-down'] {
-    --dsos-translate-y: calc(0px - var(--dsos-distance-y));
+  [data-#{$brand}~='down'] {
+    @include calcProp('translate', 'y', '-');
   }
 
   // Fade Left animation
-  [data-dsos='fade-left'] {
-    --dsos-translate-x: var(--dsos-distance-x);
-    --dsos-translate-y: 0;
+  [data-#{$brand}~='left'] {
+    @include calcProp('translate', 'x');
   }
 
   // Fade right animation
-  [data-dsos='fade-right'] {
-    --dsos-translate-x: calc(0px - var(--dsos-distance-x));
-    --dsos-translate-y: 0;
-  }
-
-  // Fade in Animation
-  [data-dsos='fade-in'] {
-    --dsos-translate-y: 0;
-    --dsos-translate-x: 0;
+  [data-#{$brand}~='right'] {
+    @include calcProp('translate', 'x', '-');
   }
 
   // Zoom in Animation
-  [data-dsos='zoom-in'] {
-    --dsos-scale: 1.1;
+  [data-#{$brand}~='zoom-in'] {
+    --#{$brand}-scale: calc(1 + var(--#{$brand}-scale-ratio));
+  }
+
+  // Zoom in Animation
+  [data-#{$brand}~='zoom-out'] {
+    --#{$brand}-scale: calc(1 - var(--#{$brand}-scale-ratio));
   }
 
   // Slide up animation
-  [data-dsos='slide-up'] {
-    --dsos-opacity: 1;
-    --dsos-visibility: visible;
-    --dsos-translate-y: calc(var(--dsos-distance-y) * var(--dsos-slide));
+  [data-#{$brand}~='slide up'] {
+    --#{$brand}-translate-y: calc(var(--#{$brand}-distance-y) * var(--#{$brand}-slide));
   }
 
   // Slide down animation
-  [data-dsos='slide-down'] {
-    --dsos-opacity: 1;
-    --dsos-visibility: visible;
-    --dsos-translate-y: calc(0px - var(--dsos-distance-y) * var(--dsos-slide));
+  [data-#{$brand}~='slide down'] {
+    --#{$brand}-translate-y: calc(0px - var(--#{$brand}-distance-y) * var(--#{$brand}-slide));
   }
 
   // Slide left animation
-  [data-dsos='slide-left'] {
-    --dsos-opacity: 1;
-    --dsos-visibility: visible;
-    --dsos-translate-x: calc(var(--dsos-distance-x) * var(--dsos-slide));
+  [data-#{$brand}~='slide left'] {
+    --#{$brand}-translate-x: calc(var(--#{$brand}-distance-x) * var(--#{$brand}-slide));
   }
 
   // Slide right animation
-  [data-dsos='slide-right'] {
-    --dsos-opacity: 1;
-    --dsos-visibility: visible;
-    --dsos-translate-y: calc(0px - var(--dsos-distance-x) * var(--dsos-slide));
+  [data-#{$brand}~='slide right'] {
+    --#{$brand}-translate-y: calc(0px - var(--#{$brand}-distance-x) * var(--#{$brand}-slide));
   }
 }

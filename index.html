@@ -15,66 +15,191 @@
       href="styles/style.css" />
     <link
       rel="stylesheet"
-      href="styles/base.css" />
+      href="/tailwind.css" />
   </head>
 
-  <body>
-    <section class="section">
+  <body class="bg-zinc-900 text-zinc-100 overflow-x-hidden">
+    <section class="h-screen bg-zinc-900 p-10">
       <div
-        class="card"
-        data-dsos="fade-up">
-        <h2>Fade up animation</h2>
+        class="absolute top-20 left-20 z-10"
+        data-dsos="fade left"
+        data-dsos-delay="600ms">
+        DSOS.js
+      </div>
+      <div class="h-full w-full flex flex-col justify-center relative">
+        <div
+          class="absolute bg-zinc-800 h-full w-full rounded-xl"
+          data-dsos="zoom-out fade-up"></div>
+
+        <div class="container text-center flex flex-col items-center justify-center space-y-14 relative">
+          <h1
+            class="text-8xl font-bold"
+            data-dsos="fade up large"
+            data-dsos-delay="100ms">
+            Do Stuff On Scroll
+          </h1>
+          <p
+            class="text-2xl max-w-2xl text-zinc-400"
+            data-dsos="fade up small"
+            data-dsos-delay="200ms">
+            Do stuff on scroll is a lightweight animation on scroll Javascript library. It's easy to use and has no dependencies. It's also very small, only 1.5kb gzipped.
+          </p>
+          <div class="flex space-x-8">
+            <a
+              href="#section-1"
+              data-dsos="fade right small"
+              data-dsos-delay="400ms"
+              class="flex bg-lime-500 text-zinc-900 px-10 py-5 text-lg rounded-lg font-semibold overflow-hidden">
+              <span
+                class="fade flex"
+                data-dsos="fade right small"
+                >See it in action</span
+              >
+            </a>
+
+            <a
+              href="#!"
+              data-dsos="fade left small"
+              data-dsos-delay="400ms"
+              class="flex text-zinc-200 px-10 py-5 text-lg rounded-lg font-semibold border border-zinc-500 overflow-hidden">
+              <span
+                class="flex"
+                data-dsos="fade left small"
+                >Grab the code</span
+              >
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="section dark">
-      <div
-        class="card"
-        data-dsos="fade-down"
-        data-dsos-distance-y="200px">
-        <h2>Fade down animation</h2>
+    <section
+      id="section-1"
+      class="min-h-screen flex flex-col justify-center bg-zinc-800 py-20">
+      <h2 class="text-center mb-24 text-5xl">Fade animations</h2>
+      <div class="container grid grid-cols-2 gap-10 max-w-6xl">
+        <div
+          class="bg-zinc-700 py-24 block flex flex-col space-y-8 justify-center items-center rounded-lg"
+          data-dsos="fade up">
+          <h2 class="text-4xl text-center">Fade up</h2>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-dsos="fade up"</code>
+        </div>
+        <div
+          class="bg-zinc-700 py-24 block flex flex-col space-y-8 justify-center items-center rounded-lg"
+          data-dsos="fade down">
+          <h2 class="text-4xl text-center">Fade down</h2>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-dsos="fade down"</code>
+        </div>
+        <div
+          class="bg-zinc-700 py-24 block flex flex-col space-y-8 justify-center items-center rounded-lg col-span-2"
+          data-dsos="fade">
+          <h2 class="text-4xl text-center">Fade in</h2>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-dsos="fade"</code>
+        </div>
+        <div
+          class="bg-zinc-700 py-24 block flex flex-col space-y-8 justify-center items-center rounded-lg"
+          data-dsos="fade right">
+          <h2 class="text-4xl text-center">Fade right</h2>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-dsos="fade right"</code>
+        </div>
+        <div
+          class="bg-zinc-700 py-24 block flex flex-col space-y-8 justify-center items-center rounded-lg"
+          data-dsos="fade left">
+          <h2 class="text-4xl text-center">Fade left</h2>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-dsos="fade left"</code>
+        </div>
       </div>
     </section>
 
-    <section class="section">
-      <div
-        class="card"
-        data-dsos="fade-left">
-        <h2>Fade left animation</h2>
-      </div>
+    <section class="h-screen flex flex-col justify-center bg-zinc-900">
+      <h2 class="text-center mb-24 text-5xl">Zoom animations</h2>
+      <div class="container grid grid-cols-2 gap-10 max-w-6xl">
+        <div
+          class="bg-zinc-700 py-24 block flex flex-col justify-center items-center rounded-lg"
+          data-dsos="zoom-in">
+          <div class="flex flex-col space-y-8 justify-center items-center">
+            <h2 class="text-4xl text-center">Zoom in</h2>
+            <code class="bg-zinc-800 py-2 px-3 rounded-md">data-dsos="zoom-in"</code>
+          </div>
+        </div>
 
-      <div
-        class="card"
-        data-dsos="fade-right"
-        data-dsos-delay="200ms">
-        <h2>Fade right animation</h2>
-      </div>
+        <div
+          class="bg-zinc-700 py-24 block flex flex-col space-y-8 justify-center items-center rounded-lg"
+          data-dsos="zoom-out">
+          <h2 class="text-4xl text-center">Zoom on</h2>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-dsos="zoom-down"</code>
+        </div>
 
-      <div
-        class="card"
-        data-dsos="fade-left"
-        data-dsos-delay="400">
-        <h2>Fade left animation</h2>
+        <div
+          class="bg-zinc-700 py-24 block flex flex-col space-y-8 justify-center items-center rounded-lg"
+          data-dsos="zoom-out right up">
+          <h2 class="text-4xl text-center">Zoom out + right + up</h2>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-dsos="zoom-out right up"</code>
+        </div>
+
+        <div
+          class="bg-zinc-700 py-24 block flex flex-col space-y-8 justify-center items-center rounded-lg"
+          data-dsos="zoom-in left up">
+          <h2 class="text-4xl text-center">Zoom in + left + up</h2>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-dsos="zoom-in left up"</code>
+        </div>
       </div>
     </section>
 
-    <section class="section dark">
-      <div
-        class="card"
-        data-dsos="fade-right">
-        <h2>Fade right animation</h2>
-      </div>
+    <section class="h-screen flex flex-col justify-center bg-zinc-900">
+      <h2 class="text-center mb-24 text-5xl">Slide animations</h2>
+      <div class="container grid grid-cols-2 gap-10 max-w-6xl">
+        <div
+          class="bg-zinc-700 py-24 block flex flex-col justify-center items-center rounded-lg"
+          data-dsos="slide right">
+          <div class="flex flex-col space-y-8 justify-center items-center">
+            <h2 class="text-4xl text-center">Slide right</h2>
+            <code class="bg-zinc-800 py-2 px-3 rounded-md">data-dsos="right"</code>
+          </div>
+        </div>
 
-      <div class="my-custom-element card">
-        <h2>My custom DSOS animation</h2>
+        <div
+          class="bg-zinc-700 py-24 block flex flex-col space-y-8 justify-center items-center rounded-lg"
+          data-dsos="slide left">
+          <h2 class="text-4xl text-center">Slide left</h2>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-dsos="left"</code>
+        </div>
+
+        <div
+          class="bg-zinc-700 py-24 block flex flex-col space-y-8 justify-center items-center rounded-lg"
+          data-dsos="slide up">
+          <h2 class="text-4xl text-center">Slide up</h2>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-dsos="up"</code>
+        </div>
+
+        <div
+          class="bg-zinc-700 py-24 block flex flex-col space-y-8 justify-center items-center rounded-lg"
+          data-dsos="slide left up">
+          <h2 class="text-4xl text-center">Slide left up</h2>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-dsos="left up"</code>
+        </div>
       </div>
     </section>
 
-    <section class="section">
-      <div
-        class="card"
-        data-dsos="fade-in">
-        <h2>Fade in animation</h2>
+    <section class="h-screen flex flex-col justify-center bg-zinc-900">
+      <h2 class="text-center mb-24 text-5xl">Slide animations</h2>
+      <div class="container grid grid-cols-2 gap-10 max-w-6xl">
+        <div
+          class="bg-zinc-700 py-24 block flex flex-col justify-center items-center rounded-lg"
+          data-dsos="fade right up large"
+          data-dsos-rotate="-45deg"
+          data-dsos-delay="200ms">
+          <div class="flex flex-col space-y-8 justify-center items-center">
+            <h2 class="text-4xl text-center">Slide right</h2>
+            <code class="bg-zinc-800 py-2 px-3 rounded-md">
+              data-dsos="fade right up"
+              <br />
+              data-dsos-rotate="-45deg"
+              <br />
+              data-dsos-delay="200ms"
+            </code>
+          </div>
+        </div>
       </div>
     </section>
 

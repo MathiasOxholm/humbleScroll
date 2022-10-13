@@ -1,11 +1,13 @@
 // Fire regular DSOS
-const scroll = new DSOS({
-  threshold: 0.1,
+const options = {
   repeat: true,
-})
+  rootMargin: '0px 0px -80px 0px',
+}
+
+const scroll = new HumbleScroll(options)
 
 // Fire custom DSOS with custom options
-const myCustomScroll = new DSOS({
+const myCustomScroll = new HumbleScroll({
   element: '.my-custom-element',
   visibleClass: 'enter',
 })
@@ -19,3 +21,7 @@ const myCustomScroll = new DSOS({
 // scroll.on('dsos-complete', () => {
 //   console.log('DSOS is complete!')
 // })
+
+function hallo() {
+  console.log('hallo')
+}

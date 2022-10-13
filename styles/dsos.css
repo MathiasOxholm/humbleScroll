@@ -1,118 +1,138 @@
 :root {
-  --dsos-delay: 0ms;
-  --dsos-easing: var(--dsos-easing) -in-out;
-  --dsos-duration: 700ms;
-  --dsos-ease-in: cubic-bezier(0.4, 0, 1, 1);
-  --dsos-ease-out: cubic-bezier(0, 0, 0.2, 1);
-  --dsos-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-  --dsos-opacity: 1;
-  --dsos-visibility: visible;
-  --dsos-distance-y: 3rem;
-  --dsos-distance-x: 2rem;
-  --dsos-slide: 1.5;
-  --dsos-scale-ratio: 0.2;
-  --dsos-translate-y: 0;
-  --dsos-translate-x: 0;
-  --dsos-scale: 1;
-  --dsos-rotate: 0deg;
-  --dsos-ratio: 1;
-  --dsos-translate-ratio: 1;
-  --dsos-slide-ratio: 1.5;
-  --dsos-scale-ratio: 0.2;
-  --dsos-translate-x-amount: 2rem;
-  --dsos-translate-y-amount: 3rem;
+  --hs-delay: 0ms;
+  --hs-easing: var(--hs-ease-in-out);
+  --hs-duration: 800ms;
+  --hs-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --hs-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --hs-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --hs-opacity: 1;
+  --hs-visibility: visible;
+  --hs-distance-y: 3rem;
+  --hs-distance-x: 2rem;
+  --hs-scale-ratio: 0.2;
+  --hs-translate-y: 0;
+  --hs-translate-x: 0;
+  --hs-scale: 1;
+  --hs-rotate: 0deg;
+  --hs-ratio: 1;
+  --hs-translate-ratio: 1;
+  --hs-scale-ratio: 0.2;
+  --hs-translate-x-amount: 2rem;
+  --hs-translate-y-amount: 3rem;
+  --hs-blur: 0;
 }
 
-html:not(.no-js) [data-dsos] {
+html:not(.no-js) [data-hs] {
   will-change: transform;
-  transition-duration: var(--dsos-duration);
-  transition-timing-function: var(--dsos-easing);
-  transition-delay: var(--dsos-delay);
-  opacity: var(--dsos-opacity);
-  visibility: var(--dsos-visibility);
-  translate: var(--dsos-translate-x) var(--dsos-translate-y);
-  scale: var(--dsos-scale);
-  rotate: var(--dsos-rotate);
+  transition-duration: var(--hs-duration);
+  transition-timing-function: var(--hs-easing);
+  transition-delay: var(--hs-delay);
+  opacity: var(--hs-opacity);
+  visibility: var(--hs-visibility);
+  translate: var(--hs-translate-x) var(--hs-translate-y);
+  scale: var(--hs-scale);
+  rotate: var(--hs-rotate);
+  filter: blur(var(--hs-blur));
 }
-html:not(.no-js) [data-dsos].is-inview {
-  --dsos-opacity: 1 !important;
-  --dsos-visibility: visible !important;
-  --dsos-translate-y: 0 !important;
-  --dsos-translate-x: 0 !important;
-  --dsos-scale: 1 !important;
-  --dsos-rotate: 0deg !important;
-}
-
-html:not(.no-js) [data-dsos~=ease-in] {
-  --dsos-easing: var(--dsos-ease-in);
+html:not(.no-js) [data-hs].hs-inview {
+  --hs-opacity: 1 !important;
+  --hs-visibility: visible !important;
+  --hs-translate-y: 0 !important;
+  --hs-translate-x: 0 !important;
+  --hs-scale: 1 !important;
+  --hs-rotate: 0deg !important;
+  --hs-blur: 0 !important;
 }
 
-html:not(.no-js) [data-dsos~=ease-out] {
-  --dsos-easing: var(--dsos-ease-out);
+html:not(.no-js) [data-hs~=ease-in] {
+  --hs-easing: var(--hs-ease-in);
 }
 
-html:not(.no-js) [data-dsos~=ease-in-out] {
-  --dsos-easing: var(--dsos-ease-in-out);
+html:not(.no-js) [data-hs~=ease-out] {
+  --hs-easing: var(--hs-ease-out);
 }
 
-html:not(.no-js) [data-dsos~=small] {
-  --dsos-translate-ratio: 0.5;
+html:not(.no-js) [data-hs~=ease-in-out] {
+  --hs-easing: var(--hs-ease-in-out);
 }
 
-html:not(.no-js) [data-dsos~=large] {
-  --dsos-translate-ratio: 3;
+html:not(.no-js) [data-hs~=sm] {
+  --hs-translate-ratio: 0.5;
 }
 
-html:not(.no-js) [data-dsos~=fade] {
-  --dsos-opacity: 0;
-  --dsos-visibility: hidden;
+html:not(.no-js) [data-hs~=md] {
+  --hs-translate-ratio: 0.75;
 }
 
-html:not(.no-js) [data-dsos~=up] {
-  --dsos-translate-y: calc(
-    0px + var(--dsos-translate-y-amount) * var(--dsos-translate-ratio)
-  );
-}
-html:not(.no-js) [data-dsos~=down] {
-  --dsos-translate-y: calc(
-    0px - var(--dsos-translate-y-amount) * var(--dsos-translate-ratio)
-  );
-}
-html:not(.no-js) [data-dsos~=left] {
-  --dsos-translate-x: calc(
-    0px + var(--dsos-translate-x-amount) * var(--dsos-translate-ratio)
-  );
-}
-html:not(.no-js) [data-dsos~=right] {
-  --dsos-translate-x: calc(
-    0px - var(--dsos-translate-x-amount) * var(--dsos-translate-ratio)
-  );
+html:not(.no-js) [data-hs~=lg] {
+  --hs-translate-ratio: 1.5;
 }
 
-html:not(.no-js) [data-dsos~=zoom-in] {
-  --dsos-scale: calc(1 + var(--dsos-scale-ratio));
-}
-html:not(.no-js) [data-dsos~=zoom-out] {
-  --dsos-scale: calc(1 - var(--dsos-scale-ratio));
+html:not(.no-js) [data-hs~=xl] {
+  --hs-translate-ratio: 2;
 }
 
-html:not(.no-js) [data-dsos~="slide up"] {
-  --dsos-translate-y: calc(
-    0px + var(--dsos-translate-y-amount) * var(--dsos-slide-ratio)
-  );
+html:not(.no-js) [data-hs~="2xl"] {
+  --hs-translate-ratio: 3;
 }
-html:not(.no-js) [data-dsos~="slide down"] {
-  --dsos-translate-y: calc(
-    0px - var(--dsos-translate-y-amount) * var(--dsos-slide-ratio)
-  );
+
+html:not(.no-js) [data-hs~=fade] {
+  --hs-opacity: 0;
+  --hs-visibility: hidden;
 }
-html:not(.no-js) [data-dsos~="slide left"] {
-  --dsos-translate-x: calc(
-    0px + var(--dsos-translate-x-amount) * var(--dsos-slide-ratio)
-  );
+
+html:not(.no-js) [data-hs~=up] {
+  --hs-translate-y: calc(0px + var(--hs-translate-y-amount) * var(--hs-translate-ratio));
 }
-html:not(.no-js) [data-dsos~="slide right"] {
-  --dsos-translate-x: calc(
-    0px - var(--dsos-translate-x-amount) * var(--dsos-slide-ratio)
-  );
+html:not(.no-js) [data-hs~=down] {
+  --hs-translate-y: calc(0px - var(--hs-translate-y-amount) * var(--hs-translate-ratio));
+}
+html:not(.no-js) [data-hs~=left] {
+  --hs-translate-x: calc(0px + var(--hs-translate-x-amount) * var(--hs-translate-ratio));
+}
+html:not(.no-js) [data-hs~=right] {
+  --hs-translate-x: calc(0px - var(--hs-translate-x-amount) * var(--hs-translate-ratio));
+}
+
+html:not(.no-js) [data-hs~=zoom-in] {
+  --hs-scale: calc(1 + var(--hs-scale-ratio));
+}
+html:not(.no-js) [data-hs~=zoom-out] {
+  --hs-scale: calc(1 - var(--hs-scale-ratio));
+}
+
+html:not(.no-js) [data-hs*=flip] {
+  backface-visibility: hidden;
+}
+html:not(.no-js) [data-hs*=flip].hs-inview {
+  transform: perspective(2000px) rotateY(0deg) rotateX(0deg) !important;
+}
+html:not(.no-js) [data-hs~=flip-up] {
+  transform: perspective(2000px) rotateX(-100deg);
+}
+html:not(.no-js) [data-hs~=flip-down] {
+  transform: perspective(2000px) rotateX(100deg);
+}
+html:not(.no-js) [data-hs~=flip-left] {
+  transform: perspective(2000px) rotateY(-100deg);
+}
+html:not(.no-js) [data-hs~=flip-right] {
+  transform: perspective(2000px) rotateY(100deg);
+}
+
+[data-hs*=blur] {
+  --hs-blur: 5px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root body [data-hs] {
+    transition: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    translate: none;
+    rotate: none;
+    scale: none;
+    filter: none;
+  }
 }

@@ -1,26 +1,35 @@
 // -------------------------------------
 // SCSS variables
 // -------------------------------------
-$brand: "dsos";
-$prefix: "--" + $brand;
-$root: "html:not(.no-js)";
+$brand: 'hs';
+$prefix: '--' + $brand;
+$root: 'html:not(.no-js)';
+$perspective: 2000px;
+$inView: $brand + '-inview';
 
 // -------------------------------------
 // SCSS lists
 // -------------------------------------
 $easings: ease-in, ease-out, ease-in-out;
+
 $sizes: (
-  "small": 0.5,
-  "large": 3,
+  'sm': 0.5,
+  'md': 0.75,
+  'lg': 1.5,
+  'xl': 2,
+  '2xl': 3,
+);
+
+$speed: (
+  'slow': 0.5,
+  'fast': 0.75,
 );
 
 // -------------------------------------
 // Mixins
 // -------------------------------------
-@mixin calcProperty($property, $axis, $ratio: $property, $operator: "+") {
-  #{$prefix}-#{$property}-#{$axis}: calc(
-    0px #{$operator} var(#{$prefix}-#{$property}-#{$axis}-amount) * var(#{$prefix}-#{$ratio}-ratio)
-  );
+@mixin calcProperty($property, $axis, $ratio: $property, $operator: '+') {
+  #{$prefix}-#{$property}-#{$axis}: calc(0px #{$operator} var(#{$prefix}-#{$property}-#{$axis}-amount) * var(#{$prefix}-#{$ratio}-ratio));
 }
 
 // -------------------------------------
@@ -29,8 +38,8 @@ $sizes: (
 :root {
   // Transition properties
   #{$prefix}-delay: 0ms;
-  #{$prefix}-easing: var(#{$prefix}-easing)-in-out;
-  #{$prefix}-duration: 700ms;
+  #{$prefix}-easing: var(#{$prefix}-ease-in-out);
+  #{$prefix}-duration: 800ms;
 
   // Transition easings
   #{$prefix}-ease-in: cubic-bezier(0.4, 0, 1, 1);
@@ -44,7 +53,6 @@ $sizes: (
   // Base calculation properties
   #{$prefix}-distance-y: 3rem;
   #{$prefix}-distance-x: 2rem;
-  #{$prefix}-slide: 1.5;
   #{$prefix}-scale-ratio: 0.2;
 
   // Transfrom properties
@@ -56,12 +64,14 @@ $sizes: (
   // Ratio properties
   #{$prefix}-ratio: 1;
   #{$prefix}-translate-ratio: 1;
-  #{$prefix}-slide-ratio: 1.5;
   #{$prefix}-scale-ratio: 0.2;
 
   // Amount properties
   #{$prefix}-translate-x-amount: 2rem;
   #{$prefix}-translate-y-amount: 3rem;
+
+  // Efects properties
+  #{$prefix}-blur: 0;
 }
 
 // -------------------------------------
@@ -75,6 +85,7 @@ $sizes: (
     transition-duration: var(#{$prefix}-duration);
     transition-timing-function: var(#{$prefix}-easing);
     transition-delay: var(#{$prefix}-delay);
+    //transition-property: transform, translate, scale, rotate, opacity, visibility;
 
     // Visibility properties
     opacity: var(#{$prefix}-opacity);
@@ -85,7 +96,10 @@ $sizes: (
     scale: var(#{$prefix}-scale);
     rotate: var(#{$prefix}-rotate);
 
-    &.is-inview {
+    // Effects
+    filter: blur(var(#{$prefix}-blur));
+
+    &.#{$inView} {
       // Visibility properties
       #{$prefix}-opacity: 1 !important;
       #{$prefix}-visibility: visible !important;
@@ -95,6 +109,9 @@ $sizes: (
       #{$prefix}-translate-x: 0 !important;
       #{$prefix}-scale: 1 !important;
       #{$prefix}-rotate: 0deg !important;
+
+      // Effects
+      #{$prefix}-blur: 0 !important;
     }
   }
 }
@@ -103,7 +120,7 @@ $sizes: (
 // Animation easing variantions
 // -------------------------------------
 @each $ease in $easings {
-  #{$root} [data-#{$brand}~="#{$ease}"] {
+  #{$root} [data-#{$brand}~='#{$ease}'] {
     #{$prefix}-easing: var(#{$prefix}-#{$ease});
   }
 }
@@ -112,7 +129,7 @@ $sizes: (
 // Animation size variations
 // -------------------------------------
 @each $size, $value in $sizes {
-  #{$root} [data-#{$brand}~="#{$size}"] {
+  #{$root} [data-#{$brand}~='#{$size}'] {
     #{$prefix}-translate-ratio: $value;
   }
 }
@@ -122,7 +139,7 @@ $sizes: (
 // -------------------------------------
 #{$root} {
   // General fade
-  [data-#{$brand}~="fade"] {
+  [data-#{$brand}~='fade'] {
     #{$prefix}-opacity: 0;
     #{$prefix}-visibility: hidden;
   }
@@ -133,23 +150,23 @@ $sizes: (
 // -------------------------------------
 #{$root} {
   // Up
-  [data-#{$brand}~="up"] {
-    @include calcProperty("translate", "y");
+  [data-#{$brand}~='up'] {
+    @include calcProperty('translate', 'y');
   }
 
   // Down
-  [data-#{$brand}~="down"] {
-    @include calcProperty("translate", "y", "translate", "-");
+  [data-#{$brand}~='down'] {
+    @include calcProperty('translate', 'y', 'translate', '-');
   }
 
   // Left
-  [data-#{$brand}~="left"] {
-    @include calcProperty("translate", "x");
+  [data-#{$brand}~='left'] {
+    @include calcProperty('translate', 'x');
   }
 
   // Right
-  [data-#{$brand}~="right"] {
-    @include calcProperty("translate", "x", "translate", "-");
+  [data-#{$brand}~='right'] {
+    @include calcProperty('translate', 'x', 'translate', '-');
   }
 }
 
@@ -158,37 +175,68 @@ $sizes: (
 // -------------------------------------
 #{$root} {
   // Zoom in
-  [data-#{$brand}~="zoom-in"] {
+  [data-#{$brand}~='zoom-in'] {
     #{$prefix}-scale: calc(1 + var(#{$prefix}-scale-ratio));
   }
 
   // Zoom out
-  [data-#{$brand}~="zoom-out"] {
+  [data-#{$brand}~='zoom-out'] {
     #{$prefix}-scale: calc(1 - var(#{$prefix}-scale-ratio));
   }
 }
 
 // -------------------------------------
-// Slide animations
+// Flip animations
 // -------------------------------------
 #{$root} {
-  // Slide up
-  [data-#{$brand}~="slide up"] {
-    @include calcProperty("translate", "y", "slide", "+");
+  // Flip up
+  [data-#{$brand}*='flip'] {
+    backface-visibility: hidden;
+
+    &.#{$inView} {
+      transform: perspective($perspective) rotateY(0deg) rotateX(0deg) !important;
+    }
   }
 
-  // Slide down
-  [data-#{$brand}~="slide down"] {
-    @include calcProperty("translate", "y", "slide", "-");
+  [data-#{$brand}~='flip-up'] {
+    transform: perspective($perspective) rotateX(-100deg);
   }
 
-  // Slide left
-  [data-#{$brand}~="slide left"] {
-    @include calcProperty("translate", "x", "slide", "+");
+  // Flip down
+  [data-#{$brand}~='flip-down'] {
+    transform: perspective($perspective) rotateX(100deg);
   }
 
-  // Slide right
-  [data-#{$brand}~="slide right"] {
-    @include calcProperty("translate", "x", "slide", "-");
+  // Flip left
+  [data-#{$brand}~='flip-left'] {
+    transform: perspective($perspective) rotateY(-100deg);
+  }
+
+  // Flip right
+  [data-#{$brand}~='flip-right'] {
+    transform: perspective($perspective) rotateY(100deg);
+  }
+}
+
+// -------------------------------------
+// Blur animations
+// -------------------------------------
+[data-#{$brand}*='blur'] {
+  #{$prefix}-blur: 5px;
+}
+
+// -------------------------------------
+// Remove animations if prefers-reduced-motion
+// -------------------------------------
+@media (prefers-reduced-motion: reduce) {
+  :root body [data-#{$brand}] {
+    transition: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    translate: none;
+    rotate: none;
+    scale: none;
+    filter: none;
   }
 }

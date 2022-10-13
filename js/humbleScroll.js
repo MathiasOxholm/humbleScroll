@@ -1,10 +1,12 @@
 // Default DSOS options
+const prefix = 'hs'
+
 const defaultOptions = {
   root: null,
-  element: '[data-dsos]',
-  visibleClass: 'is-inview',
-  threshold: 0.5,
-  repeat: true,
+  element: `[data-${prefix}]`,
+  visibleClass: 'hs-inview',
+  threshold: 0,
+  repeat: false,
   disable: false,
   delay: 0,
   startEvent: 'DOMContentLoaded',
@@ -12,8 +14,16 @@ const defaultOptions = {
   reloadOnContextChange: false,
 }
 
-// Main DSOS Class
-class DSOS {
+function isIntersectingFromTop(entry) {
+  return entry.boundingClientRect.bottom != entry.intersectionRect.bottom
+}
+
+function isIntersectingFromBottom(entry) {
+  return entry.boundingClientRect.top != entry.intersectionRect.top
+}
+
+// Main HumbleScroll Class
+class HumbleScroll {
   constructor(options) {
     this.options = { ...defaultOptions, ...options }
     this.observerOptions = {
@@ -24,19 +34,28 @@ class DSOS {
     this.init()
   }
 
-  // Initialize the DSOS function
+  // Initialize HumbleScroll
   init() {
     const observerFunction = (entries) => {
       entries.forEach((entry) => {
         entry.target.classList.toggle(this.options.visibleClass, entry.isIntersecting)
 
-        //if (entry.intersectionRatio > 0.75) entry.target.classList.add('is-inview-75')
-        if (!this.options.repeat && entry.isIntersecting) observer.unobserve(entry.target)
+        if (isIntersectingFromTop(entry)) {
+          entry.target.classList.add(`${prefix}-from-top`)
+        } else if (isIntersectingFromBottom(entry)) {
+          entry.target.classList.add(`${prefix}-from-bottom`)
+        }
 
+        if (entry.target.getAttribute(`data-${prefix}-call`) && entry.intersectionRatio > 0) {
+          const call = entry.target.getAttribute(`data-${prefix}-call`)
+          window[call]()
+        }
+
+        if (!this.options.repeat && entry.isIntersecting) observer.unobserve(entry.target)
       })
     }
 
-    const event = new Event('dsos-complete')
+    const event = new Event(`${prefix}-complete`)
     const body = document.querySelector('body')
 
     // Run observer on start event
@@ -45,21 +64,21 @@ class DSOS {
         let attrValues = element.attributes
 
         attrValues = [...attrValues].filter((attr) => {
-          return attr.name.includes('data-dsos-')
+          return attr.name.includes(`data-${prefix}-`)
         })
 
         attrValues.forEach((attr) => {
-          let attrName = attr.name.replace('data-dsos-', 'dsos-')
+          let attrName = attr.name.replace(`data-${prefix}-`, `${prefix}-`)
           let attrValue = attr.value
           this.setCSSVariable(element, attrName, attrValue)
         })
 
         observer.observe(element)
 
-        element.classList.add('dsos-init')
+        element.classList.add(`${prefix}-init`)
       })
 
-      body.classList.add('dsos-loaded')
+      body.classList.add(`${prefix}-loaded`)
       window.dispatchEvent(event)
     }
 

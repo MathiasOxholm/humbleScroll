@@ -6,7 +6,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "scss": "sass ./styles/dsos.scss ./styles/dsos.css --no-source-map --watch"
+    "scss": "sass ./styles/humbleScroll.scss ./styles/humbleScroll.css --no-source-map --watch"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.12",

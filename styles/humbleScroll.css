@@ -124,6 +124,10 @@ html:not(.no-js) [data-hs~=flip-right] {
   --hs-blur: 5px;
 }
 
+[data-hs-test] {
+  background-color: attr(data-hs-test);
+}
+
 @media (prefers-reduced-motion: reduce) {
   :root body [data-hs] {
     transition: none;

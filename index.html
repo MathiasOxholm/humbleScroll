@@ -1,236 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/vite.svg" />
+    <title>Do Stuff On Scroll</title>
+    <link
+      rel="stylesheet"
+      href="styles/humbleScroll.css" />
+    <link
+      rel="stylesheet"
+      href="/tailwind.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-  <title>Do Stuff On Scroll</title>
-  <link rel="stylesheet" href="styles/dsos.css" />
-  <link rel="stylesheet" href="/tailwind.css" />
-</head>
-
-<body class="bg-zinc-900 text-white overflow-x-hidden">
-
-  <section class="h-screen bg-zinc-900 p-4 lg:p-10">
-    <div class="absolute top-10 lg:top-20 left-10 lg:left-20 z-10" data-hs="fade left" data-hs-delay="600ms">
-      humbleScroll.js
-    </div>
-    <div class="h-full w-full flex flex-col justify-center relative">
-      <div class="absolute bg-zinc-800 h-full w-full rounded-xl gradient" data-hs="zoom-out fade up large"></div>
-
-      <div class="container text-center flex flex-col items-center justify-center space-y-14 relative">
-
-        <h1 class="text-5xl lg:text-8xl font-bold max-w-4xl" data-hs="fade up blur large" data-hs-delay="100ms">
-          A simple scroll animation library
-        </h1>
-
-        <p class="text-2xl max-w-2xl" data-hs="fade up blur" data-hs-delay="200ms">
-          <span class="opacity-80"> 
-            HumbleScroll is a lightweight animation on scroll Javascript library. It's easy to use and has no
-            dependencies. It's also very small, only 1.5kb gzipped.
-          </span>
-        </p>
-
-        <div class="grid gap-6 lg:grid-cols-2 w-full lg:w-auto">
-          <a href="#section-1" data-hs="fade right blur small" data-hs-delay="400ms"
-            class="flex bg-white text-zinc-900 px-10 py-5 text-lg rounded-lg font-semibold overflow-hidden text-center justify-center">
-            <span class="fade flex" data-hs="fade right small">See it in action</span>
-          </a>
-
-          <a href="#!" data-hs="fade left blur small" data-hs-delay="400ms"
-            class="flex text-white px-10 py-5 text-lg rounded-lg font-semibold border border-white overflow-hidden text-center justify-center">
-            <span class="flex" data-hs="fade left small">Grab the code</span>
-          </a>
-        </div>
-
+  <body class="bg-zinc-900 text-white overflow-x-hidden">
+    <section class="h-screen bg-zinc-900 p-4 lg:p-10">
+      <div
+        class="absolute top-10 lg:top-20 left-10 lg:left-20 z-10"
+        data-hs="fade left"
+        data-hs-delay="600ms">
+        humbleScroll.js
       </div>
-    </div>
-  </section>
+      <div class="h-full w-full flex flex-col justify-center relative">
+        <div
+          class="absolute bg-zinc-800 h-full w-full rounded-xl gradient"
+          data-hs="zoom-out fade up large"></div>
 
-  <!-- Fade animations -->
-  <section id="section-1" class="section bg-zinc-800">
-    <h2 class="section-heading">
-      <span class="inline-block" data-hs="fade right blur">Fade</span>
-      <span class="inline-block" data-hs="fade left blur">animations</span>
-    </h2>
-    <div class="container grid lg:grid-cols-2 gap-10 max-w-6xl">
+        <div class="container text-center flex flex-col items-center justify-center space-y-14 relative">
+          <h1
+            class="text-5xl lg:text-8xl font-bold max-w-4xl"
+            data-hs="fade up blur large"
+            data-hs-delay="100ms">
+            A simple scroll animation library
+          </h1>
 
-      <div class="card" data-hs="fade up">
-        <h3 class="text-4xl text-center">Fade up</h3>
-        <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="fade up"</code>
-      </div>
+          <p
+            class="text-2xl max-w-2xl"
+            data-hs="fade up blur"
+            data-hs-delay="200ms">
+            <span class="opacity-80"> HumbleScroll is a lightweight animation on scroll Javascript library. It's easy to use and has no dependencies. It's also very small, only 1.5kb gzipped. </span>
+          </p>
 
-      <div class="card" data-hs="fade down">
-        <h3 class="text-4xl text-center">Fade down</h3>
-        <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="fade down"</code>
-      </div>
+          <div class="grid gap-6 lg:grid-cols-2 w-full lg:w-auto">
+            <a
+              href="#section-1"
+              data-hs="fade right blur small"
+              data-hs-delay="400ms"
+              class="flex bg-white text-zinc-900 px-10 py-5 text-lg rounded-lg font-semibold overflow-hidden text-center justify-center">
+              <span
+                class="fade flex"
+                data-hs="fade right small"
+                >See it in action</span
+              >
+            </a>
 
-      <div class="card lg:col-span-2" data-hs="fade">
-        <h3 class="text-4xl text-center">Fade in</h3>
-        <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="fade"</code>
-      </div>
-
-      <div class="card" data-hs="fade right">
-        <h3 class="text-4xl text-center">Fade right</h3>
-        <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="fade right"</code>
-      </div>
-
-      <div class="card" data-hs="fade left blur">
-        <h3 class="text-4xl text-center">Fade left</h3>
-        <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="fade left"</code>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Zoom animations -->
-  <section class="section bg-zinc-900">
-    <h2 class="section-heading" data-hs="zoom-out fade blur">Zoom animations</h2>
-    <div class="container grid lg:grid-cols-2 gap-10 max-w-6xl">
-
-      <div class="bg-zinc-700 py-24 flex flex-col justify-center items-center rounded-lg" data-hs="zoom-in fade">
-        <div class="flex flex-col space-y-8 justify-center items-center">
-          <h3 class="text-4xl text-center">Zoom in</h3>
-          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="zoom-in fade"</code>
+            <a
+              href="#!"
+              data-hs="fade left blur small"
+              data-hs-delay="400ms"
+              class="flex text-white px-10 py-5 text-lg rounded-lg font-semibold border border-white overflow-hidden text-center justify-center">
+              <span
+                class="flex"
+                data-hs="fade left small"
+                >Grab the code</span
+              >
+            </a>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="card" data-hs="zoom-out fade">
-        <h3 class="text-4xl text-center">Zoom on</h3>
-        <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="zoom-out fade"</code>
-      </div>
+    <!-- Fade animations -->
+    <section
+      id="section-1"
+      class="section bg-zinc-800">
+      <h2 class="section-heading">
+        <span
+          class="inline-block"
+          data-hs="fade right blur"
+          >Fade</span
+        >
+        <span
+          class="inline-block"
+          data-hs="fade left blur"
+          >animations</span
+        >
+      </h2>
+      <div class="container grid lg:grid-cols-2 gap-10 max-w-6xl">
+        <div
+          class="card"
+          data-hs="fade up">
+          <h3 class="text-4xl text-center">Fade up</h3>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="fade up"</code>
+        </div>
 
-      <div class="card" data-hs="zoom-out fade right up">
-        <h3 class="text-4xl text-center">Zoom out + right + up</h3>
-        <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="zoom-out right up"</code>
-      </div>
+        <div
+          class="card"
+          data-hs="fade down">
+          <h3 class="text-4xl text-center">Fade down</h3>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="fade down"</code>
+        </div>
 
-      <div class="card" data-hs="zoom-in fade left up">
-        <h3 class="text-4xl text-center">Zoom in + left + up</h3>
-        <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="zoom-in left up"</code>
-      </div>
-    </div>
-  </section>
+        <div
+          class="card lg:col-span-2"
+          data-hs="fade">
+          <h3 class="text-4xl text-center">Fade in</h3>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="fade"</code>
+        </div>
 
-  <!-- Slide animations -->
-  <section class="section bg-zinc-800" data-hs data-hs-call="hallo">
-    <h2 class="section-heading" data-hs="up right blur">Slide animations</h2>
-    <div class="container grid lg:grid-cols-2 gap-10 max-w-6xl">
+        <div
+          class="card"
+          data-hs="fade right">
+          <h3 class="text-4xl text-center">Fade right</h3>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="fade right"</code>
+        </div>
 
-      <div class="card" data-hs="right">
-        <div class="flex flex-col space-y-8 justify-center items-center">
-          <h3 class="text-4xl text-center">Slide right</h3>
-          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="right"</code>
+        <div
+          class="card"
+          data-hs="fade left blur">
+          <h3 class="text-4xl text-center">Fade left</h3>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="fade left"</code>
         </div>
       </div>
+    </section>
 
-      <div class="card" data-hs="slide left">
-        <h3 class="text-4xl text-center">Slide left</h3>
-        <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="left"</code>
-      </div>
+    <!-- Zoom animations -->
+    <section class="section bg-zinc-900">
+      <h2
+        class="section-heading"
+        data-hs="zoom-out fade blur">
+        Zoom animations
+      </h2>
+      <div class="container grid lg:grid-cols-2 gap-10 max-w-6xl">
+        <div
+          class="bg-zinc-700 py-24 flex flex-col justify-center items-center rounded-lg"
+          data-hs="zoom-in fade">
+          <div class="flex flex-col space-y-8 justify-center items-center">
+            <h3 class="text-4xl text-center">Zoom in</h3>
+            <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="zoom-in fade"</code>
+          </div>
+        </div>
 
-      <div class="card" data-hs="slide right up">
-        <h3 class="text-4xl text-center">Slide up</h3>
-        <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="right up"</code>
-      </div>
+        <div
+          class="card"
+          data-hs="zoom-out fade">
+          <h3 class="text-4xl text-center">Zoom on</h3>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="zoom-out fade"</code>
+        </div>
 
-      <div class="card" data-hs="slide left up">
-        <h3 class="text-4xl text-center">Slide left up</h3>
-        <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="left up"</code>
-      </div>
-    </div>
-  </section>
+        <div
+          class="card"
+          data-hs="zoom-out fade right up">
+          <h3 class="text-4xl text-center">Zoom out + right + up</h3>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="zoom-out right up"</code>
+        </div>
 
-  <!-- Flip animations -->
-  <section class="section bg-zinc-900">
-    <h2 class="section-heading" data-hs="flip-down ">Flip animations</h2>
-    <div class="container grid lg:grid-cols-2 gap-10 max-w-6xl">
-
-      <div class="card" data-hs="flip-right">
-        <div class="flex flex-col space-y-8 justify-center items-center">
-          <h3 class="text-4xl text-center">Flip right</h3>
-          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="flip-right"</code>
+        <div
+          class="card"
+          data-hs="zoom-in fade left up">
+          <h3 class="text-4xl text-center">Zoom in + left + up</h3>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="zoom-in left up"</code>
         </div>
       </div>
+    </section>
 
-      <div class="card" data-hs="flip-left">
-        <h3 class="text-4xl text-center">Flip left</h3>
-        <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="flip-left"</code>
-      </div>
+    <!-- Slide animations -->
+    <section
+      class="section bg-zinc-800"
+      data-hs
+      data-hs-call="hallo">
+      <h2
+        class="section-heading"
+        data-hs="up right blur">
+        Slide animations
+      </h2>
+      <div class="container grid lg:grid-cols-2 gap-10 max-w-6xl">
+        <div
+          class="card"
+          data-hs="right">
+          <div class="flex flex-col space-y-8 justify-center items-center">
+            <h3 class="text-4xl text-center">Slide right</h3>
+            <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="right"</code>
+          </div>
+        </div>
 
-      <div class="card" data-hs="flip-up">
-        <h3 class="text-4xl text-center">Flip up</h3>
-        <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="flip-up"</code>
-      </div>
+        <div
+          class="card"
+          data-hs="slide left"
+          data-hs-test="green">
+          <h3 class="text-4xl text-center">Slide left</h3>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="left"</code>
+        </div>
 
-      <div class="card" data-hs="flip-down">
-        <h3 class="text-4xl text-center">Flip down</h3>
-        <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="flip-down"</code>
-      </div>
-    </div>
-  </section>
+        <div
+          class="card"
+          data-hs="slide right up">
+          <h3 class="text-4xl text-center">Slide up</h3>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="right up"</code>
+        </div>
 
-  <!-- Easings -->
-  <section class="section bg-zinc-800">
-    <h2 class="section-heading">Easings</h2>
-    <div class="container grid lg:grid-cols-3 gap-10 max-w-6xl">
-
-      <div class="card" data-hs="fade up ease-in">
-        <div class="flex flex-col space-y-8 justify-center items-center">
-          <h3 class="text-4xl text-center">Ease in</h3>
-          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="ease-in"</code>
+        <div
+          class="card"
+          data-hs="slide left up">
+          <h3 class="text-4xl text-center">Slide left up</h3>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="left up"</code>
         </div>
       </div>
+    </section>
 
-      <div class="card" data-hs="fade up ease-out">
-        <h3 class="text-4xl text-center">Ease out</h3>
-        <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="ease-out"</code>
+    <!-- Flip animations -->
+    <section class="section bg-zinc-900">
+      <h2
+        class="section-heading"
+        data-hs="flip-down ">
+        Flip animations
+      </h2>
+      <div class="container grid lg:grid-cols-2 gap-10 max-w-6xl">
+        <div
+          class="card"
+          data-hs="flip-right">
+          <div class="flex flex-col space-y-8 justify-center items-center">
+            <h3 class="text-4xl text-center">Flip right</h3>
+            <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="flip-right"</code>
+          </div>
+        </div>
+
+        <div
+          class="card"
+          data-hs="flip-left">
+          <h3 class="text-4xl text-center">Flip left</h3>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="flip-left"</code>
+        </div>
+
+        <div
+          class="card"
+          data-hs="flip-up">
+          <h3 class="text-4xl text-center">Flip up</h3>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="flip-up"</code>
+        </div>
+
+        <div
+          class="card"
+          data-hs="flip-down">
+          <h3 class="text-4xl text-center">Flip down</h3>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="flip-down"</code>
+        </div>
       </div>
+    </section>
 
-      <div class="card" data-hs="fade up ease-in-out">
-        <h3 class="text-4xl text-center">Ease in out</h3>
-        <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="ease-in-out"</code>
+    <!-- Easings -->
+    <section class="section bg-zinc-800">
+      <h2 class="section-heading">Easings</h2>
+      <div class="container grid lg:grid-cols-3 gap-10 max-w-6xl">
+        <div
+          class="card"
+          data-hs="fade up ease-in">
+          <div class="flex flex-col space-y-8 justify-center items-center">
+            <h3 class="text-4xl text-center">Ease in</h3>
+            <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="ease-in"</code>
+          </div>
+        </div>
+
+        <div
+          class="card"
+          data-hs="fade up ease-out">
+          <h3 class="text-4xl text-center">Ease out</h3>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="ease-out"</code>
+        </div>
+
+        <div
+          class="card"
+          data-hs="fade up ease-in-out">
+          <h3 class="text-4xl text-center">Ease in out</h3>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="ease-in-out"</code>
+        </div>
       </div>
+    </section>
 
-    </div>
-  </section>
-
-  <!-- Custom animations -->
-  <section class="section bg-zinc-900">
-    <h2 class="section-heading">Custom animations</h2>
-    <div class="container grid lg:grid-cols-2 gap-10 max-w-6xl">
-
-      <div class="bg-zinc-700 py-24 flex flex-col justify-center items-center rounded-lg"
-        data-hs="fade zoom-in right up large" data-hs-rotate="-45deg" data-hs-delay="200ms">
-        <div class="flex flex-col space-y-8 justify-center items-center">
-          <h3 class="text-4xl text-center">Slide right</h3>
-          <code class="bg-zinc-800 py-2 px-3 rounded-md">
+    <!-- Custom animations -->
+    <section class="section bg-zinc-900">
+      <h2 class="section-heading">Custom animations</h2>
+      <div class="container grid lg:grid-cols-2 gap-10 max-w-6xl">
+        <div
+          class="bg-zinc-700 py-24 flex flex-col justify-center items-center rounded-lg"
+          data-hs="fade zoom-in right up large"
+          data-hs-rotate="-45deg"
+          data-hs-delay="200ms">
+          <div class="flex flex-col space-y-8 justify-center items-center">
+            <h3 class="text-4xl text-center">Slide right</h3>
+            <code class="bg-zinc-800 py-2 px-3 rounded-md">
               data-hs="fade zoom-in right up large"
               <br />
               data-hs-rotate="-45deg"
               <br />
               data-hs-delay="200ms"
             </code>
+          </div>
         </div>
-      </div>
 
-      <div class="bg-zinc-700 py-24 flex flex-col justify-center items-center rounded-lg my-custom-element">
-        <div class="flex flex-col space-y-8 justify-center items-center">
-          <h3 class="text-4xl text-center">Custom element</h2>
+        <div class="bg-zinc-700 py-24 flex flex-col justify-center items-center rounded-lg my-custom-element">
+          <div class="flex flex-col space-y-8 justify-center items-center">
+            <h3 class="text-4xl text-center">Custom element</h3>
             <code class="bg-zinc-800 py-2 px-3 rounded-md">
               class="my-custom-element"
               <br />
               visibleClass: enter
             </code>
+          </div>
         </div>
       </div>
+    </section>
 
-    </div>
-  </section>
-
-  <script src="js/humbleScroll.js"></script>
-  <script src="js/main.js"></script>
-</body>
-
+    <script src="js/humbleScroll.js"></script>
+    <script src="js/main.js"></script>
+  </body>
 </html>

@@ -4,11 +4,12 @@ const defaultOptions = {
   element: '[data-dsos]',
   visibleClass: 'is-inview',
   threshold: 0.5,
-  repeat: false,
+  repeat: true,
   disable: false,
   delay: 0,
   startEvent: 'DOMContentLoaded',
   rootMargin: '0px',
+  reloadOnContextChange: false,
 }
 
 // Main DSOS Class
@@ -20,19 +21,18 @@ class DSOS {
       rootMargin: this.options.rootMargin,
       threshold: this.options.threshold,
     }
+    this.init()
   }
 
   // Initialize the DSOS function
   init() {
     const observerFunction = (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add(this.options.visibleClass)
-        } else {
-          if (this.options.repeat) {
-            entry.target.classList.remove(this.options.visibleClass)
-          }
-        }
+        entry.target.classList.toggle(this.options.visibleClass, entry.isIntersecting)
+
+        //if (entry.intersectionRatio > 0.75) entry.target.classList.add('is-inview-75')
+        if (!this.options.repeat && entry.isIntersecting) observer.unobserve(entry.target)
+
       })
     }
 

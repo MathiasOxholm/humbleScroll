@@ -1,0 +1,194 @@
+// -------------------------------------
+// SCSS variables
+// -------------------------------------
+$brand: "dsos";
+$prefix: "--" + $brand;
+$root: "html:not(.no-js)";
+
+// -------------------------------------
+// SCSS lists
+// -------------------------------------
+$easings: ease-in, ease-out, ease-in-out;
+$sizes: (
+  "small": 0.5,
+  "large": 3,
+);
+
+// -------------------------------------
+// Mixins
+// -------------------------------------
+@mixin calcProperty($property, $axis, $ratio: $property, $operator: "+") {
+  #{$prefix}-#{$property}-#{$axis}: calc(
+    0px #{$operator} var(#{$prefix}-#{$property}-#{$axis}-amount) * var(#{$prefix}-#{$ratio}-ratio)
+  );
+}
+
+// -------------------------------------
+// DSOS CSS default properties
+// -------------------------------------
+:root {
+  // Transition properties
+  #{$prefix}-delay: 0ms;
+  #{$prefix}-easing: var(#{$prefix}-easing)-in-out;
+  #{$prefix}-duration: 700ms;
+
+  // Transition easings
+  #{$prefix}-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  #{$prefix}-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  #{$prefix}-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  // Visibility properties
+  #{$prefix}-opacity: 1;
+  #{$prefix}-visibility: visible;
+
+  // Base calculation properties
+  #{$prefix}-distance-y: 3rem;
+  #{$prefix}-distance-x: 2rem;
+  #{$prefix}-slide: 1.5;
+  #{$prefix}-scale-ratio: 0.2;
+
+  // Transfrom properties
+  #{$prefix}-translate-y: 0;
+  #{$prefix}-translate-x: 0;
+  #{$prefix}-scale: 1;
+  #{$prefix}-rotate: 0deg;
+
+  // Ratio properties
+  #{$prefix}-ratio: 1;
+  #{$prefix}-translate-ratio: 1;
+  #{$prefix}-slide-ratio: 1.5;
+  #{$prefix}-scale-ratio: 0.2;
+
+  // Amount properties
+  #{$prefix}-translate-x-amount: 2rem;
+  #{$prefix}-translate-y-amount: 3rem;
+}
+
+// -------------------------------------
+// Main DSOS data-attribute
+// -------------------------------------
+#{$root} {
+  [data-#{$brand}] {
+    will-change: transform;
+
+    // Transition settings
+    transition-duration: var(#{$prefix}-duration);
+    transition-timing-function: var(#{$prefix}-easing);
+    transition-delay: var(#{$prefix}-delay);
+
+    // Visibility properties
+    opacity: var(#{$prefix}-opacity);
+    visibility: var(#{$prefix}-visibility);
+
+    // Transfrom properties
+    translate: var(#{$prefix}-translate-x) var(#{$prefix}-translate-y);
+    scale: var(#{$prefix}-scale);
+    rotate: var(#{$prefix}-rotate);
+
+    &.is-inview {
+      // Visibility properties
+      #{$prefix}-opacity: 1 !important;
+      #{$prefix}-visibility: visible !important;
+
+      // Transfrom properties
+      #{$prefix}-translate-y: 0 !important;
+      #{$prefix}-translate-x: 0 !important;
+      #{$prefix}-scale: 1 !important;
+      #{$prefix}-rotate: 0deg !important;
+    }
+  }
+}
+
+// -------------------------------------
+// Animation easing variantions
+// -------------------------------------
+@each $ease in $easings {
+  #{$root} [data-#{$brand}~="#{$ease}"] {
+    #{$prefix}-easing: var(#{$prefix}-#{$ease});
+  }
+}
+
+// -------------------------------------
+// Animation size variations
+// -------------------------------------
+@each $size, $value in $sizes {
+  #{$root} [data-#{$brand}~="#{$size}"] {
+    #{$prefix}-translate-ratio: $value;
+  }
+}
+
+// -------------------------------------
+// Fade animation
+// -------------------------------------
+#{$root} {
+  // General fade
+  [data-#{$brand}~="fade"] {
+    #{$prefix}-opacity: 0;
+    #{$prefix}-visibility: hidden;
+  }
+}
+
+// -------------------------------------
+// Directional animations
+// -------------------------------------
+#{$root} {
+  // Up
+  [data-#{$brand}~="up"] {
+    @include calcProperty("translate", "y");
+  }
+
+  // Down
+  [data-#{$brand}~="down"] {
+    @include calcProperty("translate", "y", "translate", "-");
+  }
+
+  // Left
+  [data-#{$brand}~="left"] {
+    @include calcProperty("translate", "x");
+  }
+
+  // Right
+  [data-#{$brand}~="right"] {
+    @include calcProperty("translate", "x", "translate", "-");
+  }
+}
+
+// -------------------------------------
+// Zoom animations
+// -------------------------------------
+#{$root} {
+  // Zoom in
+  [data-#{$brand}~="zoom-in"] {
+    #{$prefix}-scale: calc(1 + var(#{$prefix}-scale-ratio));
+  }
+
+  // Zoom out
+  [data-#{$brand}~="zoom-out"] {
+    #{$prefix}-scale: calc(1 - var(#{$prefix}-scale-ratio));
+  }
+}
+
+// -------------------------------------
+// Slide animations
+// -------------------------------------
+#{$root} {
+  // Slide up
+  [data-#{$brand}~="slide up"] {
+    @include calcProperty("translate", "y", "slide", "+");
+  }
+
+  // Slide down
+  [data-#{$brand}~="slide down"] {
+    @include calcProperty("translate", "y", "slide", "-");
+  }
+
+  // Slide left
+  [data-#{$brand}~="slide left"] {
+    @include calcProperty("translate", "x", "slide", "+");
+  }
+
+  // Slide right
+  [data-#{$brand}~="slide right"] {
+    @include calcProperty("translate", "x", "slide", "-");
+  }
+}

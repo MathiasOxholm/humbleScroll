@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 .my-custom-element {
   opacity: 0;
   rotate: 45deg;
@@ -13,6 +17,14 @@
   rotate: 0deg;
 }
 
-html {
-  scroll-behavior: smooth;
+.card {
+  @apply bg-zinc-700 py-24 flex flex-col space-y-8 justify-center items-center rounded-lg;
+}
+
+.section {
+  @apply min-h-screen flex flex-col justify-center py-20 overflow-hidden;
+}
+
+.section-heading {
+  @apply text-center mb-12 lg:mb-24 text-4xl lg:text-5xl;
 }

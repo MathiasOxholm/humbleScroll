@@ -4,8 +4,8 @@
 $brand: 'hs';
 $prefix: '--' + $brand;
 $root: 'html:not(.no-js)';
-$perspective: 2000px;
 $inView: $brand + '-inview';
+$perspective: 2000px;
 
 // -------------------------------------
 // SCSS lists
@@ -223,10 +223,6 @@ $speed: (
 // -------------------------------------
 [data-#{$brand}*='blur'] {
   #{$prefix}-blur: 5px;
-}
-
-[data-hs-test] {
-  background-color: attr(data-hs-test);
 }
 
 // -------------------------------------

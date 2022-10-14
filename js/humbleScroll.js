@@ -4,14 +4,11 @@ const prefix = 'hs'
 const defaultOptions = {
   root: null,
   element: `[data-${prefix}]`,
-  visibleClass: 'hs-inview',
-  threshold: 0,
+  visibleClass: `${prefix}-inview`,
+  threshold: 0.15,
+  offset: '0px',
   repeat: false,
-  disable: false,
-  delay: 0,
   startEvent: 'DOMContentLoaded',
-  rootMargin: '0px',
-  reloadOnContextChange: false,
 }
 
 function isIntersectingFromTop(entry) {
@@ -28,7 +25,7 @@ class HumbleScroll {
     this.options = { ...defaultOptions, ...options }
     this.observerOptions = {
       root: this.options.root,
-      rootMargin: this.options.rootMargin,
+      rootMargin: this.options.offset,
       threshold: this.options.threshold,
     }
     this.init()
@@ -36,8 +33,15 @@ class HumbleScroll {
 
   // Initialize HumbleScroll
   init() {
+    const event = new Event(`${prefix}-complete`, {
+      bubbles: true,
+      cancelable: true,
+      composed: false
+    })
+
     const observerFunction = (entries) => {
       entries.forEach((entry) => {
+
         entry.target.classList.toggle(this.options.visibleClass, entry.isIntersecting)
 
         if (isIntersectingFromTop(entry)) {
@@ -54,9 +58,6 @@ class HumbleScroll {
         if (!this.options.repeat && entry.isIntersecting) observer.unobserve(entry.target)
       })
     }
-
-    const event = new Event(`${prefix}-complete`)
-    const body = document.querySelector('body')
 
     // Run observer on start event
     const startEventCallback = () => {
@@ -78,7 +79,7 @@ class HumbleScroll {
         element.classList.add(`${prefix}-init`)
       })
 
-      body.classList.add(`${prefix}-loaded`)
+      document.body.classList.add(`${prefix}-loaded`)
       window.dispatchEvent(event)
     }
 
@@ -106,5 +107,21 @@ class HumbleScroll {
   //Change CSS Variable value of element
   setCSSVariable(element, property, value) {
     element.style.setProperty('--' + property, value)
+  }
+
+  // Helper function to debug HumbleScroll
+  debug() {
+    console.log("HumbleScroll Debug is active. Remember to disable it in production.")
+    console.table(this.options)
+
+    const help = document.createElement('div')
+    const helpInner = document.createElement('div')
+
+    help.setAttribute('style', `position: fixed; top: 0; left: 0; z-index: 9999; ; width: 100%; height: 100%; display:block; opacity: 1; pointer-events: none; padding: ${this.options.offset.replaceAll('-', '')};`)
+    helpInner.setAttribute('style', `width: 100%; height: 100%; border-top: 1px solid yellow; border-bottom: 1px solid yellow;`)
+
+    document.head.insertAdjacentHTML("beforeend", `<style>${this.options.element} >* {outline: 1px solid red; position:relative;} ${this.options.element} > *::before, ${this.options.element} > *::after { content: ""; position: absolute; top: 0; left: 0; background: red; width: 100%; height: ${this.options.threshold * 100}%;pointer-events: none; opacity:0.25;} ${this.options.element} > *::after{bottom:0; top: auto;}</style >`)
+    document.querySelector('body').appendChild(help);
+    help.appendChild(helpInner);
   }
 }

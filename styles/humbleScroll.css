@@ -1,7 +1,7 @@
 :root {
   --hs-delay: 0ms;
   --hs-easing: var(--hs-ease-in-out);
-  --hs-duration: 800ms;
+  --hs-duration: 600ms;
   --hs-ease-in: cubic-bezier(0.4, 0, 1, 1);
   --hs-ease-out: cubic-bezier(0, 0, 0.2, 1);
   --hs-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
@@ -22,11 +22,11 @@
   --hs-blur: 0;
 }
 
-html:not(.no-js) [data-hs] {
-  will-change: transform;
+html:not(.no-js) [data-hs] > * {
   transition-duration: var(--hs-duration);
   transition-timing-function: var(--hs-easing);
   transition-delay: var(--hs-delay);
+  transition-property: transform, translate, scale, rotate, opacity, visibility, filter;
   opacity: var(--hs-opacity);
   visibility: var(--hs-visibility);
   translate: var(--hs-translate-x) var(--hs-translate-y);
@@ -34,7 +34,7 @@ html:not(.no-js) [data-hs] {
   rotate: var(--hs-rotate);
   filter: blur(var(--hs-blur));
 }
-html:not(.no-js) [data-hs].hs-inview {
+html:not(.no-js) [data-hs].hs-inview > * {
   --hs-opacity: 1 !important;
   --hs-visibility: visible !important;
   --hs-translate-y: 0 !important;
@@ -44,88 +44,96 @@ html:not(.no-js) [data-hs].hs-inview {
   --hs-blur: 0 !important;
 }
 
-html:not(.no-js) [data-hs~=ease-in] {
+html:not(.no-js) [data-hs~=ease-in] > * {
   --hs-easing: var(--hs-ease-in);
 }
 
-html:not(.no-js) [data-hs~=ease-out] {
+html:not(.no-js) [data-hs~=ease-out] > * {
   --hs-easing: var(--hs-ease-out);
 }
 
-html:not(.no-js) [data-hs~=ease-in-out] {
+html:not(.no-js) [data-hs~=ease-in-out] > * {
   --hs-easing: var(--hs-ease-in-out);
 }
 
-html:not(.no-js) [data-hs~=sm] {
+html:not(.no-js) [data-hs~=sm] > * {
   --hs-translate-ratio: 0.5;
 }
 
-html:not(.no-js) [data-hs~=md] {
+html:not(.no-js) [data-hs~=md] > * {
   --hs-translate-ratio: 0.75;
 }
 
-html:not(.no-js) [data-hs~=lg] {
+html:not(.no-js) [data-hs~=lg] > * {
   --hs-translate-ratio: 1.5;
 }
 
-html:not(.no-js) [data-hs~=xl] {
+html:not(.no-js) [data-hs~=xl] > * {
   --hs-translate-ratio: 2;
 }
 
-html:not(.no-js) [data-hs~="2xl"] {
+html:not(.no-js) [data-hs~="2xl"] > * {
   --hs-translate-ratio: 3;
 }
 
-html:not(.no-js) [data-hs~=fade] {
+html:not(.no-js) [data-hs~=fade] > * {
   --hs-opacity: 0;
   --hs-visibility: hidden;
 }
 
-html:not(.no-js) [data-hs~=up] {
-  --hs-translate-y: calc(0px + var(--hs-translate-y-amount) * var(--hs-translate-ratio));
+html:not(.no-js) [data-hs~=up] > * {
+  --hs-translate-y: calc(
+    0px + var(--hs-translate-y-amount) * var(--hs-translate-ratio)
+  );
 }
-html:not(.no-js) [data-hs~=down] {
-  --hs-translate-y: calc(0px - var(--hs-translate-y-amount) * var(--hs-translate-ratio));
+html:not(.no-js) [data-hs~=down] > * {
+  --hs-translate-y: calc(
+    0px - var(--hs-translate-y-amount) * var(--hs-translate-ratio)
+  );
 }
-html:not(.no-js) [data-hs~=left] {
-  --hs-translate-x: calc(0px + var(--hs-translate-x-amount) * var(--hs-translate-ratio));
+html:not(.no-js) [data-hs~=left] > * {
+  --hs-translate-x: calc(
+    0px + var(--hs-translate-x-amount) * var(--hs-translate-ratio)
+  );
 }
-html:not(.no-js) [data-hs~=right] {
-  --hs-translate-x: calc(0px - var(--hs-translate-x-amount) * var(--hs-translate-ratio));
+html:not(.no-js) [data-hs~=right] > * {
+  --hs-translate-x: calc(
+    0px - var(--hs-translate-x-amount) * var(--hs-translate-ratio)
+  );
 }
 
-html:not(.no-js) [data-hs~=zoom-in] {
+html:not(.no-js) [data-hs~=zoom-in] > * {
   --hs-scale: calc(1 + var(--hs-scale-ratio));
 }
-html:not(.no-js) [data-hs~=zoom-out] {
+html:not(.no-js) [data-hs~=zoom-out] > * {
   --hs-scale: calc(1 - var(--hs-scale-ratio));
 }
 
-html:not(.no-js) [data-hs*=flip] {
+html:not(.no-js) [data-hs*=flip] > * {
   backface-visibility: hidden;
 }
-html:not(.no-js) [data-hs*=flip].hs-inview {
+html:not(.no-js) [data-hs*=flip].hs-inview > * {
   transform: perspective(2000px) rotateY(0deg) rotateX(0deg) !important;
 }
-html:not(.no-js) [data-hs~=flip-up] {
+html:not(.no-js) [data-hs~=flip-up] > * {
   transform: perspective(2000px) rotateX(-100deg);
 }
-html:not(.no-js) [data-hs~=flip-down] {
+html:not(.no-js) [data-hs~=flip-down] > * {
   transform: perspective(2000px) rotateX(100deg);
 }
-html:not(.no-js) [data-hs~=flip-left] {
+html:not(.no-js) [data-hs~=flip-left] > * {
   transform: perspective(2000px) rotateY(-100deg);
 }
-html:not(.no-js) [data-hs~=flip-right] {
+html:not(.no-js) [data-hs~=flip-right] > * {
   transform: perspective(2000px) rotateY(100deg);
 }
 
-[data-hs*=blur] {
+html:not(.no-js) [data-hs*=blur] > * {
   --hs-blur: 5px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :root body [data-hs] {
+  :root body [data-hs] > * {
     transition: none;
     opacity: 1;
     visibility: visible;

@@ -1,10 +1,10 @@
 // -------------------------------------
 // SCSS variables
 // -------------------------------------
-$brand: 'hs';
-$prefix: '--' + $brand;
-$root: 'html:not(.no-js)';
-$inView: $brand + '-inview';
+$brand: "hs";
+$prefix: "--" + $brand;
+$root: "html:not(.no-js)";
+$inView: $brand + "-inview";
 $perspective: 2000px;
 
 // -------------------------------------
@@ -13,23 +13,25 @@ $perspective: 2000px;
 $easings: ease-in, ease-out, ease-in-out;
 
 $sizes: (
-  'sm': 0.5,
-  'md': 0.75,
-  'lg': 1.5,
-  'xl': 2,
-  '2xl': 3,
+  "sm": 0.5,
+  "md": 0.75,
+  "lg": 1.5,
+  "xl": 2,
+  "2xl": 3,
 );
 
 $speed: (
-  'slow': 0.5,
-  'fast': 0.75,
+  "slow": 0.5,
+  "fast": 0.75,
 );
 
 // -------------------------------------
 // Mixins
 // -------------------------------------
-@mixin calcProperty($property, $axis, $ratio: $property, $operator: '+') {
-  #{$prefix}-#{$property}-#{$axis}: calc(0px #{$operator} var(#{$prefix}-#{$property}-#{$axis}-amount) * var(#{$prefix}-#{$ratio}-ratio));
+@mixin calcProperty($property, $axis, $ratio: $property, $operator: "+") {
+  #{$prefix}-#{$property}-#{$axis}: calc(
+    0px #{$operator} var(#{$prefix}-#{$property}-#{$axis}-amount) * var(#{$prefix}-#{$ratio}-ratio)
+  );
 }
 
 // -------------------------------------
@@ -39,7 +41,7 @@ $speed: (
   // Transition properties
   #{$prefix}-delay: 0ms;
   #{$prefix}-easing: var(#{$prefix}-ease-in-out);
-  #{$prefix}-duration: 800ms;
+  #{$prefix}-duration: 600ms;
 
   // Transition easings
   #{$prefix}-ease-in: cubic-bezier(0.4, 0, 1, 1);
@@ -79,39 +81,41 @@ $speed: (
 // -------------------------------------
 #{$root} {
   [data-#{$brand}] {
-    will-change: transform;
+    > * {
+      // Transition settings
+      transition-duration: var(#{$prefix}-duration);
+      transition-timing-function: var(#{$prefix}-easing);
+      transition-delay: var(#{$prefix}-delay);
+      transition-property: transform, translate, scale, rotate, opacity, visibility, filter;
 
-    // Transition settings
-    transition-duration: var(#{$prefix}-duration);
-    transition-timing-function: var(#{$prefix}-easing);
-    transition-delay: var(#{$prefix}-delay);
-    //transition-property: transform, translate, scale, rotate, opacity, visibility;
-
-    // Visibility properties
-    opacity: var(#{$prefix}-opacity);
-    visibility: var(#{$prefix}-visibility);
-
-    // Transfrom properties
-    translate: var(#{$prefix}-translate-x) var(#{$prefix}-translate-y);
-    scale: var(#{$prefix}-scale);
-    rotate: var(#{$prefix}-rotate);
-
-    // Effects
-    filter: blur(var(#{$prefix}-blur));
-
-    &.#{$inView} {
       // Visibility properties
-      #{$prefix}-opacity: 1 !important;
-      #{$prefix}-visibility: visible !important;
+      opacity: var(#{$prefix}-opacity);
+      visibility: var(#{$prefix}-visibility);
 
       // Transfrom properties
-      #{$prefix}-translate-y: 0 !important;
-      #{$prefix}-translate-x: 0 !important;
-      #{$prefix}-scale: 1 !important;
-      #{$prefix}-rotate: 0deg !important;
+      translate: var(#{$prefix}-translate-x) var(#{$prefix}-translate-y);
+      scale: var(#{$prefix}-scale);
+      rotate: var(#{$prefix}-rotate);
 
       // Effects
-      #{$prefix}-blur: 0 !important;
+      filter: blur(var(#{$prefix}-blur));
+    }
+
+    &.#{$inView} {
+      > * {
+        // Visibility properties
+        #{$prefix}-opacity: 1 !important;
+        #{$prefix}-visibility: visible !important;
+
+        // Transfrom properties
+        #{$prefix}-translate-y: 0 !important;
+        #{$prefix}-translate-x: 0 !important;
+        #{$prefix}-scale: 1 !important;
+        #{$prefix}-rotate: 0deg !important;
+
+        // Effects
+        #{$prefix}-blur: 0 !important;
+      }
     }
   }
 }
@@ -120,7 +124,7 @@ $speed: (
 // Animation easing variantions
 // -------------------------------------
 @each $ease in $easings {
-  #{$root} [data-#{$brand}~='#{$ease}'] {
+  #{$root} [data-#{$brand}~="#{$ease}"] > * {
     #{$prefix}-easing: var(#{$prefix}-#{$ease});
   }
 }
@@ -129,7 +133,7 @@ $speed: (
 // Animation size variations
 // -------------------------------------
 @each $size, $value in $sizes {
-  #{$root} [data-#{$brand}~='#{$size}'] {
+  #{$root} [data-#{$brand}~="#{$size}"] > * {
     #{$prefix}-translate-ratio: $value;
   }
 }
@@ -139,7 +143,7 @@ $speed: (
 // -------------------------------------
 #{$root} {
   // General fade
-  [data-#{$brand}~='fade'] {
+  [data-#{$brand}~="fade"] > * {
     #{$prefix}-opacity: 0;
     #{$prefix}-visibility: hidden;
   }
@@ -150,23 +154,23 @@ $speed: (
 // -------------------------------------
 #{$root} {
   // Up
-  [data-#{$brand}~='up'] {
-    @include calcProperty('translate', 'y');
+  [data-#{$brand}~="up"] > * {
+    @include calcProperty("translate", "y");
   }
 
   // Down
-  [data-#{$brand}~='down'] {
-    @include calcProperty('translate', 'y', 'translate', '-');
+  [data-#{$brand}~="down"] > * {
+    @include calcProperty("translate", "y", "translate", "-");
   }
 
   // Left
-  [data-#{$brand}~='left'] {
-    @include calcProperty('translate', 'x');
+  [data-#{$brand}~="left"] > * {
+    @include calcProperty("translate", "x");
   }
 
   // Right
-  [data-#{$brand}~='right'] {
-    @include calcProperty('translate', 'x', 'translate', '-');
+  [data-#{$brand}~="right"] > * {
+    @include calcProperty("translate", "x", "translate", "-");
   }
 }
 
@@ -175,12 +179,12 @@ $speed: (
 // -------------------------------------
 #{$root} {
   // Zoom in
-  [data-#{$brand}~='zoom-in'] {
+  [data-#{$brand}~="zoom-in"] > * {
     #{$prefix}-scale: calc(1 + var(#{$prefix}-scale-ratio));
   }
 
   // Zoom out
-  [data-#{$brand}~='zoom-out'] {
+  [data-#{$brand}~="zoom-out"] > * {
     #{$prefix}-scale: calc(1 - var(#{$prefix}-scale-ratio));
   }
 }
@@ -190,30 +194,34 @@ $speed: (
 // -------------------------------------
 #{$root} {
   // Flip up
-  [data-#{$brand}*='flip'] {
-    backface-visibility: hidden;
+  [data-#{$brand}*="flip"] {
+    > * {
+      backface-visibility: hidden;
+    }
 
     &.#{$inView} {
-      transform: perspective($perspective) rotateY(0deg) rotateX(0deg) !important;
+      > * {
+        transform: perspective($perspective) rotateY(0deg) rotateX(0deg) !important;
+      }
     }
   }
 
-  [data-#{$brand}~='flip-up'] {
+  [data-#{$brand}~="flip-up"] > * {
     transform: perspective($perspective) rotateX(-100deg);
   }
 
   // Flip down
-  [data-#{$brand}~='flip-down'] {
+  [data-#{$brand}~="flip-down"] > * {
     transform: perspective($perspective) rotateX(100deg);
   }
 
   // Flip left
-  [data-#{$brand}~='flip-left'] {
+  [data-#{$brand}~="flip-left"] > * {
     transform: perspective($perspective) rotateY(-100deg);
   }
 
   // Flip right
-  [data-#{$brand}~='flip-right'] {
+  [data-#{$brand}~="flip-right"] > * {
     transform: perspective($perspective) rotateY(100deg);
   }
 }
@@ -221,7 +229,7 @@ $speed: (
 // -------------------------------------
 // Blur animations
 // -------------------------------------
-[data-#{$brand}*='blur'] {
+#{$root} [data-#{$brand}*="blur"] > * {
   #{$prefix}-blur: 5px;
 }
 
@@ -229,7 +237,7 @@ $speed: (
 // Remove animations if prefers-reduced-motion
 // -------------------------------------
 @media (prefers-reduced-motion: reduce) {
-  :root body [data-#{$brand}] {
+  :root body [data-#{$brand}] > * {
     transition: none;
     opacity: 1;
     visibility: visible;

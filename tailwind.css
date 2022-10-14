@@ -26,11 +26,25 @@ html {
 }
 
 .section-heading {
-  @apply text-center mb-12 lg:mb-24 text-4xl lg:text-5xl;
+  @apply text-center text-4xl lg:text-5xl;
 }
 
 .gradient {
-  background: #8e2de2; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #4a00e0, #8e2de2); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #4a00e0, #8e2de2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, #4a00e0, #8e2de2);
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: theme("colors.zinc.800");
+}
+
+::-webkit-scrollbar-thumb {
+  background: theme("colors.zinc.600");
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: theme("colors.zinc.500");
 }

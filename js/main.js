@@ -14,7 +14,7 @@ const myCustomScroll = new HumbleScroll({
   console.log('HumbleScroll is complete!')
 }) */
 
-//scroll.debug()
+scroll.debug()
 
 function firstCall() {
   const card = document.querySelector('#callback-1')
@@ -29,3 +29,5 @@ function secondCall() {
   const section = document.querySelector('#callback-section')
   section.style = 'background-color: white; color: #a3e635;'
 }
+
+//console.log(document.documentElement.scrollTop)

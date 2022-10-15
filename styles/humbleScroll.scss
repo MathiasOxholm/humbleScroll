@@ -1,121 +1,117 @@
 // -------------------------------------
 // SCSS variables
 // -------------------------------------
-$brand: "hs";
-$prefix: "--" + $brand;
-$root: "html:not(.no-js)";
-$inView: $brand + "-inview";
+$brand: 'hs';
+$var: '--' + $brand;
+$attr: 'data-' + $brand;
+$root: ':root:not(.no-js)';
+$inView: $brand + '-inview';
 $perspective: 2000px;
 
 // -------------------------------------
 // SCSS lists
 // -------------------------------------
+$properties: (
+  // Transition
+  delay: 0ms,
+  easing: var(#{$var}-ease-out),
+  duration: 600ms,
+  // Transition easings
+  ease-in: cubic-bezier(0.4, 0, 1, 1),
+  ease-out: cubic-bezier(0, 0, 0.2, 1),
+  ease-in-out: cubic-bezier(0.4, 0, 0.2, 1),
+  // Visibility
+  opacity: 1,
+  visibility: visible,
+  // Transfrom
+  translate-y: 0,
+  translate-x: 0,
+  scale: 1,
+  rotate: 0deg,
+  // Ratio
+  ratio: 1,
+  translate-ratio: 1,
+  scale-ratio: 0.2,
+  // Amount
+  translate-x-amount: 2rem,
+  translate-y-amount: 3rem,
+  // Efects
+  blur: 0
+);
+
 $easings: ease-in, ease-out, ease-in-out;
 
 $sizes: (
-  "sm": 0.5,
-  "md": 0.75,
-  "lg": 1.5,
-  "xl": 2,
-  "2xl": 3,
+  'sm': 0.5,
+  'md': 0.75,
+  'lg': 1.5,
+  'xl': 2,
+  '2xl': 3,
 );
 
 $speed: (
-  "slow": 0.5,
-  "fast": 0.75,
+  'slow': 0.5,
+  'fast': 0.75,
 );
 
 // -------------------------------------
 // Mixins
 // -------------------------------------
-@mixin calcProperty($property, $axis, $ratio: $property, $operator: "+") {
-  #{$prefix}-#{$property}-#{$axis}: calc(
-    0px #{$operator} var(#{$prefix}-#{$property}-#{$axis}-amount) * var(#{$prefix}-#{$ratio}-ratio)
-  );
+@mixin calcProperty($property, $axis, $ratio: $property, $operator: '+') {
+  #{$var}-#{$property}-#{$axis}: calc(0px #{$operator} var(#{$var}-#{$property}-#{$axis}-amount) * var(#{$var}-#{$ratio}-ratio));
 }
 
 // -------------------------------------
-// DSOS CSS default properties
+// HumbleScroll CSS default properties
 // -------------------------------------
 :root {
-  // Transition properties
-  #{$prefix}-delay: 0ms;
-  #{$prefix}-easing: var(#{$prefix}-ease-in-out);
-  #{$prefix}-duration: 600ms;
-
-  // Transition easings
-  #{$prefix}-ease-in: cubic-bezier(0.4, 0, 1, 1);
-  #{$prefix}-ease-out: cubic-bezier(0, 0, 0.2, 1);
-  #{$prefix}-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-
-  // Visibility properties
-  #{$prefix}-opacity: 1;
-  #{$prefix}-visibility: visible;
-
-  // Base calculation properties
-  #{$prefix}-distance-y: 3rem;
-  #{$prefix}-distance-x: 2rem;
-  #{$prefix}-scale-ratio: 0.2;
-
-  // Transfrom properties
-  #{$prefix}-translate-y: 0;
-  #{$prefix}-translate-x: 0;
-  #{$prefix}-scale: 1;
-  #{$prefix}-rotate: 0deg;
-
-  // Ratio properties
-  #{$prefix}-ratio: 1;
-  #{$prefix}-translate-ratio: 1;
-  #{$prefix}-scale-ratio: 0.2;
-
-  // Amount properties
-  #{$prefix}-translate-x-amount: 2rem;
-  #{$prefix}-translate-y-amount: 3rem;
-
-  // Efects properties
-  #{$prefix}-blur: 0;
+  @each $prop, $value in $properties {
+    #{$var}-#{$prop}: #{$value};
+  }
 }
 
 // -------------------------------------
-// Main DSOS data-attribute
+// Main HumbleScroll data-attribute
 // -------------------------------------
-#{$root} {
-  [data-#{$brand}] {
+#{$root} [#{$attr}] {
+  > * {
+    pointer-events: none;
+
+    // Transition settings
+    transition-duration: var(#{$var}-duration);
+    transition-timing-function: var(#{$var}-easing);
+    transition-delay: var(#{$var}-delay);
+    transition-property: transform, translate, scale, rotate, opacity, visibility, filter;
+
+    // Visibility properties
+    opacity: var(#{$var}-opacity);
+    visibility: var(#{$var}-visibility);
+
+    // Transfrom properties
+    translate: var(#{$var}-translate-x) var(#{$var}-translate-y);
+    scale: var(#{$var}-scale);
+    rotate: var(#{$var}-rotate);
+
+    // Effects
+    filter: blur(var(#{$var}-blur));
+  }
+
+  &.#{$inView} {
     > * {
-      // Transition settings
-      transition-duration: var(#{$prefix}-duration);
-      transition-timing-function: var(#{$prefix}-easing);
-      transition-delay: var(#{$prefix}-delay);
-      transition-property: transform, translate, scale, rotate, opacity, visibility, filter;
+      pointer-events: auto;
 
       // Visibility properties
-      opacity: var(#{$prefix}-opacity);
-      visibility: var(#{$prefix}-visibility);
+      #{$var}-opacity: 1 !important;
+      #{$var}-visibility: visible !important;
 
       // Transfrom properties
-      translate: var(#{$prefix}-translate-x) var(#{$prefix}-translate-y);
-      scale: var(#{$prefix}-scale);
-      rotate: var(#{$prefix}-rotate);
+      #{$var}-translate-y: 0 !important;
+      #{$var}-translate-x: 0 !important;
+      #{$var}-scale: 1 !important;
+      #{$var}-rotate: 0deg !important;
 
       // Effects
-      filter: blur(var(#{$prefix}-blur));
-    }
-
-    &.#{$inView} {
-      > * {
-        // Visibility properties
-        #{$prefix}-opacity: 1 !important;
-        #{$prefix}-visibility: visible !important;
-
-        // Transfrom properties
-        #{$prefix}-translate-y: 0 !important;
-        #{$prefix}-translate-x: 0 !important;
-        #{$prefix}-scale: 1 !important;
-        #{$prefix}-rotate: 0deg !important;
-
-        // Effects
-        #{$prefix}-blur: 0 !important;
-      }
+      #{$var}-blur: 0 !important;
     }
   }
 }
@@ -124,8 +120,8 @@ $speed: (
 // Animation easing variantions
 // -------------------------------------
 @each $ease in $easings {
-  #{$root} [data-#{$brand}~="#{$ease}"] > * {
-    #{$prefix}-easing: var(#{$prefix}-#{$ease});
+  #{$root} [#{$attr}~='#{$ease}'] > * {
+    #{$var}-easing: var(#{$var}-#{$ease});
   }
 }
 
@@ -133,8 +129,8 @@ $speed: (
 // Animation size variations
 // -------------------------------------
 @each $size, $value in $sizes {
-  #{$root} [data-#{$brand}~="#{$size}"] > * {
-    #{$prefix}-translate-ratio: $value;
+  #{$root} [#{$attr}~='#{$size}'] > * {
+    #{$var}-translate-ratio: $value;
   }
 }
 
@@ -143,9 +139,9 @@ $speed: (
 // -------------------------------------
 #{$root} {
   // General fade
-  [data-#{$brand}~="fade"] > * {
-    #{$prefix}-opacity: 0;
-    #{$prefix}-visibility: hidden;
+  [#{$attr}~='fade'] > * {
+    #{$var}-opacity: 0;
+    #{$var}-visibility: hidden;
   }
 }
 
@@ -154,23 +150,23 @@ $speed: (
 // -------------------------------------
 #{$root} {
   // Up
-  [data-#{$brand}~="up"] > * {
-    @include calcProperty("translate", "y");
+  [#{$attr}~='up'] > * {
+    @include calcProperty('translate', 'y');
   }
 
   // Down
-  [data-#{$brand}~="down"] > * {
-    @include calcProperty("translate", "y", "translate", "-");
+  [#{$attr}~='down'] > * {
+    @include calcProperty('translate', 'y', 'translate', '-');
   }
 
   // Left
-  [data-#{$brand}~="left"] > * {
-    @include calcProperty("translate", "x");
+  [#{$attr}~='left'] > * {
+    @include calcProperty('translate', 'x');
   }
 
   // Right
-  [data-#{$brand}~="right"] > * {
-    @include calcProperty("translate", "x", "translate", "-");
+  [#{$attr}~='right'] > * {
+    @include calcProperty('translate', 'x', 'translate', '-');
   }
 }
 
@@ -179,13 +175,13 @@ $speed: (
 // -------------------------------------
 #{$root} {
   // Zoom in
-  [data-#{$brand}~="zoom-in"] > * {
-    #{$prefix}-scale: calc(1 + var(#{$prefix}-scale-ratio));
+  [#{$attr}~='zoom-in'] > * {
+    #{$var}-scale: calc(1 + var(#{$var}-scale-ratio));
   }
 
   // Zoom out
-  [data-#{$brand}~="zoom-out"] > * {
-    #{$prefix}-scale: calc(1 - var(#{$prefix}-scale-ratio));
+  [#{$attr}~='zoom-out'] > * {
+    #{$var}-scale: calc(1 - var(#{$var}-scale-ratio));
   }
 }
 
@@ -194,7 +190,7 @@ $speed: (
 // -------------------------------------
 #{$root} {
   // Flip up
-  [data-#{$brand}*="flip"] {
+  [#{$attr}*='flip'] {
     > * {
       backface-visibility: hidden;
     }
@@ -206,22 +202,22 @@ $speed: (
     }
   }
 
-  [data-#{$brand}~="flip-up"] > * {
+  [#{$attr}~='flip-up'] > * {
     transform: perspective($perspective) rotateX(-100deg);
   }
 
   // Flip down
-  [data-#{$brand}~="flip-down"] > * {
+  [#{$attr}~='flip-down'] > * {
     transform: perspective($perspective) rotateX(100deg);
   }
 
   // Flip left
-  [data-#{$brand}~="flip-left"] > * {
+  [#{$attr}~='flip-left'] > * {
     transform: perspective($perspective) rotateY(-100deg);
   }
 
   // Flip right
-  [data-#{$brand}~="flip-right"] > * {
+  [#{$attr}~='flip-right'] > * {
     transform: perspective($perspective) rotateY(100deg);
   }
 }
@@ -229,15 +225,15 @@ $speed: (
 // -------------------------------------
 // Blur animations
 // -------------------------------------
-#{$root} [data-#{$brand}*="blur"] > * {
-  #{$prefix}-blur: 5px;
+#{$root} [#{$attr}*='blur'] > * {
+  #{$var}-blur: 5px;
 }
 
 // -------------------------------------
 // Remove animations if prefers-reduced-motion
 // -------------------------------------
 @media (prefers-reduced-motion: reduce) {
-  :root body [data-#{$brand}] > * {
+  :root body [#{$attr}] > * {
     transition: none;
     opacity: 1;
     visibility: visible;

@@ -6,6 +6,14 @@ html {
   scroll-behavior: smooth;
 }
 
+/* :root {
+  --hs-rotate: -5deg;
+  --hs-duration: 0.8s;
+  --hs-easing: ease-in;
+  --hs-translate-x-amount: 10rem;
+  --hs-translate-y-amount: 10rem;
+} */
+
 .my-custom-element {
   opacity: 0;
   rotate: 45deg;
@@ -38,13 +46,13 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: theme("colors.zinc.800");
+  background: theme('colors.zinc.800');
 }
 
 ::-webkit-scrollbar-thumb {
-  background: theme("colors.zinc.600");
+  background: theme('colors.zinc.600');
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: theme("colors.zinc.500");
+  background: theme('colors.zinc.500');
 }

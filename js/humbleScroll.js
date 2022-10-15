@@ -1,5 +1,6 @@
 // Default DSOS options
 const prefix = 'hs'
+const documentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
 
 const defaultOptions = {
   root: null,
@@ -7,8 +8,8 @@ const defaultOptions = {
   enableCallback: false,
   callback: `[data-${prefix}-call]`,
   class: `${prefix}-inview`,
-  threshold: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
-  offset: '-32px 0px -32px 0px',
+  threshold: 0.1,
+  offset: `${documentHeight}px 0px -40px 0px`,
   repeat: false,
   startEvent: 'DOMContentLoaded',
 }
@@ -46,22 +47,22 @@ class HumbleScroll {
     // Main animation function
     const animationObserverFunction = (entries) => {
       entries.forEach((entry) => {
-        //entry.target.classList.toggle(this.options.class, entry.isIntersecting)
-        console.log('window: ' + window.scrollY)
-        console.log('rect: ' + entry.boundingClientRect.top)
+        entry.target.classList.toggle(this.options.class, entry.isIntersecting)
+        //console.log('window: ' + window.scrollY)
+        //console.log(entry)
 
-        if (entry.isIntersecting) {
+        /*  if (entry.isIntersecting) {
           //console.log(entry.target.id + ' - inview')
           entry.target.classList.add(this.options.class)
         } else {
-          if (window.scrollY > entry.boundingClientRect.y) {
+          if (window.top > entry.boundingClientRect.top) {
             //console.log(entry.target.id + ' - above')
             //entry.target.classList.add(this.options.class)
           } else {
             console.log(entry.target.id + ' - below')
             entry.target.classList.remove(this.options.class)
           }
-        }
+        } */
 
         /*  if (isIntersectingFromTop(entry)) {
           entry.target.classList.add(`${prefix}-from-top`)

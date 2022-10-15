@@ -14,7 +14,7 @@ const myCustomScroll = new HumbleScroll({
   console.log('HumbleScroll is complete!')
 }) */
 
-scroll.debug()
+//scroll.debug()
 
 function firstCall() {
   const card = document.querySelector('#callback-1')

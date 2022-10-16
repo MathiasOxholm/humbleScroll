@@ -12,7 +12,7 @@
     <title>HumbleScroll.js</title>
     <link
       rel="stylesheet"
-      href="styles/humbleScroll.css" />
+      href="styles/humbleScroll.min.css" />
     <link
       rel="stylesheet"
       href="/tailwind.css" />
@@ -23,7 +23,7 @@
       <div
         id="logo"
         class="absolute top-10 lg:top-20 left-10 lg:left-20 z-10"
-        data-hs="fade left"
+        data-hs="fade left stay"
         style="--hs-delay: 600ms">
         <div>HumbleScroll.js</div>
       </div>
@@ -31,7 +31,8 @@
         <div
           id="gradient-bg"
           class="absolute h-full w-full"
-          data-hs="zoom-out fade up large">
+          data-hs="zoom-out fade up large stay"
+          style="--hs-translate-y-amount: 10rem">
           <div class="h-full w-full rounded-xl gradient"></div>
         </div>
 
@@ -61,7 +62,7 @@
                 href="#section-1"
                 id="button-1-text"
                 class="flex bg-white text-zinc-900 px-10 py-5 text-lg rounded-lg font-semibold overflow-hidden text-center justify-center"
-                data-hs="fade right small">
+                data-hs="fade right small stay">
                 <span class="fade flex">See it in action</span>
               </a>
             </div>
@@ -74,7 +75,7 @@
                 href="#!"
                 id="button-2-text"
                 class="flex text-white px-10 py-5 text-lg rounded-lg font-semibold border border-white overflow-hidden text-center justify-center"
-                data-hs="fade left small">
+                data-hs="fade left small stay">
                 <span class="flex">Grab the code</span>
               </a>
             </div>
@@ -90,7 +91,7 @@
       <div
         id="fade-section-title"
         class="mb-12 lg:mb-24"
-        data-hs="fade right blur">
+        data-hs="fade right blur stay">
         <h2 class="section-heading">Fade animations</h2>
       </div>
 
@@ -148,7 +149,7 @@
       <div
         id="zoom-section-title"
         class="mb-12 lg:mb-24"
-        data-hs="zoom-out blur">
+        data-hs="zoom-out blur stay">
         <h2 class="section-heading">Zoom animations</h2>
       </div>
 
@@ -198,7 +199,7 @@
       <div
         id="slide-section-title"
         class="mb-12 lg:mb-24"
-        data-hs="up right blur">
+        data-hs="up right blur stay">
         <h2 class="section-heading">Slide animations</h2>
       </div>
       <div class="container grid lg:grid-cols-2 gap-10 max-w-6xl">
@@ -247,7 +248,7 @@
       <div
         id="flip-section-title"
         class="mb-12 lg:mb-24"
-        data-hs="flip-down">
+        data-hs="flip-down stay">
         <h2 class="section-heading">Flip animations</h2>
       </div>
 
@@ -296,7 +297,7 @@
     <section class="section bg-zinc-800">
       <div
         id="easing-section-heading"
-        data-hs="fade up zoom">
+        data-hs="fade up zoom stay">
         <h2 class="section-heading mb-12 lg:mb-24">Easings</h2>
       </div>
 
@@ -336,7 +337,7 @@
     <section class="section bg-zinc-900">
       <div
         id="blur-section-heading"
-        data-hs="blur fade up">
+        data-hs="blur fade up stay">
         <h2 class="section-heading mb-12 lg:mb-24">Blur effect</h2>
       </div>
 
@@ -355,7 +356,7 @@
         <div
           id="blur-2"
           data-hs="zoom-in fade up blur 2xl"
-          style="--hs-blur: 40px">
+          style="--hs-blur: 40px; --hs-delay: 200ms">
           <div class="card">
             <h3 class="text-4xl text-center">Blur effect</h3>
             <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="ease-out"</code>
@@ -364,7 +365,8 @@
 
         <div
           id="blur-3"
-          data-hs="fade left blur 2xl">
+          data-hs="fade left blur 2xl"
+          style="--hs-delay: 400ms">
           <div class="card">
             <h3 class="text-4xl text-center">Blur effect</h3>
             <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="ease-in-out"</code>
@@ -377,7 +379,7 @@
     <section class="section bg-zinc-800">
       <div
         id="custom-section-heading"
-        data-hs="fade up">
+        data-hs="fade up stay">
         <h2 class="section-heading mb-12 lg:mb-24">Custom animations</h2>
       </div>
 
@@ -420,7 +422,7 @@
       <div
         id="callback-section-heading"
         class="mb-12 lg:mb-24"
-        data-hs="fade right blur">
+        data-hs="fade right blur stay">
         <h2 class="section-heading">Callback on enter</h2>
       </div>
 
@@ -463,7 +465,54 @@
       </div>
     </section>
 
-    <section
+    <!-- Durations -->
+    <section class="section bg-zinc-900">
+      <div
+        id="blur-section-heading"
+        data-hs="blur fade up stay ">
+        <h2 class="section-heading mb-12 lg:mb-24">Durations</h2>
+      </div>
+
+      <div class="container grid lg:grid-cols-3 gap-10 max-w-6xl">
+        <div
+          id="blur-1"
+          data-hs="fade up right blur 2xl fast">
+          <div class="card">
+            <h3 class="text-4xl text-center">Fast</h3>
+            <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="ease-in"</code>
+          </div>
+        </div>
+
+        <div
+          id="blur-2"
+          data-hs="zoom-in fade up blur 2xl slow">
+          <div class="card">
+            <h3 class="text-4xl text-center">Slow</h3>
+            <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="ease-out"</code>
+          </div>
+        </div>
+
+        <div
+          id="blur-3"
+          data-hs="fade up left blur 2xl extra-slow">
+          <div class="card">
+            <h3 class="text-4xl text-center">Extra slow</h3>
+            <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="ease-in-out"</code>
+          </div>
+        </div>
+
+        <div
+          id="blur-1"
+          data-hs="fade up right blur 2xl fast">
+          <div class="card">
+            <h3 class="text-4xl text-center">Fast</h3>
+            <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="ease-in"</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- <section
       id="horizontal-scroll"
       class="bg-zinc-800 h-screen overflow-x-scroll flex items-center">
       <div class="min-w-[8000px] flex items-center justify-around">
@@ -480,7 +529,7 @@
           <h2 class="text-4xl p-20 bg-zinc-700">Test</h2>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <script src="js/humbleScroll.js"></script>
     <script src="js/main.js"></script>

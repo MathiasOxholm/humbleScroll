@@ -6,6 +6,7 @@ $var: '--' + $brand;
 $attr: 'data-' + $brand;
 $root: ':root:not(.no-js)';
 $inView: $brand + '-inview';
+$stay: $brand + '-stay';
 $perspective: 2000px;
 
 // -------------------------------------
@@ -32,6 +33,7 @@ $properties: (
   ratio: 1,
   translate-ratio: 1,
   scale-ratio: 0.2,
+  duration-ratio: 1,
   // Amount
   translate-x-amount: 2rem,
   translate-y-amount: 3rem,
@@ -49,9 +51,11 @@ $sizes: (
   '2xl': 3,
 );
 
-$speed: (
-  'slow': 0.5,
-  'fast': 0.75,
+$durations: (
+  'extra-slow': 3,
+  'slow': 1.5,
+  'fast': 0.5,
+  'extra-fast': 0.25,
 );
 
 // -------------------------------------
@@ -78,7 +82,7 @@ $speed: (
     pointer-events: none;
 
     // Transition settings
-    transition-duration: var(#{$var}-duration);
+    transition-duration: calc(var(#{$var}-duration) * var(#{$var}-duration-ratio));
     transition-timing-function: var(#{$var}-easing);
     transition-delay: var(#{$var}-delay);
     transition-property: transform, translate, scale, rotate, opacity, visibility, filter;
@@ -96,7 +100,8 @@ $speed: (
     filter: blur(var(#{$var}-blur));
   }
 
-  &.#{$inView} {
+  &.#{$inView},
+  &.#{$stay} {
     > * {
       pointer-events: auto;
 
@@ -131,6 +136,15 @@ $speed: (
 @each $size, $value in $sizes {
   #{$root} [#{$attr}*='#{$size}'] {
     #{$var}-translate-ratio: $value;
+  }
+}
+
+// -------------------------------------
+// Animation speed variations
+// -------------------------------------
+@each $duration, $value in $durations {
+  #{$root} [#{$attr}~='#{$duration}'] {
+    #{$var}-duration-ratio: $value;
   }
 }
 
@@ -196,7 +210,8 @@ $speed: (
       backface-visibility: hidden;
     }
 
-    &.#{$inView} {
+    &.#{$inView},
+    &.#{$stay} {
       > * {
         transform: perspective($perspective) rotateY(0deg) rotateX(0deg);
       }

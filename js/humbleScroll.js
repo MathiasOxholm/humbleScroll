@@ -1,36 +1,36 @@
 // Main HumbleScroll Class
 class HumbleScroll {
   constructor(options) {
-    this.prefix = 'hs'
-    this.documentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
+    this.prefix = 'hs' // Prefix for all events
+    this.documentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight // Document height
     this.defaultOptions = {
-      root: null,
-      element: `[data-${this.prefix}]`,
-      enableCallback: false,
-      callback: `data-${this.prefix}-call`,
-      class: `${this.prefix}-inview`,
-      initClass: `${this.prefix}-init`,
-      threshold: 0.1,
+      root: null, // Root container to observe (default: Document root)
+      element: `[data-${this.prefix}]`, // Element to observe (default: All elements with data-hs attribute)
+      enableCallback: false, // Wheter to enable callback function on intersect (default: false)
+      callback: `data-${this.prefix}-call`, // Callback data-attribute to call on intersect (default: data-hs-call)
+      class: `${this.prefix}-inview`, // Class added when element is visible (default: hs-inview)
+      initClass: `${this.prefix}-init`, // Class added when HumbleScroll loaded (default: hs-inview)
+      threshold: 0.1, // Intersection threshold where 0.1 is 10% of the element (default: 0.1)
       offset: {
-        top: -40,
+        top: 0,
         right: 0,
         bottom: -40,
         left: 0,
-      },
-      direction: 'vertical',
-      repeat: false,
-      mirror: false,
-      startEvent: 'DOMContentLoaded',
-    }
+      }, // Offset to add to the root margin (default: { top: 0, right: 0, bottom: -40, left: 0 })
+      direction: 'vertical', // Direction to calculate root max height or max width (default: vertical)
+      repeat: false, // Wheter to repeat the animation when scrollin from top (default: false)
+      mirror: false, // Wheter to mirror the animation when leaving (default: false)
+      startEvent: 'DOMContentLoaded', // Event to start the initialization (default: DOMContentLoaded)
+    } // Default options
     this.options = { ...this.defaultOptions, ...options }
     this.observerOptions = {
       root: this.options.root,
       rootMargin: this.calculateOffset(this.options.offset),
       threshold: this.options.threshold,
-    }
-    this.animationElements = document.querySelectorAll(this.options.element)
-    this.callbackElements = document.querySelectorAll(`[${this.options.callback}]`)
-    this.init()
+    } // Intersection Observer options
+    this.animationElements = document.querySelectorAll(this.options.element) // Elements to animate
+    this.callbackElements = document.querySelectorAll(`[${this.options.callback}]`) // Elements to call on intersect
+    this.init() // Initialize HumbleScroll
   }
 
   // Initialize HumbleScroll
@@ -40,11 +40,14 @@ class HumbleScroll {
     // Main animation function
     const animationObserverFunction = (entries) => {
       entries.forEach((entry) => {
+        const dataAttr = entry.target.dataset.hs
         if (!this.options.repeat && entry.isIntersecting) {
           observer.unobserve(entry.target)
           return
         }
+
         entry.target.classList.toggle(this.options.class, entry.isIntersecting)
+        if (entry.isIntersecting && dataAttr && dataAttr.includes('stay')) entry.target.classList.add(`${this.prefix}-stay`)
       })
     }
 
@@ -85,7 +88,7 @@ class HumbleScroll {
 
     window.addEventListener(this.options.startEvent, startEventCallback)
     this.options.enableCallback && window.addEventListener(this.options.startEvent, startCallbackFunction)
-    window.dispatchEvent(event)
+    window.dispatchEvent(completeEvent)
   }
 
   update() {

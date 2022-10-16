@@ -2,9 +2,11 @@
 const scroll = new HumbleScroll({
   enableCallback: true,
   repeat: true,
-  mirror: false,
+  mirror: true,
+  threshold: 0.25,
   offset: {
-    bottom: -100,
+    top: -64,
+    bottom: -150,
   },
 })
 
@@ -14,14 +16,14 @@ const myCustomScroll = new HumbleScroll({
   class: 'enter',
 })
 
-const verticalScroll = new HumbleScroll({
+/* const verticalScroll = new HumbleScroll({
   root: document.querySelector('#horizontal-scroll'),
   element: '.my-custom-element',
   class: 'enter',
   repeat: true,
   mirror: true,
   direction: 'horizontal',
-})
+}) */
 
 /* scroll.on('hs-complete', () => {
   console.log('HumbleScroll is complete!')
@@ -40,7 +42,9 @@ function firstCall() {
 
 function secondCall() {
   const section = document.querySelector('#callback-section')
-  section.style = 'background-color: white; color: #a3e635;'
+  section.style = 'background-color: #27272a; color: #a3e635;'
 }
 
 //console.log(document.documentElement.scrollTop)
+
+console.log(myCustomScroll)

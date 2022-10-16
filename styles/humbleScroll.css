@@ -34,49 +34,49 @@
 }
 :root:not(.no-js) [data-hs].hs-inview > * {
   pointer-events: auto;
-  --hs-opacity: 1 !important;
-  --hs-visibility: visible !important;
-  --hs-translate-y: 0 !important;
-  --hs-translate-x: 0 !important;
-  --hs-scale: 1 !important;
-  --hs-rotate: 0deg !important;
-  --hs-blur: 0 !important;
+  --hs-opacity: 1;
+  --hs-visibility: visible;
+  --hs-translate-y: 0;
+  --hs-translate-x: 0;
+  --hs-scale: 1;
+  --hs-rotate: 0deg;
+  --hs-blur: 0;
 }
 
-:root:not(.no-js) [data-hs*=ease-in] > * {
+:root:not(.no-js) [data-hs*=ease-in] {
   --hs-easing: var(--hs-ease-in);
 }
 
-:root:not(.no-js) [data-hs*=ease-out] > * {
+:root:not(.no-js) [data-hs*=ease-out] {
   --hs-easing: var(--hs-ease-out);
 }
 
-:root:not(.no-js) [data-hs*=ease-in-out] > * {
+:root:not(.no-js) [data-hs*=ease-in-out] {
   --hs-easing: var(--hs-ease-in-out);
 }
 
-:root:not(.no-js) [data-hs*=sm] > * {
+:root:not(.no-js) [data-hs*=sm] {
   --hs-translate-ratio: 0.5;
 }
 
-:root:not(.no-js) [data-hs*=md] > * {
+:root:not(.no-js) [data-hs*=md] {
   --hs-translate-ratio: 0.75;
 }
 
-:root:not(.no-js) [data-hs*=lg] > * {
+:root:not(.no-js) [data-hs*=lg] {
   --hs-translate-ratio: 1.5;
 }
 
-:root:not(.no-js) [data-hs*=xl] > * {
+:root:not(.no-js) [data-hs*=xl] {
   --hs-translate-ratio: 2;
 }
 
-:root:not(.no-js) [data-hs*="2xl"] > * {
+:root:not(.no-js) [data-hs*="2xl"] {
   --hs-translate-ratio: 3;
 }
 
-:root:not(.no-js) [data-hs*=fade] > *,
-:root:not(.no-js) [data-hs*=zoom] > * {
+:root:not(.no-js) [data-hs*=fade],
+:root:not(.no-js) [data-hs*=zoom] {
   --hs-opacity: 0;
   --hs-visibility: hidden;
 }
@@ -105,7 +105,7 @@
   backface-visibility: hidden;
 }
 :root:not(.no-js) [data-hs*=flip].hs-inview > * {
-  transform: perspective(2000px) rotateY(0deg) rotateX(0deg) !important;
+  transform: perspective(2000px) rotateY(0deg) rotateX(0deg);
 }
 :root:not(.no-js) [data-hs*=flip-up] > * {
   transform: perspective(2000px) rotateX(-100deg);
@@ -120,7 +120,7 @@
   transform: perspective(2000px) rotateY(100deg);
 }
 
-:root:not(.no-js) [data-hs*=blur] > * {
+:root:not(.no-js) [data-hs*=blur] {
   --hs-blur: 5px;
 }
 

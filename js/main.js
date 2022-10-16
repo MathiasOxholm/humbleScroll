@@ -14,10 +14,14 @@ const myCustomScroll = new HumbleScroll({
   class: 'enter',
 })
 
-/* const verticalScroll = new HumbleScroll({
+const verticalScroll = new HumbleScroll({
   root: document.querySelector('#horizontal-scroll'),
-  repeat: false,
-}) */
+  element: '.my-custom-element',
+  class: 'enter',
+  repeat: true,
+  mirror: true,
+  direction: 'horizontal',
+})
 
 /* scroll.on('hs-complete', () => {
   console.log('HumbleScroll is complete!')

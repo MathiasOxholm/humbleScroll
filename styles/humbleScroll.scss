@@ -101,17 +101,17 @@ $speed: (
       pointer-events: auto;
 
       // Visibility properties
-      #{$var}-opacity: 1 !important;
-      #{$var}-visibility: visible !important;
+      #{$var}-opacity: 1;
+      #{$var}-visibility: visible;
 
       // Transfrom properties
-      #{$var}-translate-y: 0 !important;
-      #{$var}-translate-x: 0 !important;
-      #{$var}-scale: 1 !important;
-      #{$var}-rotate: 0deg !important;
+      #{$var}-translate-y: 0;
+      #{$var}-translate-x: 0;
+      #{$var}-scale: 1;
+      #{$var}-rotate: 0deg;
 
       // Effects
-      #{$var}-blur: 0 !important;
+      #{$var}-blur: 0;
     }
   }
 }
@@ -120,7 +120,7 @@ $speed: (
 // Animation easing variantions
 // -------------------------------------
 @each $ease in $easings {
-  #{$root} [#{$attr}*='#{$ease}'] > * {
+  #{$root} [#{$attr}*='#{$ease}'] {
     #{$var}-easing: var(#{$var}-#{$ease});
   }
 }
@@ -129,7 +129,7 @@ $speed: (
 // Animation size variations
 // -------------------------------------
 @each $size, $value in $sizes {
-  #{$root} [#{$attr}*='#{$size}'] > * {
+  #{$root} [#{$attr}*='#{$size}'] {
     #{$var}-translate-ratio: $value;
   }
 }
@@ -139,8 +139,8 @@ $speed: (
 // -------------------------------------
 #{$root} {
   // General fade
-  [#{$attr}*='fade'] > *,
-  [#{$attr}*='zoom'] > * {
+  [#{$attr}*='fade'],
+  [#{$attr}*='zoom'] {
     #{$var}-opacity: 0;
     #{$var}-visibility: hidden;
   }
@@ -190,7 +190,7 @@ $speed: (
 // Flip animations
 // -------------------------------------
 #{$root} {
-  // Flip up
+  // General flip
   [#{$attr}*='flip'] {
     > * {
       backface-visibility: hidden;
@@ -198,11 +198,12 @@ $speed: (
 
     &.#{$inView} {
       > * {
-        transform: perspective($perspective) rotateY(0deg) rotateX(0deg) !important;
+        transform: perspective($perspective) rotateY(0deg) rotateX(0deg);
       }
     }
   }
 
+  // Flip up
   [#{$attr}*='flip-up'] > * {
     transform: perspective($perspective) rotateX(-100deg);
   }
@@ -226,7 +227,7 @@ $speed: (
 // -------------------------------------
 // Blur animations
 // -------------------------------------
-#{$root} [#{$attr}*='blur'] > * {
+#{$root} [#{$attr}*='blur'] {
   #{$var}-blur: 5px;
 }
 

@@ -9,6 +9,7 @@ class HumbleScroll {
       enableCallback: false,
       callback: `data-${this.prefix}-call`,
       class: `${this.prefix}-inview`,
+      initClass: `${this.prefix}-init`,
       threshold: 0.1,
       offset: {
         top: -40,
@@ -20,7 +21,6 @@ class HumbleScroll {
       repeat: false,
       mirror: false,
       startEvent: 'DOMContentLoaded',
-      initClass: `${this.prefix}-init`,
     }
     this.options = { ...this.defaultOptions, ...options }
     this.observerOptions = {
@@ -35,11 +35,7 @@ class HumbleScroll {
 
   // Initialize HumbleScroll
   init() {
-    const event = new Event(`${this.prefix}-complete`, {
-      bubbles: true,
-      cancelable: true,
-      composed: false,
-    })
+    const completeEvent = new Event(`${this.prefix}:complete`, { bubbles: true })
 
     // Main animation function
     const animationObserverFunction = (entries) => {
@@ -71,7 +67,7 @@ class HumbleScroll {
       })
 
       document.body.classList.add(`${this.prefix}-loaded`)
-      window.dispatchEvent(event)
+      window.dispatchEvent(completeEvent)
     }
 
     // Run Caller on start event

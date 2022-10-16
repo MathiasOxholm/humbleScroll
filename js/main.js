@@ -1,7 +1,11 @@
 // Fire regular DSOS
 const scroll = new HumbleScroll({
-  repeat: true,
   enableCallback: true,
+  repeat: true,
+  mirror: false,
+  offset: {
+    bottom: -100,
+  },
 })
 
 // Fire custom DSOS with custom options
@@ -9,6 +13,11 @@ const myCustomScroll = new HumbleScroll({
   element: '.my-custom-element',
   class: 'enter',
 })
+
+/* const verticalScroll = new HumbleScroll({
+  root: document.querySelector('#horizontal-scroll'),
+  repeat: false,
+}) */
 
 /* scroll.on('hs-complete', () => {
   console.log('HumbleScroll is complete!')

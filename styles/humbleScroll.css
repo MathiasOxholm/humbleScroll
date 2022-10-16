@@ -43,60 +43,61 @@
   --hs-blur: 0 !important;
 }
 
-:root:not(.no-js) [data-hs~=ease-in] > * {
+:root:not(.no-js) [data-hs*=ease-in] > * {
   --hs-easing: var(--hs-ease-in);
 }
 
-:root:not(.no-js) [data-hs~=ease-out] > * {
+:root:not(.no-js) [data-hs*=ease-out] > * {
   --hs-easing: var(--hs-ease-out);
 }
 
-:root:not(.no-js) [data-hs~=ease-in-out] > * {
+:root:not(.no-js) [data-hs*=ease-in-out] > * {
   --hs-easing: var(--hs-ease-in-out);
 }
 
-:root:not(.no-js) [data-hs~=sm] > * {
+:root:not(.no-js) [data-hs*=sm] > * {
   --hs-translate-ratio: 0.5;
 }
 
-:root:not(.no-js) [data-hs~=md] > * {
+:root:not(.no-js) [data-hs*=md] > * {
   --hs-translate-ratio: 0.75;
 }
 
-:root:not(.no-js) [data-hs~=lg] > * {
+:root:not(.no-js) [data-hs*=lg] > * {
   --hs-translate-ratio: 1.5;
 }
 
-:root:not(.no-js) [data-hs~=xl] > * {
+:root:not(.no-js) [data-hs*=xl] > * {
   --hs-translate-ratio: 2;
 }
 
-:root:not(.no-js) [data-hs~="2xl"] > * {
+:root:not(.no-js) [data-hs*="2xl"] > * {
   --hs-translate-ratio: 3;
 }
 
-:root:not(.no-js) [data-hs~=fade] > * {
+:root:not(.no-js) [data-hs*=fade] > *,
+:root:not(.no-js) [data-hs*=zoom] > * {
   --hs-opacity: 0;
   --hs-visibility: hidden;
 }
 
-:root:not(.no-js) [data-hs~=up] > * {
+:root:not(.no-js) [data-hs*=up] > * {
   --hs-translate-y: calc(0px + var(--hs-translate-y-amount) * var(--hs-translate-ratio));
 }
-:root:not(.no-js) [data-hs~=down] > * {
+:root:not(.no-js) [data-hs*=down] > * {
   --hs-translate-y: calc(0px - var(--hs-translate-y-amount) * var(--hs-translate-ratio));
 }
-:root:not(.no-js) [data-hs~=left] > * {
+:root:not(.no-js) [data-hs*=left] > * {
   --hs-translate-x: calc(0px + var(--hs-translate-x-amount) * var(--hs-translate-ratio));
 }
-:root:not(.no-js) [data-hs~=right] > * {
+:root:not(.no-js) [data-hs*=right] > * {
   --hs-translate-x: calc(0px - var(--hs-translate-x-amount) * var(--hs-translate-ratio));
 }
 
-:root:not(.no-js) [data-hs~=zoom-in] > * {
+:root:not(.no-js) [data-hs*=zoom-in] > * {
   --hs-scale: calc(1 + var(--hs-scale-ratio));
 }
-:root:not(.no-js) [data-hs~=zoom-out] > * {
+:root:not(.no-js) [data-hs*=zoom-out] > * {
   --hs-scale: calc(1 - var(--hs-scale-ratio));
 }
 
@@ -106,16 +107,16 @@
 :root:not(.no-js) [data-hs*=flip].hs-inview > * {
   transform: perspective(2000px) rotateY(0deg) rotateX(0deg) !important;
 }
-:root:not(.no-js) [data-hs~=flip-up] > * {
+:root:not(.no-js) [data-hs*=flip-up] > * {
   transform: perspective(2000px) rotateX(-100deg);
 }
-:root:not(.no-js) [data-hs~=flip-down] > * {
+:root:not(.no-js) [data-hs*=flip-down] > * {
   transform: perspective(2000px) rotateX(100deg);
 }
-:root:not(.no-js) [data-hs~=flip-left] > * {
+:root:not(.no-js) [data-hs*=flip-left] > * {
   transform: perspective(2000px) rotateY(-100deg);
 }
-:root:not(.no-js) [data-hs~=flip-right] > * {
+:root:not(.no-js) [data-hs*=flip-right] > * {
   transform: perspective(2000px) rotateY(100deg);
 }
 

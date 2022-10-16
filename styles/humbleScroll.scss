@@ -120,7 +120,7 @@ $speed: (
 // Animation easing variantions
 // -------------------------------------
 @each $ease in $easings {
-  #{$root} [#{$attr}~='#{$ease}'] > * {
+  #{$root} [#{$attr}*='#{$ease}'] > * {
     #{$var}-easing: var(#{$var}-#{$ease});
   }
 }
@@ -129,7 +129,7 @@ $speed: (
 // Animation size variations
 // -------------------------------------
 @each $size, $value in $sizes {
-  #{$root} [#{$attr}~='#{$size}'] > * {
+  #{$root} [#{$attr}*='#{$size}'] > * {
     #{$var}-translate-ratio: $value;
   }
 }
@@ -139,7 +139,8 @@ $speed: (
 // -------------------------------------
 #{$root} {
   // General fade
-  [#{$attr}~='fade'] > * {
+  [#{$attr}*='fade'] > *,
+  [#{$attr}*='zoom'] > * {
     #{$var}-opacity: 0;
     #{$var}-visibility: hidden;
   }
@@ -150,22 +151,22 @@ $speed: (
 // -------------------------------------
 #{$root} {
   // Up
-  [#{$attr}~='up'] > * {
+  [#{$attr}*='up'] > * {
     @include calcProperty('translate', 'y');
   }
 
   // Down
-  [#{$attr}~='down'] > * {
+  [#{$attr}*='down'] > * {
     @include calcProperty('translate', 'y', 'translate', '-');
   }
 
   // Left
-  [#{$attr}~='left'] > * {
+  [#{$attr}*='left'] > * {
     @include calcProperty('translate', 'x');
   }
 
   // Right
-  [#{$attr}~='right'] > * {
+  [#{$attr}*='right'] > * {
     @include calcProperty('translate', 'x', 'translate', '-');
   }
 }
@@ -175,12 +176,12 @@ $speed: (
 // -------------------------------------
 #{$root} {
   // Zoom in
-  [#{$attr}~='zoom-in'] > * {
+  [#{$attr}*='zoom-in'] > * {
     #{$var}-scale: calc(1 + var(#{$var}-scale-ratio));
   }
 
   // Zoom out
-  [#{$attr}~='zoom-out'] > * {
+  [#{$attr}*='zoom-out'] > * {
     #{$var}-scale: calc(1 - var(#{$var}-scale-ratio));
   }
 }
@@ -202,22 +203,22 @@ $speed: (
     }
   }
 
-  [#{$attr}~='flip-up'] > * {
+  [#{$attr}*='flip-up'] > * {
     transform: perspective($perspective) rotateX(-100deg);
   }
 
   // Flip down
-  [#{$attr}~='flip-down'] > * {
+  [#{$attr}*='flip-down'] > * {
     transform: perspective($perspective) rotateX(100deg);
   }
 
   // Flip left
-  [#{$attr}~='flip-left'] > * {
+  [#{$attr}*='flip-left'] > * {
     transform: perspective($perspective) rotateY(-100deg);
   }
 
   // Flip right
-  [#{$attr}~='flip-right'] > * {
+  [#{$attr}*='flip-right'] > * {
     transform: perspective($perspective) rotateY(100deg);
   }
 }

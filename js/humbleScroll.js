@@ -1,19 +1,4 @@
 // Default DSOS options
-const prefix = 'hs'
-const documentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
-
-const defaultOptions = {
-  root: null,
-  element: `[data-${prefix}]`,
-  enableCallback: false,
-  callback: `[data-${prefix}-call]`,
-  class: `${prefix}-inview`,
-  threshold: 0.1,
-  offset: `${documentHeight}px 0px -40px 0px`,
-  repeat: false,
-  startEvent: 'DOMContentLoaded',
-}
-
 function isIntersectingFromTop(entry) {
   return entry.boundingClientRect.bottom != entry.intersectionRect.bottom
 }
@@ -25,10 +10,30 @@ function isIntersectingFromBottom(entry) {
 // Main HumbleScroll Class
 class HumbleScroll {
   constructor(options) {
-    this.options = { ...defaultOptions, ...options }
+    this.prefix = 'hs'
+    this.documentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
+    this.defaultOptions = {
+      root: null,
+      element: `[data-${this.prefix}]`,
+      enableCallback: false,
+      callback: `[data-${this.prefix}-call]`,
+      class: `${this.prefix}-inview`,
+      threshold: 0.1,
+      offset: {
+        top: -40,
+        right: 0,
+        bottom: -40,
+        left: 0,
+      },
+      direction: 'vertical',
+      repeat: false,
+      mirror: false,
+      startEvent: 'DOMContentLoaded',
+    }
+    this.options = { ...this.defaultOptions, ...options }
     this.observerOptions = {
       root: this.options.root,
-      rootMargin: this.options.offset,
+      rootMargin: this.calculateOffset(this.options.offset),
       threshold: this.options.threshold,
     }
     this.animationElements = document.querySelectorAll(this.options.element)
@@ -38,7 +43,7 @@ class HumbleScroll {
 
   // Initialize HumbleScroll
   init() {
-    const event = new Event(`${prefix}-complete`, {
+    const event = new Event(`${this.prefix}-complete`, {
       bubbles: true,
       cancelable: true,
       composed: false,
@@ -48,28 +53,6 @@ class HumbleScroll {
     const animationObserverFunction = (entries) => {
       entries.forEach((entry) => {
         entry.target.classList.toggle(this.options.class, entry.isIntersecting)
-        //console.log('window: ' + window.scrollY)
-        //console.log(entry)
-
-        /*  if (entry.isIntersecting) {
-          //console.log(entry.target.id + ' - inview')
-          entry.target.classList.add(this.options.class)
-        } else {
-          if (window.top > entry.boundingClientRect.top) {
-            //console.log(entry.target.id + ' - above')
-            //entry.target.classList.add(this.options.class)
-          } else {
-            console.log(entry.target.id + ' - below')
-            entry.target.classList.remove(this.options.class)
-          }
-        } */
-
-        /*  if (isIntersectingFromTop(entry)) {
-          entry.target.classList.add(`${prefix}-from-top`)
-        } else if (isIntersectingFromBottom(entry)) {
-          entry.target.classList.add(`${prefix}-from-bottom`)
-        } */
-
         if (!this.options.repeat && entry.isIntersecting) observer.unobserve(entry.target)
       })
     }
@@ -78,7 +61,7 @@ class HumbleScroll {
     const callbackObserverFunction = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const call = entry.target.getAttribute(`data-${prefix}-call`)
+          const call = entry.target.getAttribute(`data-${this.prefix}-call`)
           window[call] && window[call]()
           caller.unobserve(entry.target)
         }
@@ -91,21 +74,20 @@ class HumbleScroll {
         let attrValues = element.attributes
 
         attrValues = [...attrValues].filter((attr) => {
-          return attr.name.includes(`data-${prefix}-`)
+          return attr.name.includes(`data-${this.prefix}-`)
         })
 
         attrValues.forEach((attr) => {
-          let attrName = attr.name.replace(`data-${prefix}-`, `${prefix}-`)
+          let attrName = attr.name.replace(`data-${this.prefix}-`, `${this.prefix}-`)
           let attrValue = attr.value
           this.setCSSVariable(element.firstElementChild, attrName, attrValue)
         })
 
         observer.observe(element)
-
-        element.classList.add(`${prefix}-init`)
+        element.classList.add(`${this.prefix}-init`)
       })
 
-      document.body.classList.add(`${prefix}-loaded`)
+      document.body.classList.add(`${this.prefix}-loaded`)
       window.dispatchEvent(event)
     }
 
@@ -142,6 +124,19 @@ class HumbleScroll {
   //Change CSS Variable value of element
   setCSSVariable(element, property, value) {
     element.style.setProperty('--' + property, value)
+  }
+
+  // Calculate Root Margin
+  calculateOffset(data) {
+    let obj = { ...this.defaultOptions.offset, ...data }
+    let offset = `${obj.top}px ${obj.right}px ${obj.bottom}px ${obj.left}px`
+    let repeatOffset = `${this.documentHeight}px ${obj.right}px ${obj.bottom}px ${obj.left}px`
+
+    if (this.options.repeat) {
+      !this.options.mirror && (offset = repeatOffset)
+    }
+
+    return offset
   }
 
   // Helper function to debug HumbleScroll

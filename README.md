@@ -67,10 +67,10 @@ const scroll = new HumbleScroll({
   element: "[data-hs]", // Element to observe (default: All elements with data-hs attribute)
   class: "hs-inview", // Class added when element is visible (default: hs-inview)
   initClass: "hs-inview", // Class added when HumbleScroll loaded (default: hs-inview)
-  repeat: true, // whether to repeat the animation when scrollin from top (default: false)
-  mirror: true, // whether to mirror the animation when leaving (default: false)
+  repeat: true, // Whether to repeat the animation when scrollin from top (default: false)
+  mirror: true, // Whether to mirror the animation when leaving (default: false)
   threshold: 0.25, // Intersection threshold where 0.1 is 10% of the element (default: 0.1)
-  enableCallback: true, // whether to enable callback function on intersect (default: false)
+  enableCallback: true, // Whether to enable callback function on intersect (default: false)
   callback: "data-hs-call", // Callback data-attribute to call on intersect (default: data-hs-call)
   startEvent: "DOMContentLoaded", // Event to start the initialization (default: DOMContentLoaded)
 });
@@ -92,7 +92,6 @@ It's very important to wrap the element you want to animate as the CSS targets `
 ```css
 :root {
   --hs-duration: 800ms;
-  --hs-easing: ease-in;
   --hs-delay: 100ms;
   --hs-translate-x-amount: 10rem;
   --hs-translate-y-amount: 8rem;
@@ -273,6 +272,14 @@ Default variation for animation durations (scales from `--hs-duration`).
 <div data-hs="extra-fast"></div>
 ```
 
+### 9. Run once
+
+Ensure the animation only runs once - even with `repeat` and `mirror` enabled.
+
+```html
+<div data-hs="once"></div>
+```
+
 ### Combine them!
 
 Combine animations inside the `data-hs` attribute (space seperated).
@@ -281,5 +288,45 @@ Combine animations inside the `data-hs` attribute (space seperated).
 <div data-hs="fade up right xl slow"></div>
 <div data-hs="fade left down fast"></div>
 <div data-hs="zoom-in up left extra-slow"></div>
-<div data-hs="flip-right up lg slow"></div>
+<div data-hs="flip-right up lg slow once"></div>
 ```
+
+---
+
+## Multiple HumbleScrolls?
+
+Sure why not! Add as many different HumbleScrolls as you need for your website.
+
+```javascript
+// Default HumbleScroll targeting [data-hs]
+const scroll = new HumbleScroll({
+    enableCallback: true,
+    repeat: true,
+    mirror: true,
+    threshold: 0.25,
+    offset: {
+        bottom: -150,
+    },
+})
+
+// Second instance of HumbleScroll observing .my-custom-element
+const myCustomScroll = new HumbleScroll({
+    root: document.queryselector('#customRoot')
+    element: '.my-custom-element',
+    class: 'enter',
+})
+```
+
+---
+
+## Disclaimer
+
+HumbleScroll.js is currently under development and features and API is exspected to change. Download the CSS and JS locally to ensure the setup works in the future. NPM and module support is coming in the future as well as a Vue and React component library.
+
+---
+
+## Have you found a bug?
+
+Just let me know and I'll update the files ASAP.
+
+---

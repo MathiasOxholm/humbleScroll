@@ -256,14 +256,14 @@ Customize by overriding `--hs-translate-ratio`
 Default variation for animation durations (scales from `--hs-duration`)
 
 ```html
-<div data-hs="extra-slow"></div>
 <!-- Duration * 3 -->
-<div data-hs="slow"></div>
+<div data-hs="extra-slow"></div>
 <!-- Duration * 1.5  -->
-<div data-hs="fast"></div>
+<div data-hs="slow"></div>
 <!-- Duration * 0.5  -->
-<div data-hs="extra-fast"></div>
+<div data-hs="fast"></div>
 <!-- Duration * 0.25 -->
+<div data-hs="extra-fast"></div>
 ```
 
 ### Combine them!

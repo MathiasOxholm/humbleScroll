@@ -56,10 +56,10 @@ const scroll = new HumbleScroll({
   element: "[data-hs]", // Element to observe (default: All elements with data-hs attribute)
   class: "hs-inview", // Class added when element is visible (default: hs-inview)
   initClass: "hs-inview", // Class added when HumbleScroll loaded (default: hs-inview)
-  repeat: true, // Wheter to repeat the animation when scrollin from top (default: false)
-  mirror: true, // Wheter to mirror the animation when leaving (default: false)
+  repeat: true, // whether to repeat the animation when scrollin from top (default: false)
+  mirror: true, // whether to mirror the animation when leaving (default: false)
   threshold: 0.25, // Intersection threshold where 0.1 is 10% of the element (default: 0.1)
-  enableCallback: true, // Wheter to enable callback function on intersect (default: false)
+  enableCallback: true, // whether to enable callback function on intersect (default: false)
   callback: "data-hs-call", // Callback data-attribute to call on intersect (default: data-hs-call)
   startEvent: "DOMContentLoaded", // Event to start the initialization (default: DOMContentLoaded)
 });

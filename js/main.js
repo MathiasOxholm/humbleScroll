@@ -16,20 +16,17 @@ const myCustomScroll = new HumbleScroll({
   class: 'enter',
 })
 
-/* const verticalScroll = new HumbleScroll({
+const verticalScroll = new HumbleScroll({
   root: document.querySelector('#horizontal-scroll'),
   element: '.my-custom-element',
   class: 'enter',
   repeat: true,
   mirror: true,
-  direction: 'horizontal',
-}) */
+})
 
-/* scroll.on('hs-complete', () => {
+scroll.on('hs:complete', () => {
   console.log('HumbleScroll is complete!')
-}) */
-
-//scroll.debug()
+})
 
 function firstCall() {
   const card = document.querySelector('#callback-1')
@@ -45,6 +42,6 @@ function secondCall() {
   section.style = 'background-color: #27272a; color: #a3e635;'
 }
 
-//console.log(document.documentElement.scrollTop)
-
-console.log(myCustomScroll)
+window.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM fully loaded and parsed')
+})

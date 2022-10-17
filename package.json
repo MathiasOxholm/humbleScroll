@@ -7,10 +7,16 @@
     "build": "vite build",
     "preview": "vite preview",
     "scss": "sass ./styles/humbleScroll.scss ./styles/humbleScroll.css --no-source-map --watch",
-    "postcss:build": "postcss ./styles/humbleScroll.css -o ./styles/humbleScroll.min.css --no-map --verbose --use autoprefixer --use cssnano --watch"
+    "postcss:build": "postcss ./styles/humbleScroll.css -o ./dist/css/humbleScroll.min.css --no-map --verbose --use autoprefixer --use cssnano --watch",
+    "css": "npm run scss & npm run postcss:build",
+    "babel": "npx babel js -w -d dist/js"
   },
   "devDependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.19.3",
+    "@babel/preset-env": "^7.19.4",
     "autoprefixer": "^10.4.12",
+    "babel-minify": "^0.5.2",
     "cssnano": "^5.1.13",
     "postcss": "^8.4.18",
     "postcss-cli": "^10.0.0",

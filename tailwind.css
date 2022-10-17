@@ -16,13 +16,13 @@ html {
 
 .my-custom-element {
   opacity: 0;
-  rotate: 45deg;
-  transition: 1s ease-in-out;
+  transform: rotate(45deg);
+  transition: 2s ease-in-out;
 }
 
 .my-custom-element.enter {
   opacity: 1;
-  rotate: 0deg;
+  transform: rotate(0);
 }
 
 .card {
@@ -46,13 +46,13 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: theme('colors.zinc.800');
+  background: theme("colors.zinc.800");
 }
 
 ::-webkit-scrollbar-thumb {
-  background: theme('colors.zinc.600');
+  background: theme("colors.zinc.600");
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: theme('colors.zinc.500');
+  background: theme("colors.zinc.500");
 }

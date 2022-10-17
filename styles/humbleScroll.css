@@ -25,15 +25,13 @@
   transition-duration: calc(var(--hs-duration) * var(--hs-duration-ratio));
   transition-timing-function: var(--hs-easing);
   transition-delay: var(--hs-delay);
-  transition-property: transform, translate, scale, rotate, opacity, visibility, filter;
+  transition-property: transform, opacity, visibility, filter;
   opacity: var(--hs-opacity);
   visibility: var(--hs-visibility);
-  translate: var(--hs-translate-x) var(--hs-translate-y);
-  scale: var(--hs-scale);
-  rotate: var(--hs-rotate);
+  transform: translateX(var(--hs-translate-x)) translateY(var(--hs-translate-y)) scale(var(--hs-scale)) rotate(var(--hs-rotate));
   filter: blur(var(--hs-blur));
 }
-:root:not(.no-js) [data-hs].hs-inview > *, :root:not(.no-js) [data-hs].hs-stay > * {
+:root:not(.no-js) [data-hs].hs-inview > *, :root:not(.no-js) [data-hs].hs-once > * {
   pointer-events: auto;
   --hs-opacity: 1;
   --hs-visibility: visible;
@@ -99,16 +97,24 @@
 }
 
 :root:not(.no-js) [data-hs*=up] > * {
-  --hs-translate-y: calc(0px + var(--hs-translate-y-amount) * var(--hs-translate-ratio));
+  --hs-translate-y: calc(
+    0px + var(--hs-translate-y-amount) * var(--hs-translate-ratio)
+  );
 }
 :root:not(.no-js) [data-hs*=down] > * {
-  --hs-translate-y: calc(0px - var(--hs-translate-y-amount) * var(--hs-translate-ratio));
+  --hs-translate-y: calc(
+    0px - var(--hs-translate-y-amount) * var(--hs-translate-ratio)
+  );
 }
 :root:not(.no-js) [data-hs*=left] > * {
-  --hs-translate-x: calc(0px + var(--hs-translate-x-amount) * var(--hs-translate-ratio));
+  --hs-translate-x: calc(
+    0px + var(--hs-translate-x-amount) * var(--hs-translate-ratio)
+  );
 }
 :root:not(.no-js) [data-hs*=right] > * {
-  --hs-translate-x: calc(0px - var(--hs-translate-x-amount) * var(--hs-translate-ratio));
+  --hs-translate-x: calc(
+    0px - var(--hs-translate-x-amount) * var(--hs-translate-ratio)
+  );
 }
 
 :root:not(.no-js) [data-hs*=zoom-in] > * {
@@ -121,7 +127,7 @@
 :root:not(.no-js) [data-hs*=flip] > * {
   backface-visibility: hidden;
 }
-:root:not(.no-js) [data-hs*=flip].hs-inview > *, :root:not(.no-js) [data-hs*=flip].hs-stay > * {
+:root:not(.no-js) [data-hs*=flip].hs-inview > *, :root:not(.no-js) [data-hs*=flip].hs-once > * {
   transform: perspective(2000px) rotateY(0deg) rotateX(0deg);
 }
 :root:not(.no-js) [data-hs*=flip-up] > * {
@@ -147,9 +153,6 @@
     opacity: 1;
     visibility: visible;
     transform: none;
-    translate: none;
-    rotate: none;
-    scale: none;
     filter: none;
   }
 }

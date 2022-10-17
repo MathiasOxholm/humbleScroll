@@ -35,19 +35,20 @@ class HumbleScroll {
 
   // Initialize HumbleScroll
   init() {
-    const completeEvent = new Event(`${this.prefix}:complete`, { bubbles: true })
+    const completeEvent = new Event(`${this.prefix}:complete`)
 
     // Main animation function
     const animationObserverFunction = (entries) => {
       entries.forEach((entry) => {
         const dataAttr = entry.target.dataset.hs
         if (!this.options.repeat && entry.isIntersecting) {
+          entry.target.classList.add(this.options.class)
           observer.unobserve(entry.target)
           return
         }
 
         entry.target.classList.toggle(this.options.class, entry.isIntersecting)
-        if (entry.isIntersecting && dataAttr && dataAttr.includes('stay')) entry.target.classList.add(`${this.prefix}-stay`)
+        if (entry.isIntersecting && dataAttr && dataAttr.includes('once')) entry.target.classList.add(`${this.prefix}-once`)
       })
     }
 

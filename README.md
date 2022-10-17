@@ -1,23 +1,42 @@
 # HumbleScroll.js
 
 HumbleScroll is a lightweight animation on scroll Javascript library. It's easy to use and has no dependencies.
+The library is based on Intersection Observer combined with CSS Custom Props for easy customization.
+
+## Comparison
+
+HumbleScroll is inspired by AOS.js but should load significantly less CSS and JS. Take a look below:
+
+### AOS:
+
+- 13.5kb JS
+- 28kb CSS
+- 41.5kb in total without gzip
+
+### HumbleScroll
+
+- 3.7kb JS
+- 3.4kb CSS
+- 7.1kb in total without gzip
+
+---
 
 ## Installation
 
-Add styles in `<head>`
+### 1. Add styles in `<head>`
 
 ```html
 <link rel="stylesheet" href="humbleScroll.min.css" />
 ```
 
-Add scripts right before closing `</body>`
+### 2. Add scripts right before closing `</body>`
 
 ```html
 <script src="humbleScroll.min.js"></script>
 <script src="script.js"></script>
 ```
 
-Initialize HumbleScroll inside your script
+### 3. Initialize HumbleScroll inside your script
 
 ```javascript
 const scroll = new HumbleScroll();
@@ -48,11 +67,12 @@ const scroll = new HumbleScroll({
 
 ### 2. Define animation using `data-hs` attribute
 
-Wrap the element you want to animate in a div that uses the `data-hs` attribute
+Wrap the element you want to animate in a div that uses the `data-hs` attribute.
+It's very important to wrap the element you want to animate as the CSS targets `['data-hs'] > *` child-elements.
 
 ```html
 <div data-hs="fade up">
-  <div class="card"></div>
+  <div class="card">I'm gonna fade up!</div>
 </div>
 ```
 
@@ -114,6 +134,14 @@ function myFunction() {
 }
 ```
 
+### Run JS when HumbleScroll is initialized
+
+```javascript
+scroll.on("hs:complete", () => {
+  console.log("HumbleScroll is complete!");
+});
+```
+
 ---
 
 ## Animation overview
@@ -146,13 +174,15 @@ function myFunction() {
 
 ### 1. Fade animation
 
+Fades in by default
+
 ```html
 <div data-hs="fade"></div>
 ```
 
 ### 2. Diretional
 
-Customize by overriding `--hs-translate-y-amount` or `--hs-translate-x-amount`
+Customize by overriding `--hs-translate-y-amount` or `--hs-translate-x-amount` in your css or directly on the element as inline-style
 
 ```html
 <div data-hs="up"></div>
@@ -163,12 +193,16 @@ Customize by overriding `--hs-translate-y-amount` or `--hs-translate-x-amount`
 
 ### 3. Zoom
 
+Customize by overriding `--hs-scale-ratio` in your css or directly on the element as inline-style
+
 ```html
 <div data-hs="zoom-in"></div>
 <div data-hs="zoom-out"></div>
 ```
 
 ### 4. Flip
+
+Flip in any direction. Cannot be customized
 
 ```html
 <div data-hs="flip-up"></div>
@@ -179,7 +213,7 @@ Customize by overriding `--hs-translate-y-amount` or `--hs-translate-x-amount`
 
 ### 5. Blur
 
-Customize by overriding `--hs-blur` on an element
+Who doesn't like motion blur? Customize by overriding `--hs-blur` on an element
 
 ```html
 <div data-hs="blur"></div>
@@ -187,6 +221,8 @@ Customize by overriding `--hs-blur` on an element
 ```
 
 ### 6. Easings
+
+Customize by overriding `--hs-ease`, `--hs-ease-in` or `--hs-ease-out` or just create your own
 
 ```html
 <div data-hs="ease-in"></div>
@@ -197,6 +233,7 @@ Customize by overriding `--hs-blur` on an element
 ### 7. Size variations
 
 Default variation for the translation amount on directional animations (up, down, left, right)
+Customize by overriding `--hs-translate-ratio`
 
 ```html
 <div data-hs="sm"></div>

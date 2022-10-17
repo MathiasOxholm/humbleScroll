@@ -19,13 +19,13 @@ HumbleScroll is inspired by AOS.js but should load significantly less CSS and JS
 
 - 13.5kb JS (4.8kb gzipped)
 - 28kb CSS (2.4kb gzipped)
-- 41.5kb (7.2kb gzipped)
+- Total: 41.5kb (7.2kb gzipped)
 
 ### HumbleScroll
 
 - 3.7kb JS (1.3 gzipped)
 - 3.4kb CSS (0.7kb gzipped)
-- 7.1kb (2kb gzipped)
+- Total: 7.1kb (2kb gzipped)
 
 ---
 

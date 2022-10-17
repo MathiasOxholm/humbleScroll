@@ -328,5 +328,3 @@ HumbleScroll.js is currently under development and features and API is exspected
 ## Have you found a bug?
 
 Just let me know and I'll update the files ASAP.
-
----

@@ -1,6 +1,6 @@
 # HumbleScroll.js (Beta)
 
-HumbleScroll is a lightweight animation on scroll Javascript library. It's easy to use and has no dependencies.
+HumbleScroll is a lightweight and minimalistic animation on scroll Javascript library. It's easy to use and has no dependencies.
 The library is based on Intersection Observer combined with CSS Custom Props for easy customization.
 
 ---
@@ -13,19 +13,19 @@ Demo site coming soon...
 
 ## Comparison
 
-HumbleScroll is inspired by AOS.js but should load significantly less CSS and JS. Take a look below:
+HumbleScroll is inspired by AOS.js but should load significantly less CSS and JS. Should be around 2kb total when gzip is active. Take a look below for details:
 
 ### AOS:
 
-- 13.5kb JS
-- 28kb CSS
-- 41.5kb in total without gzip
+- 13.5kb JS (4.8kb gzipped)
+- 28kb CSS (2.4kb gzipped)
+- 41.5kb (7.2kb gzipped)
 
 ### HumbleScroll
 
-- 3.7kb JS
-- 3.4kb CSS
-- 7.1kb in total without gzip
+- 3.7kb JS (1.3 gzipped)
+- 3.4kb CSS (0.7kb gzipped)
+- 7.1kb (2kb gzipped)
 
 ---
 
@@ -117,6 +117,10 @@ It's very important to wrap the element you want to animate as the CSS targets `
 ```javascript
 console.log(scroll);
 ```
+
+### Remove no-js from HTML
+
+The library takes account for `.no-js` class on the `:root` element of your website. If you have `<html class="no-js">` HumbleScroll wont work. Furthermore, all animations are by default disabled when `prefers-reduced-motion: reduce` is enabled in the OS / browser.
 
 ---
 

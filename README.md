@@ -7,7 +7,7 @@ The library is based on Intersection Observer combined with CSS Custom Props for
 
 ## Demo
 
-Demo site coming soon...
+A quick demo site built with Astro.js - [See HumbleScroll in action](https://humblescroll.oxholm.dev/)
 
 ---
 

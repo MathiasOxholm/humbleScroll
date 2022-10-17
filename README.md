@@ -3,6 +3,14 @@
 HumbleScroll is a lightweight animation on scroll Javascript library. It's easy to use and has no dependencies.
 The library is based on Intersection Observer combined with CSS Custom Props for easy customization.
 
+---
+
+## Demo
+
+Demo site coming soon...
+
+---
+
 ## Comparison
 
 HumbleScroll is inspired by AOS.js but should load significantly less CSS and JS. Take a look below:

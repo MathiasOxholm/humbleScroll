@@ -194,7 +194,7 @@ Fades in by default but can be combined with one or two directions.
 
 ```html
 <div data-hs="fade"></div>
-<div data-hs="fade up right"></div>
+<div data-hs="fade up"></div>
 <div data-hs="fade down left"></div>
 ```
 
@@ -315,7 +315,7 @@ const scroll = new HumbleScroll({
 
 // Second instance of HumbleScroll observing .my-custom-element
 const myCustomScroll = new HumbleScroll({
-    root: document.queryselector('#customRoot')
+    root: document.queryselector('#customRoot'),
     element: '.my-custom-element',
     class: 'enter',
 })

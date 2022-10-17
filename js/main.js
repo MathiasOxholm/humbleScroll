@@ -42,6 +42,3 @@ function secondCall() {
   section.style = 'background-color: #27272a; color: #a3e635;'
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-  console.log('DOM fully loaded and parsed')
-})

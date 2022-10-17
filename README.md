@@ -156,6 +156,8 @@ scroll.on("hs:complete", () => {
 
 ### CSS Custom Props
 
+All Custom props that can be customized.
+
 ```css
 :root {
   --hs-delay: 0ms;
@@ -182,15 +184,17 @@ scroll.on("hs:complete", () => {
 
 ### 1. Fade animation
 
-Fades in by default
+Fades in by default but can be combined with one or two directions.
 
 ```html
 <div data-hs="fade"></div>
+<div data-hs="fade up right"></div>
+<div data-hs="fade down left"></div>
 ```
 
 ### 2. Diretional
 
-Customize by overriding `--hs-translate-y-amount` or `--hs-translate-x-amount` in your css or directly on the element as inline-style
+Customize by overriding `--hs-translate-y-amount` or `--hs-translate-x-amount` in your css or directly on the element as inline-style. Works like a slide without `fade` applied.
 
 ```html
 <div data-hs="up"></div>
@@ -201,7 +205,7 @@ Customize by overriding `--hs-translate-y-amount` or `--hs-translate-x-amount` i
 
 ### 3. Zoom
 
-Customize by overriding `--hs-scale-ratio` in your css or directly on the element as inline-style
+Customize by overriding `--hs-scale-ratio` in your css or directly on the element as inline-style.
 
 ```html
 <div data-hs="zoom-in"></div>
@@ -210,7 +214,7 @@ Customize by overriding `--hs-scale-ratio` in your css or directly on the elemen
 
 ### 4. Flip
 
-Flip in any direction. Cannot be customized
+Flip in any direction. Cannot be customized.
 
 ```html
 <div data-hs="flip-up"></div>
@@ -221,7 +225,7 @@ Flip in any direction. Cannot be customized
 
 ### 5. Blur
 
-Who doesn't like motion blur? Customize by overriding `--hs-blur` on an element
+Who doesn't like motion blur? Customize by overriding `--hs-blur` on an element.
 
 ```html
 <div data-hs="blur"></div>
@@ -230,7 +234,7 @@ Who doesn't like motion blur? Customize by overriding `--hs-blur` on an element
 
 ### 6. Easings
 
-Customize by overriding `--hs-ease`, `--hs-ease-in` or `--hs-ease-out` or just create your own
+Customize by overriding `--hs-ease`, `--hs-ease-in` or `--hs-ease-out` or just create your own.
 
 ```html
 <div data-hs="ease-in"></div>
@@ -240,8 +244,8 @@ Customize by overriding `--hs-ease`, `--hs-ease-in` or `--hs-ease-out` or just c
 
 ### 7. Size variations
 
-Default variation for the translation amount on directional animations (up, down, left, right)
-Customize by overriding `--hs-translate-ratio`
+Default variation for the translation amount on directional animations (up, down, left, right).
+Customize by overriding `--hs-translate-ratio`.
 
 ```html
 <div data-hs="sm"></div>
@@ -253,7 +257,7 @@ Customize by overriding `--hs-translate-ratio`
 
 ### 8. Speed variations
 
-Default variation for animation durations (scales from `--hs-duration`)
+Default variation for animation durations (scales from `--hs-duration`).
 
 ```html
 <!-- Duration * 3 -->
@@ -268,7 +272,7 @@ Default variation for animation durations (scales from `--hs-duration`)
 
 ### Combine them!
 
-Combine animations inside the `data-hs` attribute (space seperated)
+Combine animations inside the `data-hs` attribute (space seperated).
 
 ```html
 <div data-hs="fade up right xl slow"></div>

@@ -9,7 +9,7 @@
     "scss": "sass ./styles/humbleScroll.scss ./styles/humbleScroll.css --no-source-map --watch",
     "postcss:build": "postcss ./styles/humbleScroll.css -o ./dist/css/humbleScroll.min.css --no-map --verbose --use autoprefixer --use cssnano --watch",
     "css": "npm run scss & npm run postcss:build",
-    "babel": "npx babel js -w -d dist/js"
+    "babel": "npx babel js -w -d cdn/js"
   },
   "devDependencies": {
     "@babel/cli": "^7.19.3",

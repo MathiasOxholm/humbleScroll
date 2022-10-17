@@ -15,7 +15,7 @@ A quick demo site built with Astro.js - [See HumbleScroll in action](https://hum
 
 HumbleScroll is inspired by AOS.js but should load significantly less CSS and JS. Should be around 2kb total when gzip is active. Take a look below for details:
 
-### AOS:
+### AOS
 
 - 13.5kb JS (4.8kb gzipped)
 - 28kb CSS (2.4kb gzipped)

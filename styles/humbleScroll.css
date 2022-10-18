@@ -36,7 +36,6 @@
 :root:not(.no-js) [data-hs].hs-inview > *, :root:not(.no-js) [data-hs].hs-once > * {
   pointer-events: auto;
   --hs-opacity: 1;
-  --hs-visibility: visible;
   --hs-translate-y: 0;
   --hs-translate-x: 0;
   --hs-scale: 1;

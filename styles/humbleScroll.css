@@ -11,6 +11,9 @@
   --hs-translate-x: 0;
   --hs-scale: 1;
   --hs-rotate: 0deg;
+  --hs-perspective: 0;
+  --hs-rotate-x: 0deg;
+  --hs-rotate-y: 0deg;
   --hs-ratio: 1;
   --hs-translate-ratio: 1;
   --hs-scale-ratio: 0.2;
@@ -25,10 +28,10 @@
   transition-duration: calc(var(--hs-duration) * var(--hs-duration-ratio));
   transition-timing-function: var(--hs-easing);
   transition-delay: var(--hs-delay);
-  transition-property: transform, opacity, visibility, filter;
+  transition-property: transform, opacity, filter;
   opacity: var(--hs-opacity);
   visibility: var(--hs-visibility);
-  transform: translateX(var(--hs-translate-x)) translateY(var(--hs-translate-y)) scale(var(--hs-scale)) rotate(var(--hs-rotate));
+  transform: translateX(var(--hs-translate-x)) translateY(var(--hs-translate-y)) scale(var(--hs-scale)) rotate(var(--hs-rotate)) perspective(var(--hs-perspective)) rotateX(var(--hs-rotate-x)) rotateY(var(--hs-rotate-y));
   filter: blur(var(--hs-blur));
 }
 :root:not(.no-js) [data-hs].hs-inview > *, :root:not(.no-js) [data-hs].hs-once > * {
@@ -39,6 +42,8 @@
   --hs-translate-x: 0;
   --hs-scale: 1;
   --hs-rotate: 0deg;
+  --hs-rotate-x: 0deg;
+  --hs-rotate-y: 0deg;
   --hs-blur: 0;
 }
 
@@ -125,22 +130,20 @@
 }
 
 :root:not(.no-js) [data-hs*=flip] > * {
+  --hs-perspective: 2000px;
   backface-visibility: hidden;
 }
-:root:not(.no-js) [data-hs*=flip].hs-inview > *, :root:not(.no-js) [data-hs*=flip].hs-once > * {
-  transform: perspective(2000px) rotateY(0deg) rotateX(0deg);
-}
 :root:not(.no-js) [data-hs*=flip-up] > * {
-  transform: perspective(2000px) rotateX(-100deg);
+  --hs-rotate-x: -100deg;
 }
 :root:not(.no-js) [data-hs*=flip-down] > * {
-  transform: perspective(2000px) rotateX(100deg);
+  --hs-rotate-x: 100deg;
 }
 :root:not(.no-js) [data-hs*=flip-left] > * {
-  transform: perspective(2000px) rotateY(-100deg);
+  --hs-rotate-y: -100deg;
 }
 :root:not(.no-js) [data-hs*=flip-right] > * {
-  transform: perspective(2000px) rotateY(100deg);
+  --hs-rotate-y: 100deg;
 }
 
 :root:not(.no-js) [data-hs*=blur] {

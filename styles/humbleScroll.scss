@@ -29,6 +29,9 @@ $properties: (
   translate-x: 0,
   scale: 1,
   rotate: 0deg,
+  perspective: 0,
+  rotate-x: 0deg,
+  rotate-y: 0deg,
   // Ratio
   ratio: 1,
   translate-ratio: 1,
@@ -87,7 +90,7 @@ $durations: (
     transition-duration: calc(var(#{$var}-duration) * var(#{$var}-duration-ratio));
     transition-timing-function: var(#{$var}-easing);
     transition-delay: var(#{$var}-delay);
-    transition-property: transform, opacity, visibility, filter;
+    transition-property: transform, opacity, filter;
 
     // Visibility properties
     opacity: var(#{$var}-opacity);
@@ -95,7 +98,8 @@ $durations: (
 
     // Transfrom properties
     transform: translateX(var(#{$var}-translate-x)) translateY(var(#{$var}-translate-y)) scale(var(#{$var}-scale))
-      rotate(var(#{$var}-rotate));
+      rotate(var(#{$var}-rotate)) perspective(var(#{$var}-perspective)) rotateX(var(#{$var}-rotate-x))
+      rotateY(var(#{$var}-rotate-y));
 
     // Effects
     filter: blur(var(#{$var}-blur));
@@ -115,6 +119,8 @@ $durations: (
       #{$var}-translate-x: 0;
       #{$var}-scale: 1;
       #{$var}-rotate: 0deg;
+      #{$var}-rotate-x: 0deg;
+      #{$var}-rotate-y: 0deg;
 
       // Effects
       #{$var}-blur: 0;
@@ -208,35 +214,29 @@ $durations: (
   // General flip
   [#{$attr}*="flip"] {
     > * {
+      #{$var}-perspective: $perspective;
       backface-visibility: hidden;
-    }
-
-    &.#{$inView},
-    &.#{$stay} {
-      > * {
-        transform: perspective($perspective) rotateY(0deg) rotateX(0deg);
-      }
     }
   }
 
   // Flip up
   [#{$attr}*="flip-up"] > * {
-    transform: perspective($perspective) rotateX(-100deg);
+    #{$var}-rotate-x: -100deg;
   }
 
   // Flip down
   [#{$attr}*="flip-down"] > * {
-    transform: perspective($perspective) rotateX(100deg);
+    #{$var}-rotate-x: 100deg;
   }
 
   // Flip left
   [#{$attr}*="flip-left"] > * {
-    transform: perspective($perspective) rotateY(-100deg);
+    #{$var}-rotate-y: -100deg;
   }
 
   // Flip right
   [#{$attr}*="flip-right"] > * {
-    transform: perspective($perspective) rotateY(100deg);
+    #{$var}-rotate-y: 100deg;
   }
 }
 

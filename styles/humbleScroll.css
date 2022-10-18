@@ -86,11 +86,11 @@
 }
 
 :root:not(.no-js) [data-hs~=fast] {
-  --hs-duration-ratio: 0.5;
+  --hs-duration-ratio: 0.75;
 }
 
 :root:not(.no-js) [data-hs~=extra-fast] {
-  --hs-duration-ratio: 0.25;
+  --hs-duration-ratio: 0.5;
 }
 
 :root:not(.no-js) [data-hs*=fade],

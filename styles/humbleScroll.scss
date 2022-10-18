@@ -94,7 +94,7 @@ $durations: (
 
     // Visibility properties
     opacity: var(#{$var}-opacity);
-    visibility: var(#{$var}-visibility);
+    //visibility: var(#{$var}-visibility);
 
     // Transfrom properties
     transform: translateX(var(#{$var}-translate-x)) translateY(var(#{$var}-translate-y)) scale(var(#{$var}-scale))

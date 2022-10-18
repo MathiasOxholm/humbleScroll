@@ -90,7 +90,7 @@ $durations: (
     transition-duration: calc(var(#{$var}-duration) * var(#{$var}-duration-ratio));
     transition-timing-function: var(#{$var}-easing);
     transition-delay: var(#{$var}-delay);
-    transition-property: transform, opacity, filter;
+    transition-property: transform, opacity, filter, visibility;
 
     // Visibility properties
     opacity: var(#{$var}-opacity);

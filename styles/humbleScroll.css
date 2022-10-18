@@ -28,7 +28,7 @@
   transition-duration: calc(var(--hs-duration) * var(--hs-duration-ratio));
   transition-timing-function: var(--hs-easing);
   transition-delay: var(--hs-delay);
-  transition-property: transform, opacity, filter;
+  transition-property: transform, opacity, filter, visibility;
   opacity: var(--hs-opacity);
   visibility: var(--hs-visibility);
   transform: translateX(var(--hs-translate-x)) translateY(var(--hs-translate-y)) scale(var(--hs-scale)) rotate(var(--hs-rotate)) perspective(var(--hs-perspective)) rotateX(var(--hs-rotate-x)) rotateY(var(--hs-rotate-y));

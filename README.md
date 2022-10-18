@@ -36,14 +36,14 @@ HumbleScroll is inspired by AOS.js but should load significantly less CSS and JS
 ```html
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/MathiasOxholm/humbleScroll/cdn/css/humbleScroll.min.css"
+  href="https://cdn.jsdelivr.net/gh/MathiasOxholm/humbleScroll@latest/cdn/css/humbleScroll.min.css"
 />
 ```
 
 ### 2. Add scripts right before closing `</body>`
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/MathiasOxholm/humbleScroll/cdn/js/humbleScroll.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/MathiasOxholm/humbleScroll@latest/cdn/js/humbleScroll.js"></script>
 <script src="script.js"></script>
 ```
 
@@ -304,21 +304,21 @@ Sure why not! Add as many different HumbleScrolls as you need for your website.
 ```javascript
 // Default HumbleScroll targeting [data-hs]
 const scroll = new HumbleScroll({
-    enableCallback: true,
-    repeat: true,
-    mirror: true,
-    threshold: 0.25,
-    offset: {
-        bottom: -150,
-    },
-})
+  enableCallback: true,
+  repeat: true,
+  mirror: true,
+  threshold: 0.25,
+  offset: {
+    bottom: -150,
+  },
+});
 
 // Second instance of HumbleScroll observing .my-custom-element
 const myCustomScroll = new HumbleScroll({
-    root: document.queryselector('#customRoot'),
-    element: '.my-custom-element',
-    class: 'enter',
-})
+  root: document.queryselector("#customRoot"),
+  element: ".my-custom-element",
+  class: "enter",
+});
 ```
 
 ---

@@ -172,22 +172,22 @@ $durations: (
 // -------------------------------------
 #{$root} {
   // Up
-  [#{$attr}*="up"] > * {
+  [#{$attr}~="up"] > * {
     @include calcProperty("translate", "y");
   }
 
   // Down
-  [#{$attr}*="down"] > * {
+  [#{$attr}~="down"] > * {
     @include calcProperty("translate", "y", "translate", "-");
   }
 
   // Left
-  [#{$attr}*="left"] > * {
+  [#{$attr}~="left"] > * {
     @include calcProperty("translate", "x");
   }
 
   // Right
-  [#{$attr}*="right"] > * {
+  [#{$attr}~="right"] > * {
     @include calcProperty("translate", "x", "translate", "-");
   }
 }

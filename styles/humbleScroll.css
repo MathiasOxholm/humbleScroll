@@ -99,22 +99,22 @@
   --hs-visibility: hidden;
 }
 
-:root:not(.no-js) [data-hs*=up] > * {
+:root:not(.no-js) [data-hs~=up] > * {
   --hs-translate-y: calc(
     0px + var(--hs-translate-y-amount) * var(--hs-translate-ratio)
   );
 }
-:root:not(.no-js) [data-hs*=down] > * {
+:root:not(.no-js) [data-hs~=down] > * {
   --hs-translate-y: calc(
     0px - var(--hs-translate-y-amount) * var(--hs-translate-ratio)
   );
 }
-:root:not(.no-js) [data-hs*=left] > * {
+:root:not(.no-js) [data-hs~=left] > * {
   --hs-translate-x: calc(
     0px + var(--hs-translate-x-amount) * var(--hs-translate-ratio)
   );
 }
-:root:not(.no-js) [data-hs*=right] > * {
+:root:not(.no-js) [data-hs~=right] > * {
   --hs-translate-x: calc(
     0px - var(--hs-translate-x-amount) * var(--hs-translate-ratio)
   );

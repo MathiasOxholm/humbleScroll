@@ -30,7 +30,7 @@
   transition-delay: var(--hs-delay);
   transition-property: transform, opacity, filter, visibility;
   opacity: var(--hs-opacity);
-  transform: translateX(var(--hs-translate-x)) translateY(var(--hs-translate-y)) scale(var(--hs-scale)) rotate(var(--hs-rotate)) perspective(var(--hs-perspective)) rotateX(var(--hs-rotate-x)) rotateY(var(--hs-rotate-y));
+  transform: translate3d(var(--hs-translate-x), var(--hs-translate-y), 0px) scale(var(--hs-scale)) rotate(var(--hs-rotate)) perspective(var(--hs-perspective)) rotateX(var(--hs-rotate-x)) rotateY(var(--hs-rotate-y));
   filter: blur(var(--hs-blur));
 }
 :root:not(.no-js) [data-hs].hs-inview > *, :root:not(.no-js) [data-hs].hs-once > * {

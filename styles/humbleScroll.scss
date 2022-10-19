@@ -97,7 +97,7 @@ $durations: (
     //visibility: var(#{$var}-visibility);
 
     // Transfrom properties
-    transform: translateX(var(#{$var}-translate-x)) translateY(var(#{$var}-translate-y)) scale(var(#{$var}-scale))
+    transform: translate3d(var(#{$var}-translate-x), var(#{$var}-translate-y), 0px) scale(var(#{$var}-scale))
       rotate(var(#{$var}-rotate)) perspective(var(#{$var}-perspective)) rotateX(var(#{$var}-rotate-x))
       rotateY(var(#{$var}-rotate-y));
 

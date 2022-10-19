@@ -36,14 +36,14 @@ HumbleScroll is inspired by AOS.js but should load significantly less CSS and JS
 ```html
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/MathiasOxholm/humbleScroll@main/cdn/css/humbleScroll.min.css"
+  href="https://cdn.jsdelivr.net/gh/MathiasOxholm/humbleScroll@latest/cdn/css/humbleScroll.min.css"
 />
 ```
 
 ### 2. Add scripts right before closing `</body>`
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/MathiasOxholm/humbleScroll@main/cdn/js/humbleScroll.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/MathiasOxholm/humbleScroll@latest/cdn/js/humbleScroll.js"></script>
 <script src="script.js"></script>
 ```
 

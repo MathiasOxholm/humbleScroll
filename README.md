@@ -65,6 +65,10 @@ const scroll = new HumbleScroll({
   mirror: true,
   threshold: 0.25,
   enableCallback: true,
+  offset: {
+	  top: 0,
+	  bottom: -40,
+	}
 });
 ```
 
@@ -106,17 +110,19 @@ It's very important to wrap the element you want to animate as the CSS targets `
 
 ### Options overview
 
-| Option           | Type      | Default            | Description                                            |
-| ---------------- | --------- | ------------------ | ------------------------------------------------------ |
-| `root`           | `string`  | `null`             | Root container to observe                              |
-| `element`        | `string`  | `[data-hs]`        | Element to observe                                     |
-| `class`          | `string`  | `hs-inview`        | Class added when element is visible                    |
-| `initClass`      | `string`  | `hs-init`          | Class added when HumbleScroll is loaded                |
-| `repeat`         | `boolean` | `false`            | Repeat the animation when scrolling from top           |
-| `mirror`         | `boolean` | `false`            | Mirror the animation on leave                          |
-| `threshold`      | `number`  | `0.1`              | Intersection threshold where 0.1 is 10% of the element |
-| `enableCallback` | `boolean` | `false`            | Enable callback function on intersect                  |
-| `startEvent`     | `string`  | `DOMContentLoaded` | Event to start HumbleScroll initialization             |
+| Option           | Type      | Default                                    | Description                                                                 |
+| ---------------- | --------- | ------------------------------------------ | --------------------------------------------------------------------------- |
+| `root`           | `string`  | `null`                                     | Root container to observe                                                   |
+| `element`        | `string`  | `[data-hs]`                                | Element to observe for animations                                           |
+| `class`          | `string`  | `hs-inview`                                | Class added when element is visible                                         |
+| `initClass`      | `string`  | `hs-init`                                  | Class added when HumbleScroll is loaded                                     |
+| `repeat`         | `boolean` | `false`                                    | Repeat the animation when scrolling from top                                |
+| `mirror`         | `boolean` | `false`                                    | Mirror the animation on leave                                               |
+| `threshold`      | `number`  | `0.1`                                      | Intersection threshold where 0.1 is 10% of the element                      |
+| `enableCallback` | `boolean` | `false`                                    | Enable callback function on intersect                                       |
+| `startEvent`     | `string`  | `DOMContentLoaded`                         | Event to start HumbleScroll initialization                                  |
+| `offset`         | `object`  | `{top: 0, right: 0, bottom: -40, left: 0}` | Intersection offset. Use negative numbers to make the observed area smaller |
+| `callback`       | `string`  | `[data-hs-callback]`                       | Element to observe for callbacks                                            |
 
 ### Tip: Console log the HumbleScroll instance to check current options
 

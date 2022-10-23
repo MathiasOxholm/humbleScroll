@@ -1,17 +1,16 @@
 # HumbleScroll.js (Beta)
 
-HumbleScroll is a lightweight and minimalistic animation on scroll Javascript library. It's easy to use and has no dependencies.
-The library is based on Intersection Observer combined with CSS Custom Props for easy customization.
+HumbleScroll is a lightweight and minimalistic animation on scroll Javascript library. It's easy to use and has no dependencies. The library is based on Intersection Observer combined with CSS Custom Props for easy customization.
 
 ---
 
-## Demo
+## 👀 Demo
 
 A quick demo site built with Astro.js - [See HumbleScroll in action](https://humblescroll.oxholm.dev/)
 
 ---
 
-## Comparison
+## ⚖ Comparison
 
 HumbleScroll is inspired by AOS.js but should load significantly less CSS and JS. Should be around 2kb total when gzip is active. Take a look below for details:
 
@@ -29,14 +28,13 @@ HumbleScroll is inspired by AOS.js but should load significantly less CSS and JS
 
 ---
 
-## Installation
+## ⚙ Installation
 
 ### 1. Add styles in `<head>`
 
 ```html
 <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/MathiasOxholm/humbleScroll@latest/cdn/css/humbleScroll.min.css"
+  rel="stylesheet" href="https://cdn.jsdelivr.net/gh/MathiasOxholm/humbleScroll@latest/cdn/css/humbleScroll.min.css"
 />
 ```
 
@@ -55,7 +53,7 @@ const scroll = new HumbleScroll();
 
 ---
 
-## How to use?
+## 🧰 Usage
 
 ### 1. Initialize HumbleScroll
 
@@ -63,16 +61,14 @@ By passing a options object to the HumbleScroll you are able to customize how th
 
 ```javascript
 const scroll = new HumbleScroll({
-  root: document.queryselector(".custom-container"), // Root container to observe (default: Document root)
-  element: "[data-hs]", // Element to observe (default: All elements with data-hs attribute)
-  class: "hs-inview", // Class added when element is visible (default: hs-inview)
-  initClass: "hs-inview", // Class added when HumbleScroll loaded (default: hs-inview)
-  repeat: true, // Whether to repeat the animation when scrollin from top (default: false)
-  mirror: true, // Whether to mirror the animation when leaving (default: false)
-  threshold: 0.25, // Intersection threshold where 0.1 is 10% of the element (default: 0.1)
-  enableCallback: true, // Whether to enable callback function on intersect (default: false)
-  callback: "data-hs-call", // Callback data-attribute to call on intersect (default: data-hs-call)
-  startEvent: "DOMContentLoaded", // Event to start the initialization (default: DOMContentLoaded)
+  repeat: true,
+  mirror: true,
+  threshold: 0.25,
+  enableCallback: true,
+  offset: {
+   top: 0,
+   bottom: -40,
+ }
 });
 ```
 
@@ -112,19 +108,54 @@ It's very important to wrap the element you want to animate as the CSS targets `
 }
 ```
 
+### Options overview
+
+| Option           | Type      | Default                                    | Description                                                                 |
+| ---------------- | --------- | ------------------------------------------ | --------------------------------------------------------------------------- |
+| `root`           | `string`  | `null`                                     | Root container to observe                                                   |
+| `element`        | `string`  | `[data-hs]`                                | Element to observe for animations                                           |
+| `class`          | `string`  | `hs-inview`                                | Class added when element is visible                                         |
+| `initClass`      | `string`  | `hs-init`                                  | Class added when HumbleScroll is loaded                                     |
+| `repeat`         | `boolean` | `false`                                    | Repeat the animation when scrolling from top                                |
+| `mirror`         | `boolean` | `false`                                    | Mirror the animation on leave                                               |
+| `threshold`      | `number`  | `0.1`                                      | Intersection threshold where 0.1 is 10% of the element                      |
+| `enableCallback` | `boolean` | `false`                                    | Enable callback function on intersect                                       |
+| `startEvent`     | `string`  | `DOMContentLoaded`                         | Event to start HumbleScroll initialization                                  |
+| `offset`         | `object`  | `{top: 0, right: 0, bottom: -40, left: 0}` | Intersection offset. Use negative numbers to make the observed area smaller |
+| `callback`       | `string`  | `[data-hs-callback]`                       | Element to observe for callbacks                                            |
+
 ### Tip: Console log the HumbleScroll instance to check current options
 
 ```javascript
 console.log(scroll);
 ```
 
-### Remove no-js from HTML
+---
+
+## ❗ Before you start
+
+### Remove no-js from HTML (Important)
 
 The library takes account for `.no-js` class on the `:root` element of your website. If you have `<html class="no-js">` HumbleScroll wont work. Furthermore, all animations are by default disabled when `prefers-reduced-motion: reduce` is enabled in the OS / browser.
 
+### With jQuery
+
+HumbleScroll can work fine alongside jQuery eventhough it's written in vanilla javascript. Start off by changing the `startEvent` to `load` instead of `DOMContentLoaded`  and place `new HumbleScroll` outside Document ready. This setup is tested on a WordPress site running jQuery.
+
+```javascript
+$(document).ready(function() {
+ // All your regular jQuery code
+});
+
+// Place HumbleScroll outside any Document ready
+const scroll = new HumbleScroll({
+ startEvent: 'load'
+});
+```
+
 ---
 
-## JS events
+## 🖱 JS events
 
 ### 1. Enable HumbleScroll to watch your `data-hs-call` attributes
 
@@ -158,11 +189,11 @@ scroll.on("hs:complete", () => {
 
 ---
 
-## Animation overview
+## 👁 Animation overview
 
 ### CSS Custom Props
 
-All Custom props that can be customized either globally or on indivual elements.
+All Custom props that can be customized.
 
 ```css
 :root {
@@ -173,7 +204,6 @@ All Custom props that can be customized either globally or on indivual elements.
   --hs-ease-out: cubic-bezier(0, 0, 0.2, 1);
   --hs-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
   --hs-opacity: 1;
-  --hs-visibility: visible;
   --hs-translate-y: 0;
   --hs-translate-x: 0;
   --hs-scale: 1;
@@ -205,7 +235,7 @@ Customize by overriding `--hs-translate-y-amount` or `--hs-translate-x-amount` i
 
 ```html
 <div data-hs="up"></div>
-<div data-hs="down" style="--hs-translate-y-amount: 10rem"></div>
+<div data-hs="down"></div>
 <div data-hs="left"></div>
 <div data-hs="right"></div>
 ```
@@ -221,7 +251,7 @@ Customize by overriding `--hs-scale-ratio` in your css or directly on the elemen
 
 ### 4. Flip
 
-Flip in any direction. Cannot be customized.
+Flip in any direction. Cannot be customized at the moment.
 
 ```html
 <div data-hs="flip-up"></div>
@@ -241,7 +271,7 @@ Who doesn't like motion blur? Customize by overriding `--hs-blur` on an element.
 
 ### 6. Easings
 
-Customize by overriding `--hs-ease`, `--hs-ease-in` or `--hs-ease-out` or just create your own.
+Customize by overriding `--hs-ease`, `--hs-ease-in` or `--hs-ease-out` or just create your own. These are based on TailwindCSS' three basic easings.
 
 ```html
 <div data-hs="ease-in"></div>
@@ -255,10 +285,15 @@ Default variation for the translation amount on directional animations (up, down
 Customize by overriding `--hs-translate-ratio`.
 
 ```html
+<!-- Translate ratio * 0.5 -->
 <div data-hs="sm"></div>
+<!-- Translate ratio * 0.75 -->
 <div data-hs="md"></div>
+<!-- Translate ratio * 1.75 -->
 <div data-hs="lg"></div>
+<!-- Translate ratio * 2 -->
 <div data-hs="xl"></div>
+<!-- Translate ratio * 3 -->
 <div data-hs="2xl"></div>
 ```
 
@@ -317,7 +352,7 @@ CSS doesn't support variable media queries just yet. Therefore the prefixes are 
 }
 ```
 
-### 11. Combine them!
+### Combine them
 
 Combine animations inside the `data-hs` attribute (space seperated).
 
@@ -325,12 +360,12 @@ Combine animations inside the `data-hs` attribute (space seperated).
 <div data-hs="fade up right xl slow"></div>
 <div data-hs="fade left down fast"></div>
 <div data-hs="zoom-in up left extra-slow"></div>
-<div data-hs="flip-right down desktop:up lg slow once"></div>
+<div data-hs="flip-right up lg slow once"></div>
 ```
 
 ---
 
-## Multiple HumbleScrolls?
+## 👬 Multiple HumbleScrolls?
 
 Sure why not! Add as many different HumbleScrolls as you need for your website.
 
@@ -356,12 +391,15 @@ const myCustomScroll = new HumbleScroll({
 
 ---
 
-## Disclaimer
+## ❗Disclaimer
 
 HumbleScroll.js is currently under development and features and API is exspected to change. Download the CSS and JS locally to ensure the setup works in the future. NPM and module support is coming in the future as well as a Vue and React component library.
 
 ---
 
-## Have you found a bug?
+## 🐛 Have you found a bug?
 
 Just let me know and I'll update the files ASAP.
+
+---
+Last updated: 20/10/2022

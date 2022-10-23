@@ -1,12 +1,11 @@
 // -------------------------------------
 // SCSS variables
 // -------------------------------------
-$brand: "hs";
-$var: "--" + $brand;
-$attr: "data-" + $brand;
-$root: ":root:not(.no-js)";
-$inView: $brand + "-inview";
-$stay: $brand + "-once";
+$brand: 'hs';
+$var: '--' + $brand;
+$attr: 'data-' + $brand;
+$root: ':root:not(.no-js)';
+$inView: $brand + '-inview';
 $perspective: 2000px;
 
 // -------------------------------------
@@ -23,7 +22,6 @@ $properties: (
   ease-in-out: cubic-bezier(0.4, 0, 0.2, 1),
   // Visibility
   opacity: 1,
-  visibility: visible,
   // Transfrom
   translate-y: 0,
   translate-x: 0,
@@ -41,33 +39,53 @@ $properties: (
   translate-x-amount: 2rem,
   translate-y-amount: 3rem,
   // Efects
-  blur: 0
+  blur: 0,
+  blur-amount: 5px
 );
 
 $easings: ease-in, ease-out, ease-in-out;
 
 $sizes: (
-  "sm": 0.5,
-  "md": 0.75,
-  "lg": 1.5,
-  "xl": 2,
-  "2xl": 3,
+  'sm': 0.5,
+  'md': 0.75,
+  'lg': 1.5,
+  'xl': 2,
+  '2xl': 3,
 );
 
 $durations: (
-  "extra-slow": 3,
-  "slow": 1.5,
-  "fast": 0.75,
-  "extra-fast": 0.5,
+  'extra-slow': 3,
+  'slow': 1.5,
+  'fast': 0.75,
+  'extra-fast': 0.5,
+);
+
+$breakpoints: (
+  'tablet': 768px,
+  'desktop': 1024px,
 );
 
 // -------------------------------------
 // Mixins
 // -------------------------------------
-@mixin calcProperty($property, $axis, $ratio: $property, $operator: "+") {
-  #{$var}-#{$property}-#{$axis}: calc(
-    0px #{$operator} var(#{$var}-#{$property}-#{$axis}-amount) * var(#{$var}-#{$ratio}-ratio)
-  );
+
+// Translate property calculation
+@mixin calcProperty($property, $axis, $ratio: $property, $operator: '+') {
+  #{$var}-#{$property}-#{$axis}: calc(0px #{$operator} var(#{$var}-#{$property}-#{$axis}-amount) * var(#{$var}-#{$ratio}-ratio));
+}
+
+// Breakpoint mixin min-width
+@mixin breakpoint($screen) {
+  @media (min-width: map-get($breakpoints, $screen)) {
+    @content;
+  }
+}
+
+// Breakpoint mixin max-width
+@mixin breakpointMax($screen) {
+  @media (max-width: map-get($breakpoints, $screen)) {
+    @content;
+  }
 }
 
 // -------------------------------------
@@ -94,19 +112,15 @@ $durations: (
 
     // Visibility properties
     opacity: var(#{$var}-opacity);
-    //visibility: var(#{$var}-visibility);
 
     // Transfrom properties
-    transform: translate3d(var(#{$var}-translate-x), var(#{$var}-translate-y), 0px) scale(var(#{$var}-scale))
-      rotate(var(#{$var}-rotate)) perspective(var(#{$var}-perspective)) rotateX(var(#{$var}-rotate-x))
-      rotateY(var(#{$var}-rotate-y));
+    transform: translate3d(var(#{$var}-translate-x), var(#{$var}-translate-y), 0px) scale(var(#{$var}-scale)) rotate(var(#{$var}-rotate)) perspective(var(#{$var}-perspective)) rotateX(var(#{$var}-rotate-x)) rotateY(var(#{$var}-rotate-y));
 
     // Effects
     filter: blur(var(#{$var}-blur));
   }
 
-  &.#{$inView},
-  &.#{$stay} {
+  &.#{$inView} {
     > * {
       pointer-events: auto;
 
@@ -132,7 +146,7 @@ $durations: (
 // Animation easing variantions
 // -------------------------------------
 @each $ease in $easings {
-  #{$root} [#{$attr}*="#{$ease}"] {
+  #{$root} [#{$attr}*='#{$ease}'] {
     #{$var}-easing: var(#{$var}-#{$ease});
   }
 }
@@ -141,7 +155,7 @@ $durations: (
 // Animation size variations
 // -------------------------------------
 @each $size, $value in $sizes {
-  #{$root} [#{$attr}*="#{$size}"] {
+  #{$root} [#{$attr}*='#{$size}'] {
     #{$var}-translate-ratio: $value;
   }
 }
@@ -150,7 +164,7 @@ $durations: (
 // Animation speed variations
 // -------------------------------------
 @each $duration, $value in $durations {
-  #{$root} [#{$attr}~="#{$duration}"] {
+  #{$root} [#{$attr}~='#{$duration}'] {
     #{$var}-duration-ratio: $value;
   }
 }
@@ -160,10 +174,9 @@ $durations: (
 // -------------------------------------
 #{$root} {
   // General fade
-  [#{$attr}*="fade"],
-  [#{$attr}*="zoom"] {
+  [#{$attr}*='fade'],
+  [#{$attr}*='zoom'] {
     #{$var}-opacity: 0;
-    #{$var}-visibility: hidden;
   }
 }
 
@@ -172,23 +185,95 @@ $durations: (
 // -------------------------------------
 #{$root} {
   // Up
-  [#{$attr}~="up"] > * {
-    @include calcProperty("translate", "y");
+  [#{$attr}~='up'] > * {
+    @include calcProperty('translate', 'y');
+  }
+
+  body [#{$attr}*='phone:up'] > * {
+    @include breakpointMax(tablet) {
+      @include calcProperty('translate', 'y');
+    }
+  }
+
+  body [#{$attr}*='tablet:up'] > * {
+    @include breakpoint(tablet) {
+      @include calcProperty('translate', 'y');
+    }
+  }
+
+  body [#{$attr}*='desktop:up'] > * {
+    @include breakpoint(desktop) {
+      @include calcProperty('translate', 'y');
+    }
   }
 
   // Down
-  [#{$attr}~="down"] > * {
-    @include calcProperty("translate", "y", "translate", "-");
+  [#{$attr}~='down'] > * {
+    @include calcProperty('translate', 'y', 'translate', '-');
+  }
+
+  body [#{$attr}*='phone:down'] > * {
+    @include breakpointMax(tablet) {
+      @include calcProperty('translate', 'y', 'translate', '-');
+    }
+  }
+
+  body [#{$attr}*='tablet:down'] > * {
+    @include breakpoint(tablet) {
+      @include calcProperty('translate', 'y', 'translate', '-');
+    }
+  }
+
+  body [#{$attr}*='desktop:down'] > * {
+    @include breakpoint(desktop) {
+      @include calcProperty('translate', 'y', 'translate', '-');
+    }
   }
 
   // Left
-  [#{$attr}~="left"] > * {
-    @include calcProperty("translate", "x");
+  [#{$attr}~='left'] > * {
+    @include calcProperty('translate', 'x');
+  }
+
+  body [#{$attr}*='phone:left'] > * {
+    @include breakpointMax(tablet) {
+      @include calcProperty('translate', 'x');
+    }
+  }
+
+  body [#{$attr}*='tablet:left'] > * {
+    @include breakpoint(tablet) {
+      @include calcProperty('translate', 'x');
+    }
+  }
+
+  body [#{$attr}*='desktop:left'] > * {
+    @include breakpoint(desktop) {
+      @include calcProperty('translate', 'x');
+    }
   }
 
   // Right
-  [#{$attr}~="right"] > * {
-    @include calcProperty("translate", "x", "translate", "-");
+  [#{$attr}~='right'] > * {
+    @include calcProperty('translate', 'x', 'translate', '-');
+  }
+
+  body [#{$attr}*='phone:right'] > * {
+    @include breakpointMax(tablet) {
+      @include calcProperty('translate', 'x', 'translate', '-');
+    }
+  }
+
+  body [#{$attr}*='tablet:right'] > * {
+    @include breakpoint(tablet) {
+      @include calcProperty('translate', 'x', 'translate', '-');
+    }
+  }
+
+  body [#{$attr}*='desktop:right'] > * {
+    @include breakpoint(desktop) {
+      @include calcProperty('translate', 'x', 'translate', '-');
+    }
   }
 }
 
@@ -197,13 +282,49 @@ $durations: (
 // -------------------------------------
 #{$root} {
   // Zoom in
-  [#{$attr}*="zoom-in"] > * {
+  [#{$attr}*='zoom-in'] > * {
     #{$var}-scale: calc(1 + var(#{$var}-scale-ratio));
   }
 
+  body [#{$attr}*='phone:zoom-in'] > * {
+    @include breakpointMax(tablet) {
+      #{$var}-scale: calc(1 + var(#{$var}-scale-ratio));
+    }
+  }
+
+  body [#{$attr}*='tablet:zoom-in'] > * {
+    @include breakpoint(tablet) {
+      #{$var}-scale: calc(1 + var(#{$var}-scale-ratio));
+    }
+  }
+
+  body [#{$attr}*='desktop:zoom-in'] > * {
+    @include breakpoint(desktop) {
+      #{$var}-scale: calc(1 + var(#{$var}-scale-ratio));
+    }
+  }
+
   // Zoom out
-  [#{$attr}*="zoom-out"] > * {
+  [#{$attr}*='zoom-out'] > * {
     #{$var}-scale: calc(1 - var(#{$var}-scale-ratio));
+  }
+
+  body [#{$attr}*='phone:zoom-out'] > * {
+    @include breakpointMax(tablet) {
+      #{$var}-scale: calc(1 - var(#{$var}-scale-ratio));
+    }
+  }
+
+  body [#{$attr}*='tablet:zoom-out'] > * {
+    @include breakpoint(tablet) {
+      #{$var}-scale: calc(1 - var(#{$var}-scale-ratio));
+    }
+  }
+
+  body [#{$attr}*='desktop:zoom-out'] > * {
+    @include breakpoint(desktop) {
+      #{$var}-scale: calc(1 - var(#{$var}-scale-ratio));
+    }
   }
 }
 
@@ -212,7 +333,7 @@ $durations: (
 // -------------------------------------
 #{$root} {
   // General flip
-  [#{$attr}*="flip"] {
+  [#{$attr}*='flip'] {
     > * {
       #{$var}-perspective: $perspective;
       backface-visibility: hidden;
@@ -220,31 +341,123 @@ $durations: (
   }
 
   // Flip up
-  [#{$attr}*="flip-up"] > * {
+  [#{$attr}*='flip-up'] > * {
     #{$var}-rotate-x: -100deg;
   }
 
+  body [#{$attr}*='phone:flip-up'] > * {
+    @include breakpointMax(tablet) {
+      #{$var}-rotate-x: -100deg;
+    }
+  }
+
+  body [#{$attr}*='tablet:flip-up'] > * {
+    @include breakpoint(tablet) {
+      #{$var}-rotate-x: -100deg;
+    }
+  }
+
+  body [#{$attr}*='desktop:flip-up'] > * {
+    @include breakpoint(desktop) {
+      #{$var}-rotate-x: -100deg;
+    }
+  }
+
   // Flip down
-  [#{$attr}*="flip-down"] > * {
+  [#{$attr}*='flip-down'] > * {
     #{$var}-rotate-x: 100deg;
   }
 
+  body [#{$attr}*='phone:flip-down'] > * {
+    @include breakpointMax(tablet) {
+      #{$var}-rotate-x: 100deg;
+    }
+  }
+
+  body [#{$attr}*='tablet:flip-down'] > * {
+    @include breakpoint(tablet) {
+      #{$var}-rotate-x: 100deg;
+    }
+  }
+
+  body [#{$attr}*='desktop:flip-down'] > * {
+    @include breakpoint(desktop) {
+      #{$var}-rotate-x: 100deg;
+    }
+  }
+
   // Flip left
-  [#{$attr}*="flip-left"] > * {
+  [#{$attr}*='flip-left'] > * {
     #{$var}-rotate-y: -100deg;
   }
 
+  body [#{$attr}*='phone:flip-left'] > * {
+    @include breakpointMax(tablet) {
+      #{$var}-rotate-y: -100deg;
+    }
+  }
+
+  body [#{$attr}*='tablet:flip-left'] > * {
+    @include breakpoint(tablet) {
+      #{$var}-rotate-y: -100deg;
+    }
+  }
+
+  body [#{$attr}*='desktop:flip-left'] > * {
+    @include breakpoint(desktop) {
+      #{$var}-rotate-y: -100deg;
+    }
+  }
+
   // Flip right
-  [#{$attr}*="flip-right"] > * {
+  [#{$attr}*='flip-right'] > * {
     #{$var}-rotate-y: 100deg;
+  }
+
+  body [#{$attr}*='phone:flip-right'] > * {
+    @include breakpointMax(tablet) {
+      #{$var}-rotate-y: 100deg;
+    }
+  }
+
+  body [#{$attr}*='tablet:flip-right'] > * {
+    @include breakpoint(tablet) {
+      #{$var}-rotate-y: 100deg;
+    }
+  }
+
+  body [#{$attr}*='desktop:flip-right'] > * {
+    @include breakpoint(desktop) {
+      #{$var}-rotate-y: 100deg;
+    }
   }
 }
 
 // -------------------------------------
 // Blur animations
 // -------------------------------------
-#{$root} [#{$attr}*="blur"] {
-  #{$var}-blur: 5px;
+#{$root} {
+  [#{$attr}*='blur'] {
+    #{$var}-blur: var(#{$var}-blur-amount);
+  }
+
+  body [#{$attr}*='phone:blur'] > * {
+    @include breakpointMax(tablet) {
+      #{$var}-blur: var(#{$var}-blur-amount);
+    }
+  }
+
+  body [#{$attr}*='tablet:blur'] > * {
+    @include breakpoint(tablet) {
+      #{$var}-blur: var(#{$var}-blur-amount);
+    }
+  }
+
+  body [#{$attr}*='desktop:blur'] > * {
+    @include breakpoint(desktop) {
+      #{$var}-blur: var(#{$var}-blur-amount);
+    }
+  }
 }
 
 // -------------------------------------

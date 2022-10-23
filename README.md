@@ -23,8 +23,8 @@ HumbleScroll is inspired by AOS.js but should load significantly less CSS and JS
 ### HumbleScroll
 
 - 3.7kb JS (1.3 gzipped)
-- 3.4kb CSS (0.7kb gzipped)
-- Total: 7.1kb (2kb gzipped)
+- 7.4kb CSS (1kb gzipped)
+- Total: 11.1kb (2.3kb gzipped)
 
 ---
 
@@ -66,9 +66,9 @@ const scroll = new HumbleScroll({
   threshold: 0.25,
   enableCallback: true,
   offset: {
-	  top: 0,
-	  bottom: -40,
-	}
+   top: 0,
+   bottom: -40,
+ }
 });
 ```
 
@@ -144,12 +144,12 @@ HumbleScroll can work fine alongside jQuery eventhough it's written in vanilla j
 
 ```javascript
 $(document).ready(function() {
-	// All your regular jQuery code
+ // All your regular jQuery code
 });
 
 // Place HumbleScroll outside any Document ready
 const scroll = new HumbleScroll({
-	startEvent: 'load'
+ startEvent: 'load'
 });
 ```
 
@@ -215,6 +215,7 @@ All Custom props that can be customized.
   --hs-translate-x-amount: 2rem;
   --hs-translate-y-amount: 3rem;
   --hs-blur: 0;
+  --hs-blur-amount: 5px;
 }
 ```
 
@@ -319,7 +320,39 @@ Ensure the animation only runs once - even with `repeat` and `mirror` enabled.
 <div data-hs="once"></div>
 ```
 
-### Combine them!
+### 10. Responsive animations
+
+In this responsive age developers need the ability to animate differrently based on screensizes. Use the `phone:`, `tablet:` or `desktop:` prefix before animations to apply a media query.
+CSS doesn't support variable media queries just yet. Therefore the prefixes are hardcoded values.
+
+```html
+<!-- Fade up on mobile and tablet but fade down on desktop -->
+<div data-hs="fade up desktop:down"></div>
+<!-- Left on mobile, right on tablet and left again on desktop -->
+<div data-hs="fade left tablet:right desktop:left"></div>
+<!-- Only fade up on mobile -->
+<div data-hs="fade phone:up"></div>
+```
+
+#### Responsive values in CSS
+
+```css
+:root {
+  --hs-duration: 0.4s;
+  --hs-easing: ease-in-out;
+  --hs-translate-x-amount: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --hs-duration: 0.6s;
+    --hs-easing: ease-in;
+    --hs-translate-x-amount: 4rem;
+  }
+}
+```
+
+### Combine them
 
 Combine animations inside the `data-hs` attribute (space seperated).
 

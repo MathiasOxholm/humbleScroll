@@ -6,7 +6,6 @@
   --hs-ease-out: cubic-bezier(0, 0, 0.2, 1);
   --hs-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
   --hs-opacity: 1;
-  --hs-visibility: visible;
   --hs-translate-y: 0;
   --hs-translate-x: 0;
   --hs-scale: 1;
@@ -21,6 +20,7 @@
   --hs-translate-x-amount: 2rem;
   --hs-translate-y-amount: 3rem;
   --hs-blur: 0;
+  --hs-blur-amount: 5px;
 }
 
 :root:not(.no-js) [data-hs] > * {
@@ -33,7 +33,7 @@
   transform: translate3d(var(--hs-translate-x), var(--hs-translate-y), 0px) scale(var(--hs-scale)) rotate(var(--hs-rotate)) perspective(var(--hs-perspective)) rotateX(var(--hs-rotate-x)) rotateY(var(--hs-rotate-y));
   filter: blur(var(--hs-blur));
 }
-:root:not(.no-js) [data-hs].hs-inview > *, :root:not(.no-js) [data-hs].hs-once > * {
+:root:not(.no-js) [data-hs].hs-inview > * {
   pointer-events: auto;
   --hs-opacity: 1;
   --hs-translate-y: 0;
@@ -96,35 +96,116 @@
 :root:not(.no-js) [data-hs*=fade],
 :root:not(.no-js) [data-hs*=zoom] {
   --hs-opacity: 0;
-  --hs-visibility: hidden;
 }
 
 :root:not(.no-js) [data-hs~=up] > * {
-  --hs-translate-y: calc(
-    0px + var(--hs-translate-y-amount) * var(--hs-translate-ratio)
-  );
+  --hs-translate-y: calc(0px + var(--hs-translate-y-amount) * var(--hs-translate-ratio));
+}
+@media (max-width: 768px) {
+  :root:not(.no-js) body [data-hs*="phone:up"] > * {
+    --hs-translate-y: calc(0px + var(--hs-translate-y-amount) * var(--hs-translate-ratio));
+  }
+}
+@media (min-width: 768px) {
+  :root:not(.no-js) body [data-hs*="tablet:up"] > * {
+    --hs-translate-y: calc(0px + var(--hs-translate-y-amount) * var(--hs-translate-ratio));
+  }
+}
+@media (min-width: 1024px) {
+  :root:not(.no-js) body [data-hs*="desktop:up"] > * {
+    --hs-translate-y: calc(0px + var(--hs-translate-y-amount) * var(--hs-translate-ratio));
+  }
 }
 :root:not(.no-js) [data-hs~=down] > * {
-  --hs-translate-y: calc(
-    0px - var(--hs-translate-y-amount) * var(--hs-translate-ratio)
-  );
+  --hs-translate-y: calc(0px - var(--hs-translate-y-amount) * var(--hs-translate-ratio));
+}
+@media (max-width: 768px) {
+  :root:not(.no-js) body [data-hs*="phone:down"] > * {
+    --hs-translate-y: calc(0px - var(--hs-translate-y-amount) * var(--hs-translate-ratio));
+  }
+}
+@media (min-width: 768px) {
+  :root:not(.no-js) body [data-hs*="tablet:down"] > * {
+    --hs-translate-y: calc(0px - var(--hs-translate-y-amount) * var(--hs-translate-ratio));
+  }
+}
+@media (min-width: 1024px) {
+  :root:not(.no-js) body [data-hs*="desktop:down"] > * {
+    --hs-translate-y: calc(0px - var(--hs-translate-y-amount) * var(--hs-translate-ratio));
+  }
 }
 :root:not(.no-js) [data-hs~=left] > * {
-  --hs-translate-x: calc(
-    0px + var(--hs-translate-x-amount) * var(--hs-translate-ratio)
-  );
+  --hs-translate-x: calc(0px + var(--hs-translate-x-amount) * var(--hs-translate-ratio));
+}
+@media (max-width: 768px) {
+  :root:not(.no-js) body [data-hs*="phone:left"] > * {
+    --hs-translate-x: calc(0px + var(--hs-translate-x-amount) * var(--hs-translate-ratio));
+  }
+}
+@media (min-width: 768px) {
+  :root:not(.no-js) body [data-hs*="tablet:left"] > * {
+    --hs-translate-x: calc(0px + var(--hs-translate-x-amount) * var(--hs-translate-ratio));
+  }
+}
+@media (min-width: 1024px) {
+  :root:not(.no-js) body [data-hs*="desktop:left"] > * {
+    --hs-translate-x: calc(0px + var(--hs-translate-x-amount) * var(--hs-translate-ratio));
+  }
 }
 :root:not(.no-js) [data-hs~=right] > * {
-  --hs-translate-x: calc(
-    0px - var(--hs-translate-x-amount) * var(--hs-translate-ratio)
-  );
+  --hs-translate-x: calc(0px - var(--hs-translate-x-amount) * var(--hs-translate-ratio));
+}
+@media (max-width: 768px) {
+  :root:not(.no-js) body [data-hs*="phone:right"] > * {
+    --hs-translate-x: calc(0px - var(--hs-translate-x-amount) * var(--hs-translate-ratio));
+  }
+}
+@media (min-width: 768px) {
+  :root:not(.no-js) body [data-hs*="tablet:right"] > * {
+    --hs-translate-x: calc(0px - var(--hs-translate-x-amount) * var(--hs-translate-ratio));
+  }
+}
+@media (min-width: 1024px) {
+  :root:not(.no-js) body [data-hs*="desktop:right"] > * {
+    --hs-translate-x: calc(0px - var(--hs-translate-x-amount) * var(--hs-translate-ratio));
+  }
 }
 
 :root:not(.no-js) [data-hs*=zoom-in] > * {
   --hs-scale: calc(1 + var(--hs-scale-ratio));
 }
+@media (max-width: 768px) {
+  :root:not(.no-js) body [data-hs*="phone:zoom-in"] > * {
+    --hs-scale: calc(1 + var(--hs-scale-ratio));
+  }
+}
+@media (min-width: 768px) {
+  :root:not(.no-js) body [data-hs*="tablet:zoom-in"] > * {
+    --hs-scale: calc(1 + var(--hs-scale-ratio));
+  }
+}
+@media (min-width: 1024px) {
+  :root:not(.no-js) body [data-hs*="desktop:zoom-in"] > * {
+    --hs-scale: calc(1 + var(--hs-scale-ratio));
+  }
+}
 :root:not(.no-js) [data-hs*=zoom-out] > * {
   --hs-scale: calc(1 - var(--hs-scale-ratio));
+}
+@media (max-width: 768px) {
+  :root:not(.no-js) body [data-hs*="phone:zoom-out"] > * {
+    --hs-scale: calc(1 - var(--hs-scale-ratio));
+  }
+}
+@media (min-width: 768px) {
+  :root:not(.no-js) body [data-hs*="tablet:zoom-out"] > * {
+    --hs-scale: calc(1 - var(--hs-scale-ratio));
+  }
+}
+@media (min-width: 1024px) {
+  :root:not(.no-js) body [data-hs*="desktop:zoom-out"] > * {
+    --hs-scale: calc(1 - var(--hs-scale-ratio));
+  }
 }
 
 :root:not(.no-js) [data-hs*=flip] > * {
@@ -134,18 +215,93 @@
 :root:not(.no-js) [data-hs*=flip-up] > * {
   --hs-rotate-x: -100deg;
 }
+@media (max-width: 768px) {
+  :root:not(.no-js) body [data-hs*="phone:flip-up"] > * {
+    --hs-rotate-x: -100deg;
+  }
+}
+@media (min-width: 768px) {
+  :root:not(.no-js) body [data-hs*="tablet:flip-up"] > * {
+    --hs-rotate-x: -100deg;
+  }
+}
+@media (min-width: 1024px) {
+  :root:not(.no-js) body [data-hs*="desktop:flip-up"] > * {
+    --hs-rotate-x: -100deg;
+  }
+}
 :root:not(.no-js) [data-hs*=flip-down] > * {
   --hs-rotate-x: 100deg;
+}
+@media (max-width: 768px) {
+  :root:not(.no-js) body [data-hs*="phone:flip-down"] > * {
+    --hs-rotate-x: 100deg;
+  }
+}
+@media (min-width: 768px) {
+  :root:not(.no-js) body [data-hs*="tablet:flip-down"] > * {
+    --hs-rotate-x: 100deg;
+  }
+}
+@media (min-width: 1024px) {
+  :root:not(.no-js) body [data-hs*="desktop:flip-down"] > * {
+    --hs-rotate-x: 100deg;
+  }
 }
 :root:not(.no-js) [data-hs*=flip-left] > * {
   --hs-rotate-y: -100deg;
 }
+@media (max-width: 768px) {
+  :root:not(.no-js) body [data-hs*="phone:flip-left"] > * {
+    --hs-rotate-y: -100deg;
+  }
+}
+@media (min-width: 768px) {
+  :root:not(.no-js) body [data-hs*="tablet:flip-left"] > * {
+    --hs-rotate-y: -100deg;
+  }
+}
+@media (min-width: 1024px) {
+  :root:not(.no-js) body [data-hs*="desktop:flip-left"] > * {
+    --hs-rotate-y: -100deg;
+  }
+}
 :root:not(.no-js) [data-hs*=flip-right] > * {
   --hs-rotate-y: 100deg;
 }
+@media (max-width: 768px) {
+  :root:not(.no-js) body [data-hs*="phone:flip-right"] > * {
+    --hs-rotate-y: 100deg;
+  }
+}
+@media (min-width: 768px) {
+  :root:not(.no-js) body [data-hs*="tablet:flip-right"] > * {
+    --hs-rotate-y: 100deg;
+  }
+}
+@media (min-width: 1024px) {
+  :root:not(.no-js) body [data-hs*="desktop:flip-right"] > * {
+    --hs-rotate-y: 100deg;
+  }
+}
 
 :root:not(.no-js) [data-hs*=blur] {
-  --hs-blur: 5px;
+  --hs-blur: var(--hs-blur-amount);
+}
+@media (max-width: 768px) {
+  :root:not(.no-js) body [data-hs*="phone:blur"] > * {
+    --hs-blur: var(--hs-blur-amount);
+  }
+}
+@media (min-width: 768px) {
+  :root:not(.no-js) body [data-hs*="tablet:blur"] > * {
+    --hs-blur: var(--hs-blur-amount);
+  }
+}
+@media (min-width: 1024px) {
+  :root:not(.no-js) body [data-hs*="desktop:blur"] > * {
+    --hs-blur: var(--hs-blur-amount);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

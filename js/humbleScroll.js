@@ -36,6 +36,7 @@ class HumbleScroll {
   // Initialize HumbleScroll
   init() {
     const completeEvent = new Event(`${this.prefix}:complete`)
+    let caller = null
 
     // Main animation function
     const animationObserverFunction = (entries) => {
@@ -89,7 +90,6 @@ class HumbleScroll {
     // Intersection Observers
     const observer = new IntersectionObserver(animationObserverFunction, this.observerOptions)
 
-    let caller = null
     this.options.enableCallback && (caller = new IntersectionObserver(callbackObserverFunction, this.observerOptions))
 
     window.addEventListener(this.options.startEvent, startEventCallback)

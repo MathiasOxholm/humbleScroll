@@ -31,7 +31,6 @@ $properties: (
   rotate-x: 0deg,
   rotate-y: 0deg,
   // Ratio
-  ratio: 1,
   translate-ratio: 1,
   scale-ratio: 0.2,
   duration-ratio: 1,
@@ -62,7 +61,7 @@ $durations: (
 
 $breakpoints: (
   'tablet': 768px,
-  'desktop': 1024px,
+  'desktop': 1240px,
 );
 
 // -------------------------------------
@@ -109,34 +108,21 @@ $breakpoints: (
     transition-timing-function: var(#{$var}-easing);
     transition-delay: var(#{$var}-delay);
     transition-property: transform, opacity, filter;
-
-    // Visibility properties
     opacity: var(#{$var}-opacity);
-
-    // Transfrom properties
     transform: translate3d(var(#{$var}-translate-x), var(#{$var}-translate-y), 0px) scale(var(#{$var}-scale)) rotate(var(#{$var}-rotate)) perspective(var(#{$var}-perspective)) rotateX(var(#{$var}-rotate-x)) rotateY(var(#{$var}-rotate-y));
-
-    // Effects
     filter: blur(var(#{$var}-blur));
   }
 
   &.#{$inView} {
     > * {
       pointer-events: auto;
-
-      // Visibility properties
       #{$var}-opacity: 1;
-      //#{$var}-visibility: visible;
-
-      // Transfrom properties
       #{$var}-translate-y: 0;
       #{$var}-translate-x: 0;
       #{$var}-scale: 1;
       #{$var}-rotate: 0deg;
       #{$var}-rotate-x: 0deg;
       #{$var}-rotate-y: 0deg;
-
-      // Effects
       #{$var}-blur: 0;
     }
   }

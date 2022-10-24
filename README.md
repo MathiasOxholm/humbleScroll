@@ -22,7 +22,7 @@ HumbleScroll is inspired by AOS.js but should load significantly less CSS and JS
 
 ### HumbleScroll
 
-- 3.7kb JS (1.3 gzipped)
+- 3.7kb JS (1.3kb gzipped)
 - 7.4kb CSS (1kb gzipped)
 - Total: 11.1kb (2.3kb gzipped)
 
@@ -34,7 +34,8 @@ HumbleScroll is inspired by AOS.js but should load significantly less CSS and JS
 
 ```html
 <link
-  rel="stylesheet" href="https://cdn.jsdelivr.net/gh/MathiasOxholm/humbleScroll@latest/cdn/css/humbleScroll.min.css"
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/MathiasOxholm/humbleScroll@latest/cdn/css/humbleScroll.min.css"
 />
 ```
 
@@ -55,7 +56,7 @@ const scroll = new HumbleScroll();
 
 ## 🧰 Usage
 
-### 1. Initialize HumbleScroll
+### 1. Customize HumbleScroll
 
 By passing a options object to the HumbleScroll you are able to customize how the animations are calculated.
 
@@ -66,20 +67,22 @@ const scroll = new HumbleScroll({
   threshold: 0.25,
   enableCallback: true,
   offset: {
-   top: 0,
-   bottom: -40,
- }
+    top: 0,
+    bottom: -40,
+  },
 });
 ```
 
 ### 2. Define animation using `data-hs` attribute
 
 Wrap the element you want to animate in a div that uses the `data-hs` attribute.
-It's very important to wrap the element you want to animate as the CSS targets `['data-hs'] > *` child-elements.
+It's very important to wrap the element you want to animate as the CSS targets `['data-hs'] > *` child-elements. Sadly the Intersection Observer in javascript takes transforms into account. To avoid weird behavior we need to devide what we are watching and what we are animating into two elements.
 
 ```html
-<div data-hs="fade up">
-  <div class="card">I'm gonna fade up!</div>
+<div class="parent" data-hs="fade up desktop:down">
+  <div class="child">
+    I'm gonna fade up on mobile and tablet but down on desktop!
+  </div>
 </div>
 ```
 
@@ -96,10 +99,12 @@ It's very important to wrap the element you want to animate as the CSS targets `
 }
 ```
 
-### 4. Adjust individual elements using inline-style or by applying a class that changes the CSS properties
+### 4. Adjust individual elements using inline-style or by creating your own class that changes the CSS properties
 
 ```html
-<div data-hs="fade up" style="--hs-delay: 200ms"></div>
+<div class="parent" data-hs="fade up" style="--hs-delay: 200ms">
+  <div class="child">I have a delay of 200ms</div>
+</div>
 ```
 
 ```css
@@ -140,16 +145,16 @@ The library takes account for `.no-js` class on the `:root` element of your webs
 
 ### With jQuery
 
-HumbleScroll can work fine alongside jQuery eventhough it's written in vanilla javascript. Start off by changing the `startEvent` to `load` instead of `DOMContentLoaded`  and place `new HumbleScroll` outside Document ready. This setup is tested on a WordPress site running jQuery.
+HumbleScroll can work fine alongside jQuery eventhough it's written in vanilla javascript. Start off by changing the `startEvent` to `load` instead of `DOMContentLoaded` and place `new HumbleScroll` outside Document ready. This setup is tested on a WordPress site running jQuery.
 
 ```javascript
-$(document).ready(function() {
- // All your regular jQuery code
+$(document).ready(function () {
+  // All your regular jQuery code
 });
 
 // Place HumbleScroll outside any Document ready
 const scroll = new HumbleScroll({
- startEvent: 'load'
+  startEvent: "load",
 });
 ```
 
@@ -402,4 +407,5 @@ HumbleScroll.js is currently under development and features and API is exspected
 Just let me know and I'll update the files ASAP.
 
 ---
+
 Last updated: 20/10/2022

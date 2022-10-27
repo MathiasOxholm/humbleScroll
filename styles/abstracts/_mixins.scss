@@ -1,0 +1,24 @@
+@use './variables' as *;
+
+// -------------------------------------
+// Mixins
+// -------------------------------------
+
+// Translate property calculation
+@mixin calcProperty($property, $axis, $ratio: $property, $operator: '+') {
+  #{$var}-#{$property}-#{$axis}: calc(0px #{$operator} var(#{$var}-#{$property}-#{$axis}-amount) * var(#{$var}-#{$ratio}-ratio));
+}
+
+// Breakpoint mixin min-width
+@mixin breakpoint($screen) {
+  @media (min-width: map-get($breakpoints, $screen)) {
+    @content;
+  }
+}
+
+// Breakpoint mixin max-width
+@mixin breakpointMax($screen) {
+  @media (max-width: map-get($breakpoints, $screen)) {
+    @content;
+  }
+}

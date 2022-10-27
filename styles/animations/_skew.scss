@@ -1,0 +1,25 @@
+@use '../abstracts' as *;
+
+// -------------------------------------
+// Skew animations
+// -------------------------------------
+
+// Skew up
+[#{$attr}*='skew-up'] > * {
+  #{$var}-skew-y: var(#{$var}-skew-amount);
+}
+
+// Skew down
+[#{$attr}*='skew-down'] > * {
+  #{$var}-skew-y: calc(0deg - var(#{$var}-skew-amount));
+}
+
+// Skew right
+[#{$attr}*='skew-right'] > * {
+  #{$var}-skew-x: var(#{$var}-skew-amount);
+}
+
+// Skew left
+[#{$attr}*='skew-left'] > * {
+  #{$var}-skew-x: calc(0deg - var(#{$var}-skew-amount));
+}

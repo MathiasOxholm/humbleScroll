@@ -1,0 +1,29 @@
+@use '../abstracts' as *;
+
+// -------------------------------------
+// Reveal animations
+// -------------------------------------
+
+[#{$attr}*='reveal'] {
+  overflow: hidden;
+}
+
+// Reveal up
+[#{$attr}*='reveal-up'] * {
+  #{$var}-translate-y: var(#{$var}-reveal-amount);
+}
+
+// Reveal down
+[#{$attr}*='reveal-down'] > * {
+  #{$var}-translate-y: calc(0px - var(#{$var}-reveal-amount));
+}
+
+// Reveal right
+[#{$attr}*='reveal-right'] > * {
+  #{$var}-translate-x: calc(0px - var(#{$var}-reveal-amount));
+}
+
+// Reveal left
+[#{$attr}*='reveal-left'] > * {
+  #{$var}-translate-x: var(#{$var}-reveal-amount);
+}

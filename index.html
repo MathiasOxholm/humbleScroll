@@ -61,7 +61,7 @@
               <a
                 href="#section-1"
                 id="button-1-text"
-                class="flex bg-white text-zinc-900 px-10 py-5 text-lg rounded-lg font-semibold overflow-hidden text-center justify-center hover:bg-green-200 transition-colors duration-300"
+                class="flex bg-white text-zinc-900 px-10 py-5 text-lg rounded-lg font-semibold overflow-hidden text-center justify-center"
                 data-hs="fade phone:up desktop:right small once">
                 <span class="fade flex">See it in action</span>
               </a>
@@ -95,10 +95,10 @@
         <h2 class="section-heading">Fade animations</h2>
       </div>
 
-      <div class="container grid lg:grid-cols-2 gap-10 max-w-6xl">
+      <div class="container grid lg:grid-cols-2 gap-4 max-w-6xl">
         <div
           id="fade-up-card"
-          data-hs="fade up">
+          data-hs="fade up stagger">
           <div class="card">
             <h3 class="text-4xl text-center">Fade up</h3>
             <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="fade up"</code>
@@ -153,7 +153,7 @@
         <h2 class="section-heading">Zoom animations</h2>
       </div>
 
-      <div class="container grid lg:grid-cols-2 gap-10 max-w-6xl">
+      <div class="container grid lg:grid-cols-2 gap-4 max-w-6xl">
         <div
           id="zoom-in-card"
           data-hs="zoom-in">
@@ -202,7 +202,7 @@
         data-hs="up right blur once">
         <h2 class="section-heading">Slide animations</h2>
       </div>
-      <div class="container grid lg:grid-cols-2 gap-10 max-w-6xl">
+      <div class="container grid lg:grid-cols-2 gap-4 max-w-6xl">
         <div
           id="slide-right"
           data-hs="right 2xl">
@@ -252,7 +252,7 @@
         <h2 class="section-heading">Flip animations</h2>
       </div>
 
-      <div class="container grid lg:grid-cols-2 gap-10 max-w-6xl">
+      <div class="container grid lg:grid-cols-2 gap-4 max-w-6xl">
         <div
           id="flip-right"
           data-hs="flip-right">
@@ -301,7 +301,7 @@
         <h2 class="section-heading mb-12 lg:mb-24">Easings</h2>
       </div>
 
-      <div class="container grid lg:grid-cols-3 gap-10 max-w-6xl">
+      <div class="container grid lg:grid-cols-3 gap-4 max-w-6xl">
         <div
           id="ease-in"
           data-hs="fade up ease-in">
@@ -341,7 +341,7 @@
         <h2 class="section-heading mb-12 lg:mb-24">Blur effect</h2>
       </div>
 
-      <div class="container grid lg:grid-cols-3 gap-10 max-w-6xl">
+      <div class="container grid lg:grid-cols-3 gap-4 max-w-6xl">
         <div
           id="blur-1"
           data-hs="fade right blur 2xl">
@@ -383,7 +383,7 @@
         <h2 class="section-heading mb-12 lg:mb-24">Custom animations</h2>
       </div>
 
-      <div class="container grid lg:grid-cols-2 gap-10 max-w-6xl">
+      <div class="container grid lg:grid-cols-2 gap-4 max-w-6xl">
         <div
           id="custom-animation"
           data-hs="fade zoom-in right up large"
@@ -426,7 +426,7 @@
         <h2 class="section-heading">Callback on enter</h2>
       </div>
 
-      <div class="container grid gap-10 max-w-6xl">
+      <div class="container grid gap-4 max-w-6xl">
         <div
           id="callback-1-wrapper"
           data-hs="fade up"
@@ -473,7 +473,7 @@
         <h2 class="section-heading mb-12 lg:mb-24">Durations</h2>
       </div>
 
-      <div class="container grid lg:grid-cols-2 gap-10 max-w-6xl">
+      <div class="container grid lg:grid-cols-2 gap-4 max-w-6xl">
         <div
           class="lg:col-span-2"
           data-hs="fade up blur 2xl">
@@ -530,7 +530,165 @@
     </div>
   </section> -->
 
-    <script src="cdn/js/humbleScroll.js"></script>
-    <script src="js/main.js"></script>
+    <!-- Stagger animations -->
+    <section class="section bg-zinc-800">
+      <div
+        id="fade-section-title"
+        class="mb-12 lg:mb-24"
+        data-hs="fade right blur once">
+        <h2 class="section-heading">Stagger animations</h2>
+      </div>
+
+      <div
+        class="container grid lg:grid-cols-4 gap-4 max-w-6xl"
+        data-hs="fade up">
+        <div class="card">
+          <h3 class="text-4xl text-center">Stagger</h3>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="fade up"</code>
+        </div>
+        <div
+          class="card"
+          style="--hs-delay: 100ms">
+          <h3 class="text-4xl text-center">Stagger</h3>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="fade up"</code>
+        </div>
+        <div
+          class="card"
+          style="--hs-delay: 200ms">
+          <h3 class="text-4xl text-center">Stagger</h3>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="fade up"</code>
+        </div>
+        <div
+          class="card"
+          style="--hs-delay: 300ms">
+          <h3 class="text-4xl text-center">Stagger</h3>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="fade up"</code>
+        </div>
+        <div
+          class="card"
+          style="--hs-delay: 400ms">
+          <h3 class="text-4xl text-center">Stagger</h3>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="fade up"</code>
+        </div>
+        <div
+          class="card"
+          style="--hs-delay: 500ms">
+          <h3 class="text-4xl text-center">Stagger</h3>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="fade up"</code>
+        </div>
+        <div
+          class="card"
+          style="--hs-delay: 600ms">
+          <h3 class="text-4xl text-center">Stagger</h3>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="fade up"</code>
+        </div>
+        <div
+          class="card"
+          style="--hs-delay: 700ms">
+          <h3 class="text-4xl text-center">Stagger</h3>
+          <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="fade up"</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skew animations -->
+    <section
+      id="section-1"
+      class="section bg-zinc-900">
+      <div
+        id="fade-section-title"
+        class="mb-12 lg:mb-24"
+        data-hs="fade right blur once">
+        <h2 class="section-heading">Skew animations</h2>
+      </div>
+
+      <div class="container grid lg:grid-cols-2 gap-2 max-w-6xl">
+        <div
+          id="fade-up-card"
+          data-hs="fade right skew-right 2xl blur">
+          <div class="card">
+            <h3 class="text-4xl text-center">Skew right</h3>
+            <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="skew-right"</code>
+          </div>
+        </div>
+
+        <div
+          id="fade-down-card"
+          data-hs="fade left skew-left 2xl blur">
+          <div class="card">
+            <h3 class="text-4xl text-center">Skew left</h3>
+            <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="skew-left"</code>
+          </div>
+        </div>
+
+        <div
+          id="fade-right-card"
+          data-hs="fade up skew-up 2xl blur">
+          <div class="card">
+            <h3 class="text-4xl text-center">Skew up</h3>
+            <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="skew-up"</code>
+          </div>
+        </div>
+
+        <div
+          id="fade-left-card"
+          data-hs="fade down skew-down 2xl blur">
+          <div class="card">
+            <h3 class="text-4xl text-center">Skew down</h3>
+            <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="skew-down"</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reveal animations -->
+    <section
+      id="section-1"
+      class="section bg-zinc-800"
+      style="--hs-easing: --hs-ease-out">
+      <div
+        id="fade-section-title"
+        class="mb-12 lg:mb-24"
+        data-hs="reveal-up slow ">
+        <h2 class="section-heading">Reveal animations</h2>
+      </div>
+
+      <div class="container grid lg:grid-cols-2 gap-4 max-w-6xl">
+        <div data-hs="reveal-up slow fade">
+          <div class="card">
+            <h3 class="text-4xl text-center">Reveal up</h3>
+            <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="reveal-up"</code>
+          </div>
+        </div>
+
+        <div data-hs="reveal-down slow">
+          <div class="card">
+            <h3 class="text-4xl text-center">Reveal down</h3>
+            <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="reveal-down"</code>
+          </div>
+        </div>
+
+        <div data-hs="reveal-right slow">
+          <div class="card">
+            <h3 class="text-4xl text-center">Reveal right</h3>
+            <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="reveal-right"</code>
+          </div>
+        </div>
+
+        <div data-hs="reveal-left slow">
+          <div class="card">
+            <h3 class="text-4xl text-center">Reveal left</h3>
+            <code class="bg-zinc-800 py-2 px-3 rounded-md">data-hs="reveal-left"</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script
+      src="cdn/js/humbleScroll.js"
+      defer></script>
+    <script
+      src="js/main.js"
+      defer></script>
   </body>
 </html>

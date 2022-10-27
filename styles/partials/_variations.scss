@@ -1,0 +1,28 @@
+@use '../abstracts' as *;
+
+// -------------------------------------
+// Animation easing variantions
+// -------------------------------------
+@each $ease in $easings {
+  [#{$attr}*='#{$ease}'] {
+    #{$var}-easing: var(#{$var}-#{$ease});
+  }
+}
+
+// -------------------------------------
+// Animation size variations
+// -------------------------------------
+@each $size, $value in $sizes {
+  [#{$attr}*='#{$size}'] {
+    #{$var}-translate-ratio: $value;
+  }
+}
+
+// -------------------------------------
+// Animation speed variations
+// -------------------------------------
+@each $duration, $value in $durations {
+  [#{$attr}~='#{$duration}'] {
+    #{$var}-duration-ratio: $value;
+  }
+}

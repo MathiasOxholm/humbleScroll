@@ -1,0 +1,105 @@
+@use '../abstracts' as *;
+
+// -------------------------------------
+// Flip animations
+// -------------------------------------
+
+// General flip
+[#{$attr}*='flip'] {
+  > * {
+    #{$var}-perspective: var(#{$var}-perspective-amount);
+    backface-visibility: hidden;
+  }
+}
+
+// Flip up
+[#{$attr}*='flip-up'] > * {
+  #{$var}-rotate-x: calc(0deg - var(#{$var}-flip-x-amount));
+}
+
+body [#{$attr}*='phone:flip-up'] > * {
+  @include breakpointMax(tablet) {
+    #{$var}-rotate-x: calc(0deg - var(#{$var}-flip-x-amount));
+  }
+}
+
+body [#{$attr}*='tablet:flip-up'] > * {
+  @include breakpoint(tablet) {
+    #{$var}-rotate-x: calc(0deg - var(#{$var}-flip-x-amount));
+  }
+}
+
+body [#{$attr}*='desktop:flip-up'] > * {
+  @include breakpoint(desktop) {
+    #{$var}-rotate-x: calc(0deg - var(#{$var}-flip-x-amount));
+  }
+}
+
+// Flip down
+[#{$attr}*='flip-down'] > * {
+  #{$var}-rotate-x: var(#{$var}-flip-x-amount);
+}
+
+body [#{$attr}*='phone:flip-down'] > * {
+  @include breakpointMax(tablet) {
+    #{$var}-rotate-x: var(#{$var}-flip-x-amount);
+  }
+}
+
+body [#{$attr}*='tablet:flip-down'] > * {
+  @include breakpoint(tablet) {
+    #{$var}-rotate-x: var(#{$var}-flip-x-amount);
+  }
+}
+
+body [#{$attr}*='desktop:flip-down'] > * {
+  @include breakpoint(desktop) {
+    #{$var}-rotate-x: var(#{$var}-flip-x-amount);
+  }
+}
+
+// Flip left
+[#{$attr}*='flip-left'] > * {
+  #{$var}-rotate-y: calc(0deg - var(#{$var}-flip-y-amount));
+}
+
+body [#{$attr}*='phone:flip-left'] > * {
+  @include breakpointMax(tablet) {
+    #{$var}-rotate-y: calc(0deg - var(#{$var}-flip-y-amount));
+  }
+}
+
+body [#{$attr}*='tablet:flip-left'] > * {
+  @include breakpoint(tablet) {
+    #{$var}-rotate-y: calc(0deg - var(#{$var}-flip-y-amount));
+  }
+}
+
+body [#{$attr}*='desktop:flip-left'] > * {
+  @include breakpoint(desktop) {
+    #{$var}-rotate-y: calc(0deg - var(#{$var}-flip-y-amount));
+  }
+}
+
+// Flip right
+[#{$attr}*='flip-right'] > * {
+  #{$var}-rotate-y: var(#{$var}-flip-y-amount);
+}
+
+body [#{$attr}*='phone:flip-right'] > * {
+  @include breakpointMax(tablet) {
+    #{$var}-rotate-y: var(#{$var}-flip-y-amount);
+  }
+}
+
+body [#{$attr}*='tablet:flip-right'] > * {
+  @include breakpoint(tablet) {
+    #{$var}-rotate-y: var(#{$var}-flip-y-amount);
+  }
+}
+
+body [#{$attr}*='desktop:flip-right'] > * {
+  @include breakpoint(desktop) {
+    #{$var}-rotate-y: var(#{$var}-flip-y-amount);
+  }
+}

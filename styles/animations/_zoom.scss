@@ -1,0 +1,51 @@
+@use '../abstracts' as *;
+
+// -------------------------------------
+// Zoom animations
+// -------------------------------------
+
+// Zoom in
+[#{$attr}*='zoom-in'] > * {
+  #{$var}-scale: calc(1 + var(#{$var}-scale-ratio));
+}
+
+body [#{$attr}*='phone:zoom-in'] > * {
+  @include breakpointMax(tablet) {
+    #{$var}-scale: calc(1 + var(#{$var}-scale-ratio));
+  }
+}
+
+body [#{$attr}*='tablet:zoom-in'] > * {
+  @include breakpoint(tablet) {
+    #{$var}-scale: calc(1 + var(#{$var}-scale-ratio));
+  }
+}
+
+body [#{$attr}*='desktop:zoom-in'] > * {
+  @include breakpoint(desktop) {
+    #{$var}-scale: calc(1 + var(#{$var}-scale-ratio));
+  }
+}
+
+// Zoom out
+[#{$attr}*='zoom-out'] > * {
+  #{$var}-scale: calc(1 - var(#{$var}-scale-ratio));
+}
+
+body [#{$attr}*='phone:zoom-out'] > * {
+  @include breakpointMax(tablet) {
+    #{$var}-scale: calc(1 - var(#{$var}-scale-ratio));
+  }
+}
+
+body [#{$attr}*='tablet:zoom-out'] > * {
+  @include breakpoint(tablet) {
+    #{$var}-scale: calc(1 - var(#{$var}-scale-ratio));
+  }
+}
+
+body [#{$attr}*='desktop:zoom-out'] > * {
+  @include breakpoint(desktop) {
+    #{$var}-scale: calc(1 - var(#{$var}-scale-ratio));
+  }
+}

@@ -1,0 +1,73 @@
+// -------------------------------------
+// SCSS variables
+// -------------------------------------
+$brand: 'hs';
+$var: '--' + $brand;
+$attr: 'data-' + $brand;
+$inView: $brand + '-inview';
+
+// -------------------------------------
+// SCSS lists
+// -------------------------------------
+$properties: (
+  // Transition
+  delay: 0ms,
+  easing: var(#{$var}-ease-out),
+  duration: 600ms,
+  // Transition easings
+  ease-in: cubic-bezier(0.4, 0, 1, 1),
+  ease-in-out: cubic-bezier(0.4, 0, 0.2, 1),
+  ease-out: cubic-bezier(0, 0, 0.2, 1),
+  ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1),
+  ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1),
+  // Visibility
+  opacity: 1,
+  // Transfrom
+  translate-y: 0,
+  translate-x: 0,
+  scale: 1,
+  rotate: 0deg,
+  perspective: 0,
+  rotate-x: 0deg,
+  rotate-y: 0deg,
+  skew-x: 0deg,
+  skew-y: 0deg,
+  // Ratio
+  translate-ratio: 1,
+  scale-ratio: 0.2,
+  duration-ratio: 1,
+  // Amount
+  translate-x-amount: 2rem,
+  translate-y-amount: 3rem,
+  flip-x-amount: 100deg,
+  flip-y-amount: -100deg,
+  perspective-amount: 2000px,
+  stagger-amount: 100ms,
+  skew-amount: 20deg,
+  reveal-amount: 100%,
+  // Efects
+  blur: 0,
+  blur-amount: 5px
+);
+
+$easings: ease-in, ease-out, ease-in-out, ease-out-expo, ease-out-back;
+
+$sizes: (
+  'sm': 0.5,
+  'md': 0.75,
+  'lg': 1.5,
+  'xl': 2,
+  '2xl': 3,
+);
+
+$durations: (
+  'extra-slow': 3,
+  'slow': 1.5,
+  'fast': 0.75,
+  'extra-fast': 0.5,
+);
+
+$breakpoints: (
+  'tablet': 768px,
+  'desktop': 1240px,
+);

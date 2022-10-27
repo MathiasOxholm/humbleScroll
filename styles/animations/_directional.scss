@@ -1,0 +1,97 @@
+@use '../abstracts' as *;
+
+// -------------------------------------
+// Directional animations
+// -------------------------------------
+
+// Up
+[#{$attr}~='up'] > * {
+  @include calcProperty('translate', 'y');
+}
+
+body [#{$attr}*='phone:up'] > * {
+  @include breakpointMax(tablet) {
+    @include calcProperty('translate', 'y');
+  }
+}
+
+body [#{$attr}*='tablet:up'] > * {
+  @include breakpoint(tablet) {
+    @include calcProperty('translate', 'y');
+  }
+}
+
+body [#{$attr}*='desktop:up'] > * {
+  @include breakpoint(desktop) {
+    @include calcProperty('translate', 'y');
+  }
+}
+
+// Down
+[#{$attr}~='down'] > * {
+  @include calcProperty('translate', 'y', 'translate', '-');
+}
+
+body [#{$attr}*='phone:down'] > * {
+  @include breakpointMax(tablet) {
+    @include calcProperty('translate', 'y', 'translate', '-');
+  }
+}
+
+body [#{$attr}*='tablet:down'] > * {
+  @include breakpoint(tablet) {
+    @include calcProperty('translate', 'y', 'translate', '-');
+  }
+}
+
+body [#{$attr}*='desktop:down'] > * {
+  @include breakpoint(desktop) {
+    @include calcProperty('translate', 'y', 'translate', '-');
+  }
+}
+
+// Left
+[#{$attr}~='left'] > * {
+  @include calcProperty('translate', 'x');
+}
+
+body [#{$attr}*='phone:left'] > * {
+  @include breakpointMax(tablet) {
+    @include calcProperty('translate', 'x');
+  }
+}
+
+body [#{$attr}*='tablet:left'] > * {
+  @include breakpoint(tablet) {
+    @include calcProperty('translate', 'x');
+  }
+}
+
+body [#{$attr}*='desktop:left'] > * {
+  @include breakpoint(desktop) {
+    @include calcProperty('translate', 'x');
+  }
+}
+
+// Right
+[#{$attr}~='right'] > * {
+  @include calcProperty('translate', 'x', 'translate', '-');
+}
+
+body [#{$attr}*='phone:right'] > * {
+  @include breakpointMax(tablet) {
+    @include calcProperty('translate', 'x', 'translate', '-');
+  }
+}
+
+body [#{$attr}*='tablet:right'] > * {
+  @include breakpoint(tablet) {
+    @include calcProperty('translate', 'x', 'translate', '-');
+  }
+}
+
+body [#{$attr}*='desktop:right'] > * {
+  @include breakpoint(desktop) {
+    @include calcProperty('translate', 'x', 'translate', '-');
+  }
+}

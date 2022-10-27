@@ -1,0 +1,10 @@
+@use '../abstracts' as *;
+
+// -------------------------------------
+// Fade animation
+// -------------------------------------
+// General fade
+[#{$attr}*='fade'],
+[#{$attr}*='zoom'] {
+  #{$var}-opacity: 0;
+}

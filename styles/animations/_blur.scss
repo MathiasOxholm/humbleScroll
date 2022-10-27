@@ -1,0 +1,26 @@
+@use '../abstracts' as *;
+
+// -------------------------------------
+// Blur animations
+// -------------------------------------
+[#{$attr}*='blur'] {
+  #{$var}-blur: var(#{$var}-blur-amount);
+}
+
+body [#{$attr}*='phone:blur'] > * {
+  @include breakpointMax(tablet) {
+    #{$var}-blur: var(#{$var}-blur-amount);
+  }
+}
+
+body [#{$attr}*='tablet:blur'] > * {
+  @include breakpoint(tablet) {
+    #{$var}-blur: var(#{$var}-blur-amount);
+  }
+}
+
+body [#{$attr}*='desktop:blur'] > * {
+  @include breakpoint(desktop) {
+    #{$var}-blur: var(#{$var}-blur-amount);
+  }
+}

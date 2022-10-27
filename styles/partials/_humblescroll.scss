@@ -12,34 +12,36 @@
 // -------------------------------------
 // Main HumbleScroll data-attribute
 // -------------------------------------
-[#{$attr}] {
-  > * {
-    transition-duration: calc(var(#{$var}-duration) * var(#{$var}-duration-ratio));
-    transition-timing-function: var(#{$var}-easing);
-    transition-delay: var(#{$var}-delay);
-    transition-property: transform, opacity, filter;
-    opacity: var(#{$var}-opacity);
-    transform: translate3d(var(#{$var}-translate-x), var(#{$var}-translate-y), 0px) scale(var(#{$var}-scale)) rotate(var(#{$var}-rotate)) perspective(var(#{$var}-perspective)) rotateX(var(#{$var}-rotate-x)) rotateY(var(#{$var}-rotate-y)) skew(var(#{$var}-skew-x), var(#{$var}-skew-y));
-    filter: blur(var(#{$var}-blur));
-  }
-
-  &:not(.#{$inView}) {
-    pointer-events: none;
-  }
-
-  &.#{$inView} {
+@media (prefers-reduced-motion: no-preference) {
+  [#{$attr}] {
     > * {
-      pointer-events: auto;
-      #{$var}-opacity: 1;
-      #{$var}-translate-y: 0;
-      #{$var}-translate-x: 0;
-      #{$var}-scale: 1;
-      #{$var}-rotate: 0deg;
-      #{$var}-rotate-x: 0deg;
-      #{$var}-rotate-y: 0deg;
-      #{$var}-skew-x: 0deg;
-      #{$var}-skew-y: 0deg;
-      #{$var}-blur: 0;
+      transition-duration: calc(var(#{$var}-duration) * var(#{$var}-duration-ratio));
+      transition-timing-function: var(#{$var}-easing);
+      transition-delay: var(#{$var}-delay);
+      transition-property: transform, opacity, filter;
+      opacity: var(#{$var}-opacity);
+      transform: translate3d(var(#{$var}-translate-x), var(#{$var}-translate-y), 0px) scale(var(#{$var}-scale)) rotate(var(#{$var}-rotate)) perspective(var(#{$var}-perspective)) rotateX(var(#{$var}-rotate-x)) rotateY(var(#{$var}-rotate-y)) skew(var(#{$var}-skew-x), var(#{$var}-skew-y));
+      filter: blur(var(#{$var}-blur));
+    }
+
+    &:not(.#{$inView}) {
+      pointer-events: none;
+    }
+
+    &.#{$inView} {
+      > * {
+        pointer-events: auto;
+        #{$var}-opacity: 1;
+        #{$var}-translate-y: 0;
+        #{$var}-translate-x: 0;
+        #{$var}-scale: 1;
+        #{$var}-rotate: 0deg;
+        #{$var}-rotate-x: 0deg;
+        #{$var}-rotate-y: 0deg;
+        #{$var}-skew-x: 0deg;
+        #{$var}-skew-y: 0deg;
+        #{$var}-blur: 0;
+      }
     }
   }
 }

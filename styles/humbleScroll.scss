@@ -1,16 +1,3 @@
 @use 'abstracts' as *;
 @use 'partials' as *;
 @use 'animations' as *;
-
-// -------------------------------------
-// Remove animations if prefers-reduced-motion
-// -------------------------------------
-@media (prefers-reduced-motion: reduce) {
-  :root body [#{$attr}] > * {
-    transition: none;
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-    filter: none;
-  }
-}

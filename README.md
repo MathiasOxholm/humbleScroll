@@ -202,25 +202,43 @@ All Custom props that can be customized.
 
 ```css
 :root {
-  --hs-delay: 0ms;
-  --hs-easing: var(--hs-ease-out);
-  --hs-duration: 600ms;
-  --hs-ease-in: cubic-bezier(0.4, 0, 1, 1);
-  --hs-ease-out: cubic-bezier(0, 0, 0.2, 1);
-  --hs-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-  --hs-opacity: 1;
-  --hs-translate-y: 0;
-  --hs-translate-x: 0;
-  --hs-scale: 1;
-  --hs-rotate: 0deg;
-  --hs-ratio: 1;
-  --hs-translate-ratio: 1;
-  --hs-scale-ratio: 0.2;
-  --hs-duration-ratio: 1;
-  --hs-translate-x-amount: 2rem;
-  --hs-translate-y-amount: 3rem;
-  --hs-blur: 0;
-  --hs-blur-amount: 5px;
+  /* Transition */
+  delay: 0ms,
+  easing: var(hs-ease-out),
+  duration: 600ms,
+  /* Transition easings */
+  ease-in: cubic-bezier(0.4, 0, 1, 1),
+  ease-in-out: cubic-bezier(0.4, 0, 0.2, 1),
+  ease-out: cubic-bezier(0, 0, 0.2, 1),
+  ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1),
+  /* Visibility */
+  opacity: 1,
+  /* Transfrom */
+  translate-y: 0,
+  translate-x: 0,
+  scale: 1,
+  rotate: 0deg,
+  perspective: 0,
+  rotate-x: 0deg,
+  rotate-y: 0deg,
+  skew-x: 0deg,
+  skew-y: 0deg,
+  /* Ratio */
+  translate-ratio: 1,
+  scale-ratio: 0.2,
+  duration-ratio: 1,
+  /* Amount */
+  translate-x-amount: 2rem,
+  translate-y-amount: 3rem,
+  flip-x-amount: 100deg,
+  flip-y-amount: -100deg,
+  perspective-amount: 2000px,
+  stagger-amount: 100ms,
+  skew-amount: 20deg,
+  reveal-amount: 100%,
+  /* Efects */
+  blur: 0,
+  blur-amount: 5px
 }
 ```
 
@@ -256,7 +274,7 @@ Customize by overriding `--hs-scale-ratio` in your css or directly on the elemen
 
 ### 4. Flip
 
-Flip in any direction. Cannot be customized at the moment.
+Flip in any direction. Customize by overriding `--hs-flip-x-amount` and `--hs-flip-y-amount`.
 
 ```html
 <div data-hs="flip-up"></div>
@@ -265,7 +283,29 @@ Flip in any direction. Cannot be customized at the moment.
 <div data-hs="flip-right"></div>
 ```
 
-### 5. Blur
+### 5. Skew
+
+Combine with blur to make them feel blazingly fast. Customize by overriding `--hs-skew-amount`.
+
+```html
+<div data-hs="skew-up"></div>
+<div data-hs="skew-down"></div>
+<div data-hs="skew-left"></div>
+<div data-hs="skew-right"></div>
+```
+
+### 6. Reveal
+
+Parent has overflow hidden and child slides from 100% to 0. Cusomize by overriding `--hs-reveal-amount`.
+
+```html
+<div data-hs="reveal-up"></div>
+<div data-hs="reveal-down"></div>
+<div data-hs="reveal-left"></div>
+<div data-hs="reveal-right"></div>
+```
+
+### 7. Blur
 
 Who doesn't like motion blur? Customize by overriding `--hs-blur` on an element.
 
@@ -274,17 +314,18 @@ Who doesn't like motion blur? Customize by overriding `--hs-blur` on an element.
 <div data-hs="blur" style="--hs-blur: 40px"></div>
 ```
 
-### 6. Easings
+### 8. Easings
 
-Customize by overriding `--hs-ease`, `--hs-ease-in` or `--hs-ease-out` or just create your own. These are based on TailwindCSS' three basic easings.
+Customize by overriding `--hs-ease`, `--hs-ease-in`, `--hs-ease-out` or `--hs-ease-out-back` or just create your own. These are based on TailwindCSS' three basic easings.
 
 ```html
 <div data-hs="ease-in"></div>
 <div data-hs="ease-out"></div>
 <div data-hs="ease-in-out"></div>
+<div data-hs="ease-out-back"></div>
 ```
 
-### 7. Size variations
+### 9. Size variations
 
 Default variation for the translation amount on directional animations (up, down, left, right).
 Customize by overriding `--hs-translate-ratio`.
@@ -302,7 +343,7 @@ Customize by overriding `--hs-translate-ratio`.
 <div data-hs="2xl"></div>
 ```
 
-### 8. Speed variations
+### 10. Speed variations
 
 Default variation for animation durations (scales from `--hs-duration`).
 
@@ -317,7 +358,7 @@ Default variation for animation durations (scales from `--hs-duration`).
 <div data-hs="extra-fast"></div>
 ```
 
-### 9. Run once
+### 11. Run once
 
 Ensure the animation only runs once - even with `repeat` and `mirror` enabled.
 
@@ -325,7 +366,7 @@ Ensure the animation only runs once - even with `repeat` and `mirror` enabled.
 <div data-hs="once"></div>
 ```
 
-### 10. Responsive animations
+### 12. Responsive animations
 
 In this responsive age developers need the ability to animate differrently based on screensizes. Use the `phone:`, `tablet:` or `desktop:` prefix before animations to apply a media query.
 CSS doesn't support variable media queries just yet. Therefore the prefixes are hardcoded values.
@@ -357,7 +398,7 @@ CSS doesn't support variable media queries just yet. Therefore the prefixes are 
 }
 ```
 
-### Combine them
+### 13. Combine them
 
 Combine animations inside the `data-hs` attribute (space seperated).
 
@@ -366,6 +407,7 @@ Combine animations inside the `data-hs` attribute (space seperated).
 <div data-hs="fade left down fast"></div>
 <div data-hs="zoom-in up left extra-slow"></div>
 <div data-hs="flip-right up lg slow once"></div>
+<div data-hs="skew-right fade right 2xl blur fast ease-out-back"></div>
 ```
 
 ---
@@ -408,4 +450,4 @@ Just let me know and I'll update the files ASAP.
 
 ---
 
-Last updated: 20/10/2022
+Last updated: 28/10/2022
